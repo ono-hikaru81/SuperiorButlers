@@ -12,36 +12,15 @@ void InputManager::UpdateKeyStatus()
 
 bool InputManager::IsKeyPushed(int key)
 {
-	if (previousKeyStatus[key] == 0 && keyStatus[key] == 1)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	return ( previousKeyStatus[key] == 0 && keyStatus[key] == 1 );
 }
 
 bool InputManager::IsKeyHeld(int key)
 {
-	if (previousKeyStatus[key] == 1 && keyStatus[key] == 1)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	return ( previousKeyStatus[key] == 1 && keyStatus[key] == 1 );
 }
 
 bool InputManager::IsKeyRelesed(int key)
 {
-	if (previousKeyStatus[key] == 1 && keyStatus[key] == 0)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	return ( previousKeyStatus[key] == 1 && keyStatus[key] == 0 );
 }
