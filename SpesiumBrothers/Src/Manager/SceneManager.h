@@ -4,23 +4,23 @@
 #include "../SceneDefinition.h"
 #include "../Singleton.h"
 
-class SceneManager : public Singleton<SceneManager>
-{
-public:
-	SceneManager();
-	~SceneManager();
+class SceneManager : public Singleton<SceneManager> {
+   public:
+    SceneManager();
+    virtual ~SceneManager();
 
-	void Exec();
-	void Draw();
+   public:
+    void Exec();
+    void Draw();
 
-	void SetNextScene(Scene next);
+    void SetNextScene( Scene next );
 
-private:
-	class SceneBase* CreateNextScene();
+   private:
+    class SceneBase* CreateNextScene();
 
-private:
-	class SceneBase* m_pScene;
-	static Scene m_NextScene;
+   private:
+    class SceneBase* currentScene;
+    static Scene nextScene;
 };
 
-#endif // !SCENEMANAGER_H
+#endif  // !SCENEMANAGER_H

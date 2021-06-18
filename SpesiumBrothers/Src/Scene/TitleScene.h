@@ -1,23 +1,23 @@
-#ifndef TITLE_SCENE_H
+ï»¿#ifndef TITLE_SCENE_H
 #define TITLE_SCENE_H
 
-#include "SceneBase.h"
 #include "../Manager/InputManager.h"
+#include "SceneBase.h"
 
-class TitleScene : public SceneBase
-{
-public:
-	TitleScene();
-	virtual ~TitleScene();
+class TitleScene : public SceneBase {
+   public:
+    TitleScene();
+    virtual ~TitleScene();
 
-	// ƒV[ƒ“ˆ—
-	virtual void Exec();
+   public:
+    // ã‚·ãƒ¼ãƒ³å‡¦ç†
+    virtual void Exec();
 
-	// ƒV[ƒ“•`‰æ
-	virtual void Draw();
+    // ã‚·ãƒ¼ãƒ³æç”»
+    virtual void Draw();
 
-	// ƒV[ƒ“I—¹ƒtƒ‰ƒO
-	virtual bool IsEnd() const;
+    virtual Scene GetSceneTag() { return sceneTag; }
+    virtual void SetSceneTag( Scene sceneTag_ ) { sceneTag = sceneTag_; }
 };
 
-#endif // !TITLE_SCENE_H
+#endif  // !TITLE_SCENE_H

@@ -1,16 +1,16 @@
-#ifndef SCENEDIFENITION_H
-#define SCENEDIFENITION_H
+#ifndef SCENE_DEFINITION_H
+#define SCENE_DEFINITION_H
 
 enum class Scene
 {
-	Title,
-	CharacterSelect,
-	StageSelect,
-	InGame,
-	Result,
+    Title,
+    CharacterSelect,
+    StageSelect,
+    InGame,
+    Result,
 
-	Max,
-	Non
+    Max,
+    None
 };
 
-#endif // !SCENEDEFINITION_H
+#endif  // !SCENE_DEFINITION_H

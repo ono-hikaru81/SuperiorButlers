@@ -1,25 +1,26 @@
-#ifndef SCENE_BASE_H
+﻿#ifndef SCENE_BASE_H
 #define SCENE_BASE_H
 
-#include "../Singleton.h"
 #include "../Manager/InputManager.h"
+#include "../SceneDefinition.h"
+#include "../Singleton.h"
 
-class SceneBase : public Singleton<SceneBase>
-{
-public:
-	SceneBase() :
-		m_Step(0)
-	{}
-	virtual ~SceneBase() {}
+class SceneBase : public Singleton<SceneBase> {
+   public:
+    SceneBase() :
+        sceneTag( Scene::None ) {}
+    virtual ~SceneBase() {}
 
-	virtual void Exec() = 0;
-	virtual void Draw() = 0;
+   public:
+    virtual void Exec() = 0;
+    virtual void Draw() = 0;
 
-	virtual bool IsEnd() const = 0;
+    virtual Scene GetSceneTag() = 0;
+    virtual void SetSceneTag( Scene sceneTag_ ) = 0;
 
-protected:
-	int m_Step;
-	InputManager* inputManager = nullptr;
+   protected:
+    Scene sceneTag;
+    InputManager* inputManager = nullptr;
 };
 
-#endif // !SCENE_BASE_H
+#endif  // !SCENE_BASE_H

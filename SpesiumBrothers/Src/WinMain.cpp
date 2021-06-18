@@ -1,58 +1,56 @@
+ï»¿#include "Definition.h"
 #include "DxLib.h"
-#include "Definition.h"
-#include "Utility/Vector.h"
-#include "Manager/SceneManager.h"
 #include "Manager/InputManager.h"
+#include "Manager/SceneManager.h"
+#include "Utility/Function.h"
+#include "Utility/Vector.h"
 
-int WINAPI WinMain(
-	HINSTANCE hInstance,
-	HINSTANCE hPrevInstance,
-	LPSTR lpCmdLine,
-	int nCmdShow)
-{
-	SetOutApplicationLogValidFlag(FALSE);
-	ChangeWindowMode(TRUE);
-	SetGraphMode((int)WindowSize.x, (int)WindowSize.y, 32);
-	SetBackgroundColor(100, 100, 100);
-	SetMainWindowText("‘å—“¬ƒXƒyƒVƒEƒ€ƒuƒ‰ƒU[ƒY");
-	if (DxLib_Init() == -1) { return -1; }
-	SetDrawScreen(DX_SCREEN_BACK);
+int WINAPI WinMain( _In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow ) {
+    SetOutApplicationLogValidFlag( FALSE );
+    ChangeWindowMode( TRUE );
+    SetGraphMode( WINDOW_SIZE.x, WINDOW_SIZE.y, 32, FPS );
+    SetBackgroundColor( 100, 100, 100 );
+    SetMainWindowText( "å¤§ä¹±é—˜ã‚¹ãƒšã‚·ã‚¦ãƒ ãƒ–ãƒ©ã‚¶ãƒ¼ã‚º" );
+    if ( DxLib_Init() == -1 ) return -1;
+    SetDrawScreen( DX_SCREEN_BACK );
 
-	// ŠÇ—ƒNƒ‰ƒXì¬
-	InputManager::CreateInstance();
-	InputManager* inputManager = InputManager::GetInstance();
-	SceneManager::CreateInstance();
-	SceneManager* sceneManager = SceneManager::GetInstance();
+    // ç®¡ç†ã‚¯ãƒ©ã‚¹ä½œæˆ
+    auto inputManager = InputManager::CreateInstance();
+    auto sceneManager = SceneManager::CreateInstance();
+    auto function = Function::CreateInstance();
 
-	while (true)
-	{
-		if (ProcessMessage() == -1 ||
-			inputManager->IsKeyPushed(KEY_INPUT_ESCAPE))
-		{
-			break;
-		}
+    while ( true ) {
+        function->LockFPSHead();
 
-		// ƒL[XV
-		inputManager->UpdateKeyStatus();
+        // ãƒ«ãƒ¼ãƒ—ã‚’æŠœã‘ã‚‹æ¡ä»¶
+        if ( ProcessMessage() == -1 ) break;
+        if ( inputManager->IsKeyPushed( KEY_INPUT_ESCAPE ) ) break;
 
-		ClearDrawScreen();
-		clsDx();
+        // ã‚­ãƒ¼æ›´æ–°
+        inputManager->UpdateKeyStatus();
 
-		// ƒV[ƒ“ˆ—
-		sceneManager->Exec();
-		
-		// ƒV[ƒ“•`‰æ
-		sceneManager->Draw();
+        ClearDrawScreen();
+        clsDx();
 
-		ScreenFlip();
-	}
+        // ã‚·ãƒ¼ãƒ³å‡¦ç†
+        sceneManager->Exec();
 
-	// ŠÇ—ƒNƒ‰ƒXíœ
-	sceneManager = nullptr;
-	inputManager = nullptr;
-	SceneManager::DestoroyInstance();
-	InputManager::DestoroyInstance();
+        // ã‚·ãƒ¼ãƒ³æç”»
+        sceneManager->Draw();
 
-	DxLib_End();
-	return 0;
+        ScreenFlip();
+
+        function->LockFPSTail();
+    }
+
+    // ç®¡ç†ã‚¯ãƒ©ã‚¹å‰Šé™¤
+    sceneManager = nullptr;
+    inputManager = nullptr;
+    function = nullptr;
+    SceneManager::DestoroyInstance();
+    InputManager::DestoroyInstance();
+    Function::DestoroyInstance();
+
+    DxLib_End();
+    return 0;
 }

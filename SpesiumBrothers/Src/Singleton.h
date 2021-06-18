@@ -1,43 +1,44 @@
-#ifndef SINGLETON_H
+﻿#ifndef SINGLETON_H
 #define SINGLETON_H
 
-template <class T>
-class Singleton
-{
-protected:
-	Singleton() {}
-	virtual ~Singleton() {}
+template<class T>
+class Singleton {
+   protected:
+    Singleton() {}
 
-public:
-	static void CreateInstance()
-	{
-		if (m_pInstance == nullptr)
-		{
-			m_pInstance = new T();
-		}
-	}
+    virtual ~Singleton() {}
 
-	static void DestoroyInstance()
-	{
-		delete m_pInstance;
-		m_pInstance = nullptr;
-	}
+   public:
+    static T* CreateInstance() {
+        if ( Instance == nullptr ) {
+            Instance = new T();
+        }
 
-	static T* GetInstance()
-	{
-		return m_pInstance;
-	}
+        return Instance;
+    }
 
-	static bool IsNull()
-	{
-		return (m_pInstance == nullptr);
-	}
+    static void DestoroyInstance() {
+        delete Instance;
+        Instance = nullptr;
+    }
 
-private:
-	static T* m_pInstance;
+    static T* GetInstance() {
+        if ( Instance == nullptr ) {
+            return CreateInstance();
+        }
+
+        return Instance;
+    }
+
+    static bool IsNull() {
+        return Instance == nullptr;
+    }
+
+   private:
+    static T* Instance;
 };
 
-template <class T>
-T* Singleton<T>::m_pInstance = nullptr;
+template<class T>
+T* Singleton<T>::Instance = nullptr;
 
-#endif // !SINGLETON_H
+#endif  // !SINGLETON_H

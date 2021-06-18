@@ -1,60 +1,52 @@
-#include "SceneManager.h"
-#include "../Scene/SceneBase.h"
-#include "../Scene/TitleScene.h"
+﻿#include "SceneManager.h"
+
 #include "../Scene/InGameScene.h"
 #include "../Scene/ResultScene.h"
+#include "../Scene/SceneBase.h"
+#include "../Scene/TitleScene.h"
 
-Scene SceneManager::m_NextScene = Scene::Non;
+Scene SceneManager::nextScene = Scene::None;
 
 SceneManager::SceneManager() :
-	m_pScene(nullptr)	
-{
-	SetNextScene(Scene::Title);
-	m_pScene = CreateNextScene();
+    currentScene( nullptr ) {
+    SetNextScene( Scene::Title );
+    currentScene = CreateNextScene();
 }
 
-
-SceneManager::~SceneManager()
-{
-	delete m_pScene;
-	m_pScene = nullptr;
+SceneManager::~SceneManager() {
+    delete currentScene;
+    currentScene = nullptr;
 }
 
-void SceneManager::Exec()
-{
-	if (m_pScene == nullptr) { return; }
+void SceneManager::Exec() {
+    if ( currentScene == nullptr ) return;
 
-	m_pScene->Exec();
+    currentScene->Exec();
 
-	if (m_pScene->IsEnd())
-	{
-		delete m_pScene;
-		m_pScene = CreateNextScene();
-	}
+    if ( currentScene->GetSceneTag() != nextScene ) {
+        delete currentScene;
+        currentScene = CreateNextScene();
+    }
 }
 
-void SceneManager::Draw()
-{
-	if (m_pScene == nullptr) { return; }
+void SceneManager::Draw() {
+    if ( currentScene == nullptr ) return;
 
-	m_pScene->Draw();
+    currentScene->Draw();
 }
 
-void SceneManager::SetNextScene(Scene next)
-{
-	m_NextScene = next;
+void SceneManager::SetNextScene( Scene next ) {
+    nextScene = next;
 }
 
-SceneBase* SceneManager::CreateNextScene()
-{
-	SceneBase* next = nullptr;
+SceneBase* SceneManager::CreateNextScene() {
+    SceneBase* next = nullptr;
 
-	switch (m_NextScene)
-	{
-	case Scene::Title: next = new TitleScene(); break;
-	case Scene::InGame: next = new InGameScene(); break;
-	case Scene::Result: next = new ResultScene(); break;
-	}
+    switch ( nextScene ) {
+        case Scene::Title: next = new TitleScene(); break;
+        case Scene::InGame: next = new InGameScene(); break;
+        case Scene::Result: next = new ResultScene(); break;
+    }
 
-	return next;
+    return next;
 }

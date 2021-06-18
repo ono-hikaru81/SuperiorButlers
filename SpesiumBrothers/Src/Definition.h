@@ -1,9 +1,9 @@
-#ifndef DEFINITION_H
+﻿#ifndef DEFINITION_H
 #define DEFINITION_H
 
 #include "Utility/Vector.h"
 
-static const Vec2Float WindowSize = { 1280.0f, 960.0f };
-static const float FPS = 60.0f;
+static const Vec2Int WINDOW_SIZE( 1280, 960 );  // 令和3年に4:3らしい
+static const int FPS = 60;
 
-#endif // !DEFINITION_H
+#endif  // !DEFINITION_H

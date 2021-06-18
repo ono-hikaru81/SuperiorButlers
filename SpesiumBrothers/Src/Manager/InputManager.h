@@ -1,27 +1,30 @@
 ﻿#ifndef INPUT_MANAGER_H
 #define INPUT_MANAGER_H
 
-#include "DxLib.h"
 #include "../Singleton.h"
+#include "DxLib.h"
 
-class InputManager : public Singleton<InputManager>
-{
-public:
-	//毎フレーム呼び出す
-	void UpdateKeyStatus();
+class InputManager : public Singleton<InputManager> {
+   public:
+    InputManager();
+    virtual ~InputManager() {};
 
-	//押した瞬間
-	bool IsKeyPushed(int key);
+   public:
+    //毎フレーム呼び出す
+    void UpdateKeyStatus();
 
-	//押している
-	bool IsKeyHeld(int key);
+    //押した瞬間
+    bool IsKeyPushed( int key );
 
-	//離した
-	bool IsKeyRelesed(int key);
+    //押している
+    bool IsKeyHeld( int key );
 
-private:
-	char keyStatus[256];
-	char previousKeyStatus[256];
+    //離した
+    bool IsKeyReleased( int key );
+
+   private:
+    char keyStatus[256];
+    char previousKeyStatus[256];
 };
 
-#endif // !INPUT_MANAGER_H
+#endif  // !INPUT_MANAGER_H

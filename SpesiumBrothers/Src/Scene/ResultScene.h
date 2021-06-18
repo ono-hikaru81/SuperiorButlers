@@ -1,23 +1,22 @@
-#ifndef RESULT_SCENE_H
+ï»¿#ifndef RESULT_SCENE_H
 #define RESULT_SCENE_H
 
-#include "SceneBase.h"
 #include "../Manager/InputManager.h"
+#include "SceneBase.h"
 
-class ResultScene : public SceneBase
-{
-public:
-	ResultScene();
-	virtual ~ResultScene();
+class ResultScene : public SceneBase {
+   public:
+    ResultScene();
+    virtual ~ResultScene();
 
-	// ƒV[ƒ“ˆ—
-	virtual void Exec();
+    // ã‚·ãƒ¼ãƒ³å‡¦ç†
+    virtual void Exec();
 
-	// ƒV[ƒ“•`‰æ
-	virtual void Draw();
+    // ã‚·ãƒ¼ãƒ³æç”»
+    virtual void Draw();
 
-	// ƒV[ƒ“I—¹ƒtƒ‰ƒO
-	virtual bool IsEnd() const;
+    virtual Scene GetSceneTag() { return sceneTag; }
+    virtual void SetSceneTag( Scene sceneTag_ ) { sceneTag = sceneTag_; }
 };
 
-#endif // !RESULT_SCENE_H
+#endif  // !RESULT_SCENE_H
