@@ -1,56 +1,126 @@
-#ifndef VECTOR_H
+﻿#ifndef VECTOR_H
 #define VECTOR_H
 
-struct Vec2Int
-{
-	Vec2Int(int x_, int y_)
-	{
-		x = x_;
-		y = y_;
-	}
+#include <cmath>
 
-	int x;
-	int y;
-};
+#include "Property.h"
 
-struct Vec2Float
-{
-	Vec2Float(float x_, float y_)
-	{
-		x = x_;
-		y = y_;
-	}
+namespace utility {
+    /// @brief 2次元ベクトル
+    struct Vector2 {
+       public:
+        /// @brief Default
+        Vector2() :
+            x( 0.0 ), y( 0.0 ) {}
 
-	float x;
-	float y;
-};
+        /// @brief 2次元ベクトル
+        /// @param xPos Xの位置
+        /// @param yPos Yの位置
+        explicit Vector2( auto xPos, auto yPos ) :
+            x( xPos ), y( yPos ) {}
 
-struct Vec3Int
-{
-	Vec3Int(int x_, int y_, int z_)
-	{
-		x = x_;
-		y = y_;
-		z = z_;
-	}
+       public:
+        /// @brief ベクトルの長さを取得
+        /// @return √(x^2 + y^2)
+        double Length() const { return sqrt( x * x + y * y ); }
 
-	int x;
-	int y;
-	int z;
-};
+        /// @brief 正規化したベクトルを取得
+        /// @return 各要素を長さで割ったベクトル
+        Vector2 Normalized() const { return Vector2( x / Length(), y / Length() ); }
 
-struct Vec3Float
-{
-	Vec3Float(float x_, float y_, float z_)
-	{
-		x = x_;
-		y = y_;
-		z = z_;
-	}
+        /// @brief ベクトルの値を設定
+        /// @param xPos Xの位置
+        /// @param yPos Yの位置
+        void Set( auto xPos, auto yPos ) { x = xPos, y = yPos; }
 
-	float x;
-	float y;
-	float z;
-};
+#pragma region operator override
+        Vector2 operator+( Vector2 vector ) const { return Vector2 { x + vector.x, y + vector.y }; }
 
-#endif // !VECTOR_H
+        Vector2 operator-( Vector2 vector ) const { return Vector2 { x - vector.x, y - vector.y }; }
+
+        Vector2 operator*( auto value ) const { return Vector2 { x * value, y * value }; }
+
+        Vector2 operator/( auto value ) const { return Vector2 { x / value, y / value }; }
+
+        void operator+=( Vector2 vector ) { Set( x + vector.X, y + vector.Y ); }
+
+        void operator-=( Vector2 vector ) { Set( x - vector.X, y - vector.Y ); }
+
+        void operator*=( auto value ) { Set( x * value, y * value ); }
+
+        void operator/=( auto value ) { Set( x / value, y / value ); }
+
+        bool operator==( Vector2 vector ) const { return ( x == vector.X && y == vector.Y ); }
+#pragma endregion
+
+       public:
+        Property<double> X { x };
+        Property<double> Y { y };
+
+       private:
+        double x;
+        double y;
+    };
+
+    /// @brief 3次元ベクトル
+    struct Vector3 {
+       public:
+        /// @brief Default
+        Vector3() :
+            x( 0.0 ), y( 0.0 ), z( 0.0 ) {}
+
+        /// @brief 3次元ベクトル
+        /// @param xPos Xの位置
+        /// @param yPos Yの位置
+        /// @param zPos Zの位置
+        explicit Vector3( auto xPos, auto yPos, auto zPos ) :
+            x( xPos ), y( yPos ), z( zPos ) {}
+
+       public:
+        /// @brief ベクトルの長さを取得
+        /// @return √(x^2 + y^2 + z^2)
+        double Length() const { return sqrt( x * x + y * y + z * z ); }
+
+        /// @brief 正規化したベクトルを取得
+        /// @return 各要素を長さで割ったベクトル
+        Vector3 Normalized() const { return Vector3( x / Length(), y / Length(), z / Length() ); }
+
+        /// @brief ベクトルの値を設定
+        /// @param xPos Xの位置
+        /// @param yPos Yの位置
+        /// @param zPos Zの位置
+        void Set( auto xPos, auto yPos, auto zPos ) { x = xPos, y = yPos, z = zPos; }
+
+#pragma region operator override
+        Vector3 operator+( Vector3 vector ) const { return Vector3 { x + vector.x, y + vector.y, z + vector.z }; }
+
+        Vector3 operator-( Vector3 vector ) const { return Vector3 { x - vector.x, y - vector.y, z - vector.z }; }
+
+        Vector3 operator*( auto value ) const { return Vector3 { x * value, y * value, z * value }; }
+
+        Vector3 operator/( auto value ) const { return Vector3 { x / value, y / value, z / value }; }
+
+        void operator+=( Vector3 vector ) { Set( x + vector.X, y + vector.Y, z + vector.Z ); }
+
+        void operator-=( Vector3 vector ) { Set( x - vector.X, y - vector.Y, z - vector.Z ); }
+
+        void operator*=( auto value ) { Set( x * value, y * value, z * value ); }
+
+        void operator/=( auto value ) { Set( x / value, y / value, z / value ); }
+
+        bool operator==( Vector3 vector ) const { return ( x == vector.X && y == vector.Y && z == vector.Z ); }
+#pragma endregion
+
+       public:
+        Property<double> X { x };
+        Property<double> Y { y };
+        Property<double> Z { z };
+
+       private:
+        double x;
+        double y;
+        double z;
+    };
+}  // namespace utility
+
+#endif  // !VECTOR_H

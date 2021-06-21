@@ -2,24 +2,22 @@
 
 #include "../Definition.h"
 #include "../Manager/SceneManager.h"
-#include "../SceneDefinition.h"
 #include "DxLib.h"
 
-InGameScene::InGameScene() {
-    sceneTag = Scene::InGame;
-    inputManager = InputManager::GetInstance();
-}
-
-InGameScene::~InGameScene() {
-    inputManager = nullptr;
-}
-
-void InGameScene::Exec() {
-    if ( inputManager->IsKeyPushed( KEY_INPUT_RETURN ) ) {
-        SceneManager::GetInstance()->SetNextScene( Scene::Result );
+namespace scene {
+    InGameScene::InGameScene() {
     }
-}
 
-void InGameScene::Draw() {
-    DrawString( 120, 120, "InGame", GetColor( 0, 0, 0 ) );
-}
+    InGameScene::~InGameScene() {
+    }
+
+    void InGameScene::Exec() {
+        if ( inputManager.lock()->IsKeyPushed( KEY_INPUT_RETURN ) ) {
+            SceneManager::Instance().lock()->NextScene = Scene::Result;
+        }
+    }
+
+    void InGameScene::Draw() {
+        DrawString( 120, 120, "InGame", GetColor( 0, 0, 0 ) );
+    }
+}  // namespace scene

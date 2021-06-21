@@ -1,23 +1,20 @@
 ﻿#ifndef TITLE_SCENE_H
 #define TITLE_SCENE_H
 
-#include "../Manager/InputManager.h"
 #include "SceneBase.h"
 
-class TitleScene : public SceneBase {
-   public:
-    TitleScene();
-    virtual ~TitleScene();
+namespace scene {
+    class TitleScene : public SceneBase {
+       public:
+        TitleScene();
 
-   public:
-    // シーン処理
-    virtual void Exec();
+        virtual ~TitleScene();
 
-    // シーン描画
-    virtual void Draw();
+       public:
+        virtual void Exec();
 
-    virtual Scene GetSceneTag() { return sceneTag; }
-    virtual void SetSceneTag( Scene sceneTag_ ) { sceneTag = sceneTag_; }
-};
+        virtual void Draw();
+    };
+}  // namespace scene
 
 #endif  // !TITLE_SCENE_H

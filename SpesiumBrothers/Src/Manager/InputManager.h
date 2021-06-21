@@ -4,7 +4,7 @@
 #include "../Singleton.h"
 #include "DxLib.h"
 
-class InputManager : public Singleton<InputManager> {
+class InputManager : public utility::Singleton<InputManager> {
    public:
     InputManager();
     virtual ~InputManager() {};

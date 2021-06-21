@@ -1,52 +1,39 @@
-﻿#include "SceneManager.h"
+#include "SceneManager.h"
 
 #include "../Scene/InGameScene.h"
 #include "../Scene/ResultScene.h"
-#include "../Scene/SceneBase.h"
 #include "../Scene/TitleScene.h"
 
-Scene SceneManager::nextScene = Scene::None;
-
-SceneManager::SceneManager() :
-    currentScene( nullptr ) {
-    SetNextScene( Scene::Title );
-    currentScene = CreateNextScene();
-}
-
-SceneManager::~SceneManager() {
-    delete currentScene;
-    currentScene = nullptr;
-}
-
-void SceneManager::Exec() {
-    if ( currentScene == nullptr ) return;
-
-    currentScene->Exec();
-
-    if ( currentScene->GetSceneTag() != nextScene ) {
-        delete currentScene;
-        currentScene = CreateNextScene();
-    }
-}
-
-void SceneManager::Draw() {
-    if ( currentScene == nullptr ) return;
-
-    currentScene->Draw();
-}
-
-void SceneManager::SetNextScene( Scene next ) {
-    nextScene = next;
-}
-
-SceneBase* SceneManager::CreateNextScene() {
-    SceneBase* next = nullptr;
-
-    switch ( nextScene ) {
-        case Scene::Title: next = new TitleScene(); break;
-        case Scene::InGame: next = new InGameScene(); break;
-        case Scene::Result: next = new ResultScene(); break;
+namespace scene {
+    SceneManager::SceneManager() :
+        nextScene( Scene::Title ), previousScene( Scene::Title ) {
+        CreateNextScene();
     }
 
-    return next;
-}
+    SceneManager::~SceneManager() {
+    }
+
+    void SceneManager::Exec() {
+        if ( !currentScene ) return;
+
+        currentScene->Exec();
+
+        if ( previousScene != nextScene ) { CreateNextScene(); }
+    }
+
+    void SceneManager::Draw() {
+        if ( currentScene == nullptr ) return;
+
+        currentScene->Draw();
+    }
+
+    void SceneManager::CreateNextScene() {
+        switch ( nextScene ) {
+            case Scene::Title: currentScene.reset( new TitleScene() ); break;
+            case Scene::InGame: currentScene.reset( new InGameScene() ); break;
+            case Scene::Result: currentScene.reset( new ResultScene() ); break;
+        }
+
+        previousScene = nextScene;
+    }
+}  // namespace scene

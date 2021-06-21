@@ -1,9 +1,28 @@
-﻿#ifndef DEFINITION_H
+﻿// 定義
+
+#ifndef DEFINITION_H
 #define DEFINITION_H
 
-#include "Utility/Vector.h"
+#include <cstdint>
 
-static const Vec2Int WINDOW_SIZE( 1280, 960 );  // 令和3年に4:3らしい
-static const int FPS = 60;
+#include "Utility/Size.h"
+
+namespace window {
+    /// @brief ウィンドウのサイズ
+    const utility::Size SIZE { 1280, 720 };
+    /// @brief 1秒あたりの更新回数
+    constexpr int8_t FPS = 60;
+}  // namespace window
+
+namespace scene {
+    /// @brief シーン名
+    enum class Scene {
+        Title,  // タイトル
+        CharacterSelect,  // キャラクター選択
+        StageSelect,  // ステージ選択
+        InGame,  // プレイ中
+        Result,  // 結果
+    };
+}  // namespace scene
 
 #endif  // !DEFINITION_H

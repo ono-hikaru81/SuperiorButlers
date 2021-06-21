@@ -1,26 +1,29 @@
 ﻿#ifndef SCENE_BASE_H
 #define SCENE_BASE_H
 
+#include <memory>
+
+#include "../Definition.h"
 #include "../Manager/InputManager.h"
-#include "../SceneDefinition.h"
 #include "../Singleton.h"
 
-class SceneBase : public Singleton<SceneBase> {
-   public:
-    SceneBase() :
-        sceneTag( Scene::None ) {}
-    virtual ~SceneBase() {}
+namespace scene {
+    class SceneBase {
+       public:
+        SceneBase() {
+            inputManager = InputManager::Instance();
+        }
 
-   public:
-    virtual void Exec() = 0;
-    virtual void Draw() = 0;
+        virtual ~SceneBase() {}
 
-    virtual Scene GetSceneTag() = 0;
-    virtual void SetSceneTag( Scene sceneTag_ ) = 0;
+       public:
+        virtual void Exec() = 0;
 
-   protected:
-    Scene sceneTag;
-    InputManager* inputManager = nullptr;
-};
+        virtual void Draw() = 0;
+
+       protected:
+        std::weak_ptr<InputManager> inputManager;
+    };
+}  // namespace scene
 
 #endif  // !SCENE_BASE_H

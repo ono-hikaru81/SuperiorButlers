@@ -34,16 +34,10 @@
     <ClCompile Include="Src\Manager\InputManager.cpp">
       <Filter>ソース ファイル\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Utility\Function.cpp">
-      <Filter>ソース ファイル\Utility</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Utility\Vector.h">
       <Filter>ソース ファイル\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Singleton.h">
-      <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Src\Scene\SceneBase.h">
       <Filter>ソース ファイル\Scene</Filter>
@@ -63,14 +57,26 @@
     <ClInclude Include="Src\Manager\InputManager.h">
       <Filter>ソース ファイル\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Definition.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\SceneDefinition.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Utility\Function.h">
+    <ClInclude Include="Src\Utility\Point.h">
       <Filter>ソース ファイル\Utility</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Utility\Size.h">
+      <Filter>ソース ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Utility\Property.h">
+      <Filter>ソース ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Singleton.h">
+      <Filter>ソース ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Definition.h">
+      <Filter>ソース ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Utility\DxLibExtention.h">
+      <Filter>ソース ファイル\Utility</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".clang-format" />
   </ItemGroup>
 </Project>

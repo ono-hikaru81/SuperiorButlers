@@ -3,19 +3,17 @@
 
 #include "SceneBase.h"
 
-class InGameScene : public SceneBase {
-   public:
-    InGameScene();
-    virtual ~InGameScene();
+namespace scene {
+    class InGameScene : public SceneBase {
+       public:
+        InGameScene();
 
-    // シーン処理
-    virtual void Exec();
+        virtual ~InGameScene();
 
-    // シーン描画
-    virtual void Draw();
+        virtual void Exec();
 
-    virtual Scene GetSceneTag() { return sceneTag; }
-    virtual void SetSceneTag( Scene sceneTag_ ) { sceneTag = sceneTag_; }
-};
+        virtual void Draw();
+    };
+}  // namespace scene
 
 #endif  // !IN_GAME_SCENE_H

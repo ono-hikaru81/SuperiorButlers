@@ -1,4 +1,4 @@
----
+﻿---
 Language:        Cpp
 # BasedOnStyle:  Google
 AccessModifierOffset: -1
@@ -13,7 +13,7 @@ AlignTrailingComments: false
 AllowAllArgumentsOnNextLine: true
 AllowAllConstructorInitializersOnNextLine: true
 AllowAllParametersOfDeclarationOnNextLine: true
-AllowShortEnumsOnASingleLine: false
+AllowShortEnumsOnASingleLine: true
 AllowShortBlocksOnASingleLine: Always
 AllowShortCaseLabelsOnASingleLine: true
 AllowShortFunctionsOnASingleLine: All
@@ -41,8 +41,8 @@ BraceWrapping:
   AfterExternBlock: false
   BeforeCatch:     true
   BeforeElse:      true
-  BeforeLambdaBody: true
-  BeforeWhile:     true
+  BeforeLambdaBody: false
+  BeforeWhile:     false
   IndentBraces:    false
   SplitEmptyFunction: true
   SplitEmptyRecord: true
@@ -60,7 +60,7 @@ BreakStringLiterals: false
 ColumnLimit:     0
 CommentPragmas:  '^ IWYU pragma:'
 CompactNamespaces: false
-ConstructorInitializerAllOnOneLineOrOnePerLine: true
+ConstructorInitializerAllOnOneLineOrOnePerLine: false
 ConstructorInitializerIndentWidth: 4
 ContinuationIndentWidth: 4
 Cpp11BracedListStyle: false

@@ -1,26 +1,46 @@
-#ifndef SCENEMANAGER_H
+﻿#ifndef SCENEMANAGER_H
 #define SCENEMANAGER_H
 
-#include "../SceneDefinition.h"
+#include <memory>
+
+#include "../Definition.h"
+#include "../Scene/SceneBase.h"
 #include "../Singleton.h"
+#include "../Utility/Property.h"
 
-class SceneManager : public Singleton<SceneManager> {
-   public:
-    SceneManager();
-    virtual ~SceneManager();
+namespace scene {
+    class SceneManager : public utility::Singleton<SceneManager> {
+       public:
+        SceneManager();
 
-   public:
-    void Exec();
-    void Draw();
+        virtual ~SceneManager();
 
-    void SetNextScene( Scene next );
+       public:
+        /// @brief シーンの更新
+        void Update() {
+            Exec();
+            Draw();
+        }
 
-   private:
-    class SceneBase* CreateNextScene();
+       private:
+        /// @brief 処理
+        void Exec();
 
-   private:
-    class SceneBase* currentScene;
-    static Scene nextScene;
-};
+        /// @brief 描画
+        void Draw();
+
+        /// @brief nextSceneを参照してcurrentSceneを更新する
+        void CreateNextScene();
+
+       public:
+        /// @brief 遷移先のシーン
+        utility::Property<Scene> NextScene { nextScene };
+
+       private:
+        std::unique_ptr<SceneBase> currentScene;
+        Scene previousScene;
+        Scene nextScene;
+    };
+}  // namespace scene
 
 #endif  // !SCENEMANAGER_H

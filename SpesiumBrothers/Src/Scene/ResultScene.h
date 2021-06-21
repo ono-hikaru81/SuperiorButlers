@@ -1,22 +1,19 @@
 ﻿#ifndef RESULT_SCENE_H
 #define RESULT_SCENE_H
 
-#include "../Manager/InputManager.h"
 #include "SceneBase.h"
 
-class ResultScene : public SceneBase {
-   public:
-    ResultScene();
-    virtual ~ResultScene();
+namespace scene {
+    class ResultScene : public SceneBase {
+       public:
+        ResultScene();
 
-    // シーン処理
-    virtual void Exec();
+        virtual ~ResultScene();
 
-    // シーン描画
-    virtual void Draw();
+        virtual void Exec();
 
-    virtual Scene GetSceneTag() { return sceneTag; }
-    virtual void SetSceneTag( Scene sceneTag_ ) { sceneTag = sceneTag_; }
-};
+        virtual void Draw();
+    };
+}  // namespace scene
 
 #endif  // !RESULT_SCENE_H

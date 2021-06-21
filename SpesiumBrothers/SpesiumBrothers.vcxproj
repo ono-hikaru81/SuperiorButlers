@@ -124,6 +124,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(DxLib);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -156,21 +157,25 @@
     <ClCompile Include="Src\Scene\InGameScene.cpp" />
     <ClCompile Include="Src\Scene\ResultScene.cpp" />
     <ClCompile Include="Src\Scene\TitleScene.cpp" />
-    <ClCompile Include="Src\Utility\Function.cpp" />
     <ClCompile Include="Src\WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Definition.h" />
     <ClInclude Include="Src\Manager\InputManager.h" />
     <ClInclude Include="Src\Manager\SceneManager.h" />
-    <ClInclude Include="Src\SceneDefinition.h" />
     <ClInclude Include="Src\Scene\InGameScene.h" />
     <ClInclude Include="Src\Scene\ResultScene.h" />
     <ClInclude Include="Src\Scene\SceneBase.h" />
     <ClInclude Include="Src\Scene\TitleScene.h" />
     <ClInclude Include="Src\Singleton.h" />
-    <ClInclude Include="Src\Utility\Function.h" />
+    <ClInclude Include="Src\Utility\DxLibExtention.h" />
+    <ClInclude Include="Src\Utility\Point.h" />
+    <ClInclude Include="Src\Utility\Property.h" />
+    <ClInclude Include="Src\Utility\Size.h" />
     <ClInclude Include="Src\Utility\Vector.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".clang-format" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

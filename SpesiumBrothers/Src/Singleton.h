@@ -1,44 +1,33 @@
 ﻿#ifndef SINGLETON_H
 #define SINGLETON_H
 
-template<class T>
-class Singleton {
-   protected:
-    Singleton() {}
+#include <memory>
 
-    virtual ~Singleton() {}
+#include "Utility/Property.h"
 
-   public:
-    static T* CreateInstance() {
-        if ( Instance == nullptr ) {
-            Instance = new T();
+namespace utility {
+    template<class T>
+    class Singleton {
+       protected:
+        Singleton() {}
+
+        virtual ~Singleton() {}
+
+       public:
+        static std::weak_ptr<T> Instance() {
+            if ( !instance ) {
+                instance.reset( new T() );
+            }
+
+            return instance;
         }
 
-        return Instance;
-    }
+       private:
+        static std::shared_ptr<T> instance;
+    };
 
-    static void DestoroyInstance() {
-        delete Instance;
-        Instance = nullptr;
-    }
-
-    static T* GetInstance() {
-        if ( Instance == nullptr ) {
-            return CreateInstance();
-        }
-
-        return Instance;
-    }
-
-    static bool IsNull() {
-        return Instance == nullptr;
-    }
-
-   private:
-    static T* Instance;
-};
-
-template<class T>
-T* Singleton<T>::Instance = nullptr;
+    template<class T>
+    std::shared_ptr<T> Singleton<T>::instance = nullptr;
+}  // namespace utility
 
 #endif  // !SINGLETON_H
