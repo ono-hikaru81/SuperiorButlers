@@ -5,19 +5,24 @@
 #include "DxLib.h"
 
 namespace scene {
-    InGameScene::InGameScene() {
-    }
+	InGameScene::InGameScene() {
+		monster = new character::Monster;
+	}
 
-    InGameScene::~InGameScene() {
-    }
+	InGameScene::~InGameScene() {
+		delete(monster);
+	}
 
-    void InGameScene::Exec() {
-        if ( inputManager.lock()->IsKeyPushed( KEY_INPUT_RETURN ) ) {
-            SceneManager::Instance().lock()->NextScene = Scene::Result;
-        }
-    }
+	void InGameScene::Exec() {
+		if (inputManager.lock()->IsKeyPushed(KEY_INPUT_RETURN)) {
+			SceneManager::Instance().lock()->NextScene = Scene::Result;
+		}
 
-    void InGameScene::Draw() {
-        DrawString( 120, 120, "InGame", GetColor( 0, 0, 0 ) );
-    }
+		monster->Exec();
+	}
+
+	void InGameScene::Draw() {
+		DrawString(120, 120, "InGame", GetColor(0, 0, 0));
+		monster->Draw();
+	}
 }  // namespace scene
