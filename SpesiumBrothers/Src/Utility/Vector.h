@@ -42,9 +42,9 @@ namespace utility {
 
 		Vector2 operator*(auto value) const { return Vector2{ x * value, y * value }; }
 
-		Vector2 operator/(auto value) const { return Vector2{ x / value, y / value }; }
+        void operator=(Vector2 vector) { Set(vector.x, vector.y); }
 
-		void operator+=(Vector2 vector) { Set(x + vector.X, y + vector.Y); }
+        void operator+=( Vector2 vector ) { Set( x + vector.X, y + vector.Y ); }
 
 		void operator-=(Vector2 vector) { Set(x - vector.X, y - vector.Y); }
 

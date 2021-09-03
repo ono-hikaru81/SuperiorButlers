@@ -9,11 +9,11 @@
 #include "../Camera/Camera.h"
 
 namespace scene {
-	class SceneBase {
-	public:
-		SceneBase() {
-			inputManager = InputManager::Instance();
-		}
+    class SceneBase {
+       public:
+        SceneBase() {
+            inputManager = input::InputManager::Instance();
+        }
 
 		virtual ~SceneBase() {}
 
@@ -22,9 +22,9 @@ namespace scene {
 
 		virtual void Draw() = 0;
 
-	protected:
-		std::weak_ptr<InputManager> inputManager;
-	};
+       protected:
+        std::weak_ptr<input::InputManager> inputManager;
+    };
 }  // namespace scene
 
 #endif  // !SCENE_BASE_H

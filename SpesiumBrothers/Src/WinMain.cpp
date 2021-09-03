@@ -2,6 +2,7 @@
 
 #include "Definition.h"
 #include "DxLib.h"
+#include "Manager/InputControllerManager.h"
 #include "Manager/InputManager.h"
 #include "Manager/SceneManager.h"
 #include "Utility/DxLibExtention.h"
@@ -15,9 +16,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	if (DxLib_Init() == -1) return -1;
 	SetDrawScreen(DX_SCREEN_BACK);
 
-	// 管理クラス作成
-	auto inputManager = InputManager::Instance();
-	auto sceneManager = scene::SceneManager::Instance();
+    // 管理クラス作成
+    auto inputManager = input::InputManager::Instance();
+    auto sceneManager = scene::SceneManager::Instance();
 
 	while (true) {
 		// ループを抜ける条件
