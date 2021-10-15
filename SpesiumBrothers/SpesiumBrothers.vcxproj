@@ -154,11 +154,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Camera\Camera.cpp" />
     <ClCompile Include="Src\Character\CharacterBase.cpp" />
     <ClCompile Include="Src\Character\Harima.cpp" />
     <ClCompile Include="Src\Character\Human.cpp" />
     <ClCompile Include="Src\Character\Monster.cpp" />
     <ClCompile Include="Src\Character\Robot.cpp" />
+    <ClCompile Include="Src\Light\Light.cpp" />
     <ClCompile Include="Src\Manager\InputManager.cpp" />
     <ClCompile Include="Src\Manager\SceneManager.cpp" />
     <ClCompile Include="Src\Scene\InGameScene.cpp" />
@@ -167,12 +169,14 @@
     <ClCompile Include="Src\WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Camera\Camera.h" />
     <ClInclude Include="Src\Character\CharacterBase.h" />
     <ClInclude Include="Src\Character\Harima.h" />
     <ClInclude Include="Src\Character\Human.h" />
     <ClInclude Include="Src\Character\Monster.h" />
     <ClInclude Include="Src\Character\Robot.h" />
     <ClInclude Include="Src\Definition.h" />
+    <ClInclude Include="Src\Light\Light.h" />
     <ClInclude Include="Src\Manager\InputManager.h" />
     <ClInclude Include="Src\Manager\SceneManager.h" />
     <ClInclude Include="Src\Scene\InGameScene.h" />

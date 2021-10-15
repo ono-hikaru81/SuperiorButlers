@@ -17,6 +17,12 @@
     <Filter Include="ソース ファイル\Character">
       <UniqueIdentifier>{59482036-6061-4bc6-851d-91eec4e9c097}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Camera">
+      <UniqueIdentifier>{c1b19b31-78f0-4333-9fc2-feadcac94c39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Light">
+      <UniqueIdentifier>{6eaa45ff-0b69-40e0-b9fa-4537c9dfbb13}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\WinMain.cpp">
@@ -51,6 +57,12 @@
     </ClCompile>
     <ClCompile Include="Src\Character\CharacterBase.cpp">
       <Filter>ソース ファイル\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Light\Light.cpp">
+      <Filter>ソース ファイル\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Camera\Camera.cpp">
+      <Filter>ソース ファイル\Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -107,6 +119,12 @@
     </ClInclude>
     <ClInclude Include="Src\Character\Robot.h">
       <Filter>ソース ファイル\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Light\Light.h">
+      <Filter>ソース ファイル\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Camera\Camera.h">
+      <Filter>ソース ファイル\Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

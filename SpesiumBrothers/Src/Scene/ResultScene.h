@@ -4,16 +4,16 @@
 #include "SceneBase.h"
 
 namespace scene {
-    class ResultScene : public SceneBase {
-       public:
-        ResultScene();
+	class ResultScene : public SceneBase {
+	public:
+		ResultScene();
 
-        virtual ~ResultScene();
+		virtual ~ResultScene();
 
-        virtual void Exec();
+		virtual void Exec();
 
-        virtual void Draw();
-    };
+		virtual void Draw();
+	};
 }  // namespace scene
 
 #endif  // !RESULT_SCENE_H

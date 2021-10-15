@@ -14,15 +14,18 @@ namespace character
 		~Monster();
 
 	public:
+		utility::Property<utility::Vector3> Pos{ status.pos };
+
+	public:
 		/**
-		* @breif 実行関数
+		* @brief 実行関数
 		*/
 		void Exec();
 
 		/**
-		* 描画関数
+		* @brief 描画関数
 		*/
-		void Draw();
+		void Draw(function::Camera camera);
 
 	private:
 		/*

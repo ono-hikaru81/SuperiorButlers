@@ -28,13 +28,13 @@ namespace scene {
 namespace gravity
 {
 	/// @brief 重力加速度
-	const double Acceleration = 0.5f;
+	static constexpr double Acceleration = 0.5f;
 }	// namespace gravity
 
 namespace friction
 {
 	/// @brief 摩擦力
-	const double Force = 0.2f;
+	static constexpr double Force = 0.2f;
 }	// namespace friction
 
 #endif  // !DEFINITION_H

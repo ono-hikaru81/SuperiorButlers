@@ -6,8 +6,7 @@
 #include "../Definition.h"
 #include "../Utility/Vector.h"
 #include "../Manager/InputManager.h"
-
-using namespace utility;
+#include "../Camera/Camera.h"
 
 namespace character
 {
@@ -22,9 +21,9 @@ namespace character
 		/// @brief キャラのステータス
 		struct Status
 		{
-			VECTOR pos;		 // 座標
-			VECTOR moveVec;	 // 移動量
-			VECTOR speedVec; // 速度量
+			utility::Vector3 pos;		 // 座標
+			utility::Vector3 moveVec;	 // 移動量
+			utility::Vector3 speedVec; // 速度量
 			float angle;	 // 回転角
 
 			int32_t hp;           // 体力
@@ -44,7 +43,7 @@ namespace character
 		/**
 		* @brief 描画関数
 		*/
-		virtual void Draw() = 0;
+		virtual void Draw(function::Camera camera_) = 0;
 
 		/*
 		* @brief テクスチャ読み込み関数

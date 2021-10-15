@@ -1,32 +1,34 @@
-#include "CharacterBase.h"
+ï»¿#include "CharacterBase.h"
 
 #include "DxLib.h"
+
+using namespace utility;
 
 namespace character
 {
 	void character::CharacterBase::Move()
 	{
-		// ‰EˆÚ“®
+		// å³ç§»å‹•
 		if (inputManager.lock()->IsKeyPushed(KEY_INPUT_RIGHT) ||
 			inputManager.lock()->IsKeyHeld(KEY_INPUT_RIGHT))
 		{
-			status.speedVec.x += status.speed;
+			status.speedVec.X += status.speed;
 
-			if (status.speedVec.x > status.maxSpeed)
+			if (status.speedVec.X > status.maxSpeed)
 			{
-				status.speedVec.x = status.maxSpeed;
+				status.speedVec.X = status.maxSpeed;
 			}
 		}
 
-		// ¶ˆÚ“®
+		// å·¦ç§»å‹•
 		if (inputManager.lock()->IsKeyPushed(KEY_INPUT_LEFT) ||
 			inputManager.lock()->IsKeyHeld(KEY_INPUT_LEFT))
 		{
-			status.speedVec.x -= status.speed;
+			status.speedVec.X -= status.speed;
 
-			if (status.speedVec.x < (status.maxSpeed * -1))
+			if (status.speedVec.X < (status.maxSpeed * -1))
 			{
-				status.speedVec.x = (status.maxSpeed * -1);
+				status.speedVec.X = (status.maxSpeed * -1);
 			}
 		}
 	}
@@ -37,20 +39,20 @@ namespace character
 
 		if (IsStanding())
 		{
-			status.speedVec.y = status.jumpPower;
+			status.speedVec.Y = status.jumpPower;
 		}
 	}
 
 	void CharacterBase::UpdateDirection()
 	{
-		// ‰EŒü‚«‚É•ÏX
-		if (status.speedVec.x > 0 && (!inputManager.lock()->IsKeyPushed(KEY_INPUT_RIGHT) || !inputManager.lock()->IsKeyHeld(KEY_INPUT_RIGHT)))
+		// å³å‘ãã«å¤‰æ›´
+		if (status.speedVec.X > 0 && (!inputManager.lock()->IsKeyPushed(KEY_INPUT_RIGHT) || !inputManager.lock()->IsKeyHeld(KEY_INPUT_RIGHT)))
 		{
 			status.angle = 270.0f;
 		}
 
-		// ¶Œü‚«‚É•ÏX
-		if (status.speedVec.x < 0 && (!inputManager.lock()->IsKeyPushed(KEY_INPUT_LEFT) || !inputManager.lock()->IsKeyHeld(KEY_INPUT_LEFT)))
+		// å·¦å‘ãã«å¤‰æ›´
+		if (status.speedVec.X < 0 && (!inputManager.lock()->IsKeyPushed(KEY_INPUT_LEFT) || !inputManager.lock()->IsKeyHeld(KEY_INPUT_LEFT)))
 		{
 			status.angle = 90.0f;
 		}
@@ -58,12 +60,12 @@ namespace character
 
 	void character::CharacterBase::Gravity()
 	{
-		status.speedVec.y -= gravityVec;
+		status.speedVec.Y -= gravityVec;
 	}
 
 	bool character::CharacterBase::IsStanding() const
 	{
-		if (status.pos.y < 0)
+		if (status.pos.Y < 0)
 		{
 			return true;
 		}
@@ -73,41 +75,40 @@ namespace character
 
 	void character::CharacterBase::KineticFriction()
 	{
-		// ‰EˆÚ“®
-		if (status.speedVec.x > 0 && (!inputManager.lock()->IsKeyPushed(KEY_INPUT_RIGHT) || !inputManager.lock()->IsKeyHeld(KEY_INPUT_RIGHT)))
+		// å³ç§»å‹•
+		if (status.speedVec.X > 0 && (!inputManager.lock()->IsKeyPushed(KEY_INPUT_RIGHT) || !inputManager.lock()->IsKeyHeld(KEY_INPUT_RIGHT)))
 		{
-			status.speedVec.x -= frictionVec;
+			status.speedVec.X -= frictionVec;
 
 			status.angle = 270.0f;
 
-			if (status.speedVec.x < 0)
+			if (status.speedVec.X < 0)
 			{
-				status.speedVec.x = 0;
+				status.speedVec.X = 0;
 			}
 		}
 
-		// ¶ˆÚ“®
-		if (status.speedVec.x < 0 && (!inputManager.lock()->IsKeyPushed(KEY_INPUT_LEFT) || !inputManager.lock()->IsKeyHeld(KEY_INPUT_LEFT)))
+		// å·¦ç§»å‹•
+		if (status.speedVec.X < 0 && (!inputManager.lock()->IsKeyPushed(KEY_INPUT_LEFT) || !inputManager.lock()->IsKeyHeld(KEY_INPUT_LEFT)))
 		{
-			status.speedVec.x += frictionVec;
+			status.speedVec.X += frictionVec;
 
 			status.angle = 90.0f;
 
-			if (status.speedVec.x > 0)
+			if (status.speedVec.X > 0)
 			{
-				status.speedVec.x = 0;
+				status.speedVec.X = 0;
 			}
 		}
 	}
 
 	void character::CharacterBase::UpdatePos()
 	{
-		// XÀ•W
-		status.moveVec.x = static_cast<double>(status.speedVec.x);
-		status.pos.x += status.moveVec.x;
-		// YÀ•W
-		status.moveVec.y = static_cast<double>(status.speedVec.y);
-		status.pos.y += status.moveVec.y;
+		// Xåº§æ¨™
+		status.moveVec.X = static_cast<double>(status.speedVec.X);
+		status.pos.X += status.moveVec.X;
+		// Yåº§æ¨™
+		status.moveVec.Y = static_cast<double>(status.speedVec.Y);
+		status.pos.Y += status.moveVec.Y;
 	}
-
 }
