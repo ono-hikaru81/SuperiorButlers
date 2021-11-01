@@ -25,16 +25,16 @@ namespace scene {
 	};
 }  // namespace scene
 
-namespace gravity
+namespace law
 {
-	/// @brief 重力加速度
-	static constexpr double Acceleration = 0.5f;
-}	// namespace gravity
+	/// @brief 重力量
+	constexpr double gravity = 0.5;
+}	// namespace law
 
 namespace friction
 {
 	/// @brief 摩擦力
-	static constexpr double Force = 0.2f;
+	constexpr double Force = 0.2;
 }	// namespace friction
 
 #endif  // !DEFINITION_H

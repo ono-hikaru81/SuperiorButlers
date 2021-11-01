@@ -6,124 +6,86 @@
 #include "../Definition.h"
 #include "../Utility/Vector.h"
 #include "../Manager/InputManager.h"
-#include "../Camera/Camera.h"
 
 namespace character
 {
 	class CharacterBase
 	{
 	public:
-		CharacterBase() = default;
-
-		~CharacterBase() = default;
+		CharacterBase();
+		virtual ~CharacterBase();
 
 	protected:
 		/// @brief キャラのステータス
 		struct Status
 		{
-			utility::Vector3 pos;		 // 座標
-			utility::Vector3 moveVec;	 // 移動量
-			utility::Vector3 speedVec; // 速度量
-			float angle;	 // 回転角
+			utility::Vector3 pos{ 0.0, 0.0, 0.0 };	// キャラ座標
+			double angle{ 0.0 };					// 回転角
 
-			int32_t hp;           // 体力
-			int32_t shieldAmount; // シールド量
-			int32_t power;        // 攻撃力
-			float speed;		  // 速度
-			float maxSpeed;		  // 最大速度
-			float jumpPower;	  // ジャンプ力
+			int32_t hp{ 0 };			// 体力
+			int32_t shieldAmount{ 0 };	// シールド量
+			int32_t power{ 0 };			// 攻撃力
+			double speed{ 0.0 };		// 移動速度
+			double maxSpeed{ 0.0 };		// 最大移動速度
+			double jumpPower{ 0.0 };	// ジャンプ力
 		};
 
-	protected:
+	public:
 		/**
 		* @brief 実行関数
 		*/
-		virtual void Exec() = 0;
+		virtual void Exec();
 
 		/**
 		* @brief 描画関数
 		*/
-		virtual void Draw(function::Camera camera_) = 0;
+		virtual void Draw() = 0;
 
-		/*
-		* @brief テクスチャ読み込み関数
-		*/
-		virtual void LoadTexture() = 0;
-
-		/*
-		* @brief テクスチャ解放関数
-		*/
-		virtual void ReleaseTexture() = 0;
-
+	protected:
 		/**
 		* @brief モデル読み込み関数
 		*/
-		virtual void LoadModel() = 0;
+		void LoadModel();
 
 		/**
 		* @brief モデル解放関数
 		*/
-		virtual void ReleaseModel() = 0;
+		void ReleaseModel();
 
 		/**
 		* @brief 移動関数
 		*/
-		virtual void Move();
+		void Move();
 
 		/**
 		* @brief ジャンプ関数
 		*/
-		virtual void Jump();
+		void Jump();
 
 		/*
 		* @brief 向き変更
 		*/
-		virtual void UpdateDirection();
+		void UpdateDirection();
 
 		/*
 		* @brief 重力関数
 		*/
-		virtual void Gravity();
+		void Gravity();
 
 		/*
 		* @brief 立ってるかチェック
 		*/
-		virtual bool IsStanding() const;
+		bool IsStanding() const;
 
 		/**
 		* @brief 運動摩擦関数
 		*/
-		virtual void KineticFriction();
+		void KineticFriction();
 
 		/*
 		* @brief 座標更新関数
 		*/
-		virtual void UpdatePos();
-
-		/**
-		* @brief 弱攻撃モーション関数
-		*/
-		virtual void LightAttackMotion() = 0;
-
-		/**
-		* @brief 強攻撃モーション関数
-		*/
-		virtual void HeavytAttackMotion() = 0;
-
-		/**
-		* @brief 空中弱攻撃モーション関数
-		*/
-		virtual void AerialLightAttackMotion() = 0;
-
-		/**
-		* @brief 空中強攻撃モーション関数
-		*/
-		virtual void AerialHeavytAttackMotion() = 0;
-
-		/**
-		* @brief 防御モーション関数
-		*/
-		virtual void DefenceMotion() = 0;
+		void UpdatePos();
 
 	protected:
 		/// @brief キーボード入力
@@ -131,21 +93,43 @@ namespace character
 
 	protected:
 		/// @brief ステータス
-		Status status;
-		/// @brief 重力量
-		const float gravityVec = gravity::Acceleration;
-		/// @brief 摩擦量
-		const float frictionVec = friction::Force;
+		Status status
+		{
+			{utility::Vector3(0.0,0.0,0.0)}, // キャラ座標
+			0.0,								// 回転角
+
+			0,		// 体力
+			0,		// シールド量
+			0,		// 攻撃力
+			1.0,	// 移動速度
+			10.0,	// 最大移動速度
+			10.0,	// ジャンプ力
+		};
+
+		/// @breif 左向きの角度
+		static constexpr double angleOfDirectionLeft{ 90.0 };
+		/// @breif 右向きの角度
+		static constexpr double angleOfDirectionRight{ 270.0 };
+
+		/// @brief 移動量
+		utility::Vector3 moveVec{ 0.0, 0.0, 0.0 };
+		/// @brief 移動速度量
+		utility::Vector3 velocity{ 0.0, 0.0, 0.0 };
 
 		/// @brief 生存フラグ
-		bool isAlive;
+		bool isAlive{ false };
 		/// @brief ジャンプ可能か
-		bool canJump;
+		bool canJump{ false };
 		/// @ brief 地面に立ってるか
-		bool isStandingGround;
+		bool isStandingGround{ false };
 		/// @brief ダウンしたか(倒れたか)
-		bool isKnockdown;
+		bool isKnockdown{ false };
+
+		/// @brief モンスターモデル格納用
+		int32_t monsterModel{ 0 };
+		/// @breif モンスターモデル名
+		const std::string monsterModelName{ "Res/Model/monster_04.mv1" };
 	};
 }	// namespace character
 
-#endif // !SCENEMANAGER_H
+#endif // !CHARACTER_BASE_H

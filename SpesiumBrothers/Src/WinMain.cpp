@@ -15,9 +15,6 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	if (DxLib_Init() == -1) return -1;
 	SetDrawScreen(DX_SCREEN_BACK);
 
-	// カメラの視点、注視点を設定
-	SetCameraPositionAndTarget_UpVecY(VGet(0, 0, -1280), VGet(0, 0, 0));
-
 	// 管理クラス作成
 	auto inputManager = InputManager::Instance();
 	auto sceneManager = scene::SceneManager::Instance();

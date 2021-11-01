@@ -40,16 +40,7 @@
     <ClCompile Include="Src\Manager\InputManager.cpp">
       <Filter>ソース ファイル\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Character\Harima.cpp">
-      <Filter>ソース ファイル\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Character\Human.cpp">
-      <Filter>ソース ファイル\Character</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Character\Monster.cpp">
-      <Filter>ソース ファイル\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Character\Robot.cpp">
       <Filter>ソース ファイル\Character</Filter>
     </ClCompile>
     <ClCompile Include="Src\Scene\InGameScene.cpp">
@@ -108,16 +99,7 @@
     <ClInclude Include="Src\Character\CharacterBase.h">
       <Filter>ソース ファイル\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Character\Harima.h">
-      <Filter>ソース ファイル\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Character\Human.h">
-      <Filter>ソース ファイル\Character</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Character\Monster.h">
-      <Filter>ソース ファイル\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Character\Robot.h">
       <Filter>ソース ファイル\Character</Filter>
     </ClInclude>
     <ClInclude Include="Src\Light\Light.h">
@@ -126,8 +108,13 @@
     <ClInclude Include="Src\Camera\Camera.h">
       <Filter>ソース ファイル\Camera</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Utility\Function.h">
+      <Filter>ソース ファイル\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include=".clang-format" />
+    <None Include=".clang-format">
+      <Filter>ソース ファイル</Filter>
+    </None>
   </ItemGroup>
 </Project>

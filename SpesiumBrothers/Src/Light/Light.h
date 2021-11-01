@@ -5,15 +5,12 @@
 
 #include "DxLib.h"
 
-using namespace utility;
-
-namespace display
+namespace tool
 {
 	class Light
 	{
 	public:
 		Light() = default;
-
 		~Light() = default;
 
 	public:
@@ -21,7 +18,7 @@ namespace display
 		* @breif ディレクションライト作成
 		* @param (pos_) 座標(向き指定)
 		*/
-		void CreateDirectionLight(Vector3 pos_);
+		void CreateDirectionLight(utility::Vector3 pos_);
 
 		/*
 		* @brief ポイントライト作成
@@ -31,7 +28,7 @@ namespace display
 		* @param (attenuation_1_) 光の減衰率(距離に比例)
 		* @param (attenuation_2_) 光の減衰率(距離の2乗に比例)
 		*/
-		void CreatePointLight(Vector3 pos_, float max_range_, float attenuation_0_, float attenuation_1_, float attenuation_2_);
+		void CreatePointLight(utility::Vector3 pos_, float max_range_, float attenuation_0_, float attenuation_1_, float attenuation_2_);
 
 		/*
 		* @brief スポットライト作成
@@ -44,7 +41,7 @@ namespace display
 		* @param (attenuation_1_) 光の減衰率(距離に比例)
 		* @param (attenuation_2_) 光の減衰率(距離の2乗に比例)
 		*/
-		void CreateSpotLight(Vector3 pos_, Vector3 direction_, float angle_, float angle_attenuation_, float max_range_, float attenuation_0_, float attenuation_1_, float attenuation_2_);
+		void CreateSpotLight(utility::Vector3 pos_, utility::Vector3 direction_, float angle_, float angle_attenuation_, float max_range_, float attenuation_0_, float attenuation_1_, float attenuation_2_);
 
 		/*
 		* @brief ライト削除
@@ -53,7 +50,7 @@ namespace display
 
 	private:
 		/// @brief 格納用変数
-		int lightHandle{ 0 };
+		int32_t lightHandle{ 0 };
 	};
 }
 

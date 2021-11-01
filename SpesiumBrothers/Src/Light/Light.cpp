@@ -1,6 +1,8 @@
 ﻿#include "Light.h"
 
-namespace display
+using namespace utility;
+
+namespace tool
 {
 	void Light::CreateDirectionLight(Vector3 pos_)
 	{

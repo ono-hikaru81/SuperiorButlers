@@ -3,9 +3,6 @@
 
 #include "SceneBase.h"
 
-#include "../Character/Monster.h"
-#include "../Light/Light.h"
-
 namespace scene {
 	class InGameScene : public SceneBase {
 	public:
@@ -16,13 +13,6 @@ namespace scene {
 		virtual void Exec();
 
 		virtual void Draw();
-
-	private:
-		character::Monster* monster = nullptr;
-		display::Light light;
-		function::Camera camera;
-
-		int bgTex;
 	};
 }  // namespace scene
 

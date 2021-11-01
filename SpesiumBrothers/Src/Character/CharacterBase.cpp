@@ -1,114 +1,144 @@
 ﻿#include "CharacterBase.h"
 
 #include "DxLib.h"
+#include "../Utility/Function.h"
 
 using namespace utility;
 
 namespace character
 {
-	void character::CharacterBase::Move()
+	CharacterBase::CharacterBase()
 	{
+		LoadModel();
+	}
+
+	CharacterBase::~CharacterBase()
+	{
+		ReleaseModel();
+	}
+
+	void CharacterBase::Exec()
+	{
+		Move();
+
+		if (IsStanding())
+		{
+			velocity.Y = 0.0f;
+
+			KineticFriction();
+		}
+		else
+		{
+			Gravity();
+		}
+
+		Jump();
+
+		UpdateDirection();
+
+		// 最後の座標処理
+		UpdatePos();
+	}
+
+	void CharacterBase::LoadModel()
+	{
+		monsterModel = MV1LoadModel(monsterModelName.c_str());
+	}
+
+	void CharacterBase::ReleaseModel()
+	{
+		MV1DeleteModel(monsterModel);
+	}
+
+	void CharacterBase::Move()
+	{
+		const double reverseMaxSpeed = status.maxSpeed * -1;
+
 		// 右移動
 		if (inputManager.lock()->IsKeyPushed(KEY_INPUT_RIGHT) ||
 			inputManager.lock()->IsKeyHeld(KEY_INPUT_RIGHT))
 		{
-			status.speedVec.X += status.speed;
+			velocity.X += status.speed;
 
-			if (status.speedVec.X > status.maxSpeed)
-			{
-				status.speedVec.X = status.maxSpeed;
-			}
+			DisabledExceed(status.maxSpeed, *velocity.X);
 		}
 
 		// 左移動
 		if (inputManager.lock()->IsKeyPushed(KEY_INPUT_LEFT) ||
 			inputManager.lock()->IsKeyHeld(KEY_INPUT_LEFT))
 		{
-			status.speedVec.X -= status.speed;
+			velocity.X -= status.speed;
 
-			if (status.speedVec.X < (status.maxSpeed * -1))
-			{
-				status.speedVec.X = (status.maxSpeed * -1);
-			}
+			DisabledBelow(reverseMaxSpeed, *velocity.X);
 		}
 	}
 
-	void character::CharacterBase::Jump()
+	void CharacterBase::Jump()
 	{
 		if (!inputManager.lock()->IsKeyPushed(KEY_INPUT_UP)) { return; }
 
 		if (IsStanding())
 		{
-			status.speedVec.Y = status.jumpPower;
+			velocity.Y = status.jumpPower;
 		}
 	}
 
 	void CharacterBase::UpdateDirection()
 	{
 		// 右向きに変更
-		if (status.speedVec.X > 0 && (!inputManager.lock()->IsKeyPushed(KEY_INPUT_RIGHT) || !inputManager.lock()->IsKeyHeld(KEY_INPUT_RIGHT)))
+		if (velocity.X > 0 && (!inputManager.lock()->IsKeyPushed(KEY_INPUT_RIGHT) || !inputManager.lock()->IsKeyHeld(KEY_INPUT_RIGHT)))
 		{
-			status.angle = 270.0f;
+			status.angle = angleOfDirectionRight;
 		}
 
 		// 左向きに変更
-		if (status.speedVec.X < 0 && (!inputManager.lock()->IsKeyPushed(KEY_INPUT_LEFT) || !inputManager.lock()->IsKeyHeld(KEY_INPUT_LEFT)))
+		if (velocity.X < 0 && (!inputManager.lock()->IsKeyPushed(KEY_INPUT_LEFT) || !inputManager.lock()->IsKeyHeld(KEY_INPUT_LEFT)))
 		{
-			status.angle = 90.0f;
+			status.angle = angleOfDirectionLeft;
 		}
 	}
 
-	void character::CharacterBase::Gravity()
+	void CharacterBase::Gravity()
 	{
-		status.speedVec.Y -= gravityVec;
+		velocity.Y -= law::gravity;
 	}
 
-	bool character::CharacterBase::IsStanding() const
+	bool CharacterBase::IsStanding() const
 	{
-		if (status.pos.Y < 0)
-		{
-			return true;
-		}
-
-		return false;
+		return (status.pos.Y < 0);
 	}
 
-	void character::CharacterBase::KineticFriction()
+	void CharacterBase::KineticFriction()
 	{
 		// 右移動
-		if (status.speedVec.X > 0 && (!inputManager.lock()->IsKeyPushed(KEY_INPUT_RIGHT) || !inputManager.lock()->IsKeyHeld(KEY_INPUT_RIGHT)))
+		if (velocity.X > 0 && (!inputManager.lock()->IsKeyPushed(KEY_INPUT_RIGHT) || !inputManager.lock()->IsKeyHeld(KEY_INPUT_RIGHT)))
 		{
-			status.speedVec.X -= frictionVec;
+			velocity.X -= friction::Force;
 
-			status.angle = 270.0f;
+			status.angle = angleOfDirectionRight;
 
-			if (status.speedVec.X < 0)
-			{
-				status.speedVec.X = 0;
-			}
+			DisabledBelow(0.0, *velocity.X);
 		}
 
 		// 左移動
-		if (status.speedVec.X < 0 && (!inputManager.lock()->IsKeyPushed(KEY_INPUT_LEFT) || !inputManager.lock()->IsKeyHeld(KEY_INPUT_LEFT)))
+		if (velocity.X < 0 && (!inputManager.lock()->IsKeyPushed(KEY_INPUT_LEFT) || !inputManager.lock()->IsKeyHeld(KEY_INPUT_LEFT)))
 		{
-			status.speedVec.X += frictionVec;
+			velocity.X += friction::Force;
 
-			status.angle = 90.0f;
+			status.angle = angleOfDirectionLeft;
 
-			if (status.speedVec.X > 0)
-			{
-				status.speedVec.X = 0;
-			}
+			DisabledExceed(0.0, *velocity.X);
 		}
 	}
 
-	void character::CharacterBase::UpdatePos()
+	void CharacterBase::UpdatePos()
 	{
 		// X座標
-		status.moveVec.X = static_cast<double>(status.speedVec.X);
-		status.pos.X += status.moveVec.X;
+		moveVec.X = velocity.X;
+		status.pos.X += moveVec.X;
+
 		// Y座標
-		status.moveVec.Y = static_cast<double>(status.speedVec.Y);
-		status.pos.Y += status.moveVec.Y;
+		moveVec.Y = velocity.Y;
+		status.pos.Y += moveVec.Y;
 	}
 }
