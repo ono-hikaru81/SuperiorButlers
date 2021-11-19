@@ -14,15 +14,21 @@
     <Filter Include="ソース ファイル\Manager">
       <UniqueIdentifier>{e829ac93-d120-47b1-a6f2-056f68a669c5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Character">
+      <UniqueIdentifier>{59482036-6061-4bc6-851d-91eec4e9c097}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Camera">
+      <UniqueIdentifier>{c1b19b31-78f0-4333-9fc2-feadcac94c39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Light">
+      <UniqueIdentifier>{6eaa45ff-0b69-40e0-b9fa-4537c9dfbb13}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\WinMain.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Src\Scene\TitleScene.cpp">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Scene\InGameScene.cpp">
       <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Src\Scene\ResultScene.cpp">
@@ -33,6 +39,21 @@
     </ClCompile>
     <ClCompile Include="Src\Manager\InputManager.cpp">
       <Filter>ソース ファイル\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Character\Monster.cpp">
+      <Filter>ソース ファイル\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Scene\InGameScene.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Character\CharacterBase.cpp">
+      <Filter>ソース ファイル\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Light\Light.cpp">
+      <Filter>ソース ファイル\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Camera\Camera.cpp">
+      <Filter>ソース ファイル\Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -75,8 +96,25 @@
     <ClInclude Include="Src\Utility\DxLibExtention.h">
       <Filter>ソース ファイル\Utility</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Character\CharacterBase.h">
+      <Filter>ソース ファイル\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Character\Monster.h">
+      <Filter>ソース ファイル\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Light\Light.h">
+      <Filter>ソース ファイル\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Camera\Camera.h">
+      <Filter>ソース ファイル\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Utility\Function.h">
+      <Filter>ソース ファイル\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include=".clang-format" />
+    <None Include=".clang-format">
+      <Filter>ソース ファイル</Filter>
+    </None>
   </ItemGroup>
 </Project>
