@@ -23,6 +23,18 @@
     <Filter Include="ソース ファイル\Light">
       <UniqueIdentifier>{6eaa45ff-0b69-40e0-b9fa-4537c9dfbb13}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Utility\Property">
+      <UniqueIdentifier>{c81d9ae4-50bd-4ba2-aa08-77ab5445438e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Definition">
+      <UniqueIdentifier>{292aa710-4108-482d-8973-69831c64e35c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Utility\Vector">
+      <UniqueIdentifier>{8b780073-f9a6-488a-9b0a-f8d8e837e374}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Utility\Size">
+      <UniqueIdentifier>{804a6dd2-8c39-49f6-8d0a-901a02ad71ed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\WinMain.cpp">
@@ -57,9 +69,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Src\Utility\Vector.h">
-      <Filter>ソース ファイル\Utility</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Scene\SceneBase.h">
       <Filter>ソース ファイル\Scene</Filter>
     </ClInclude>
@@ -78,21 +87,6 @@
     <ClInclude Include="Src\Manager\InputManager.h">
       <Filter>ソース ファイル\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Utility\Point.h">
-      <Filter>ソース ファイル\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Utility\Size.h">
-      <Filter>ソース ファイル\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Utility\Property.h">
-      <Filter>ソース ファイル\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Singleton.h">
-      <Filter>ソース ファイル\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Definition.h">
-      <Filter>ソース ファイル\Utility</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Utility\DxLibExtention.h">
       <Filter>ソース ファイル\Utility</Filter>
     </ClInclude>
@@ -110,6 +104,42 @@
     </ClInclude>
     <ClInclude Include="Src\Utility\Function.h">
       <Filter>ソース ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Utility\PropertyImpl\BasicProperty.hpp">
+      <Filter>ソース ファイル\Utility\Property</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Utility\PropertyImpl\ReadonlyProperty.hpp">
+      <Filter>ソース ファイル\Utility\Property</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Utility\Singleton.h">
+      <Filter>ソース ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Definition\Definition.h">
+      <Filter>ソース ファイル\Definition</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Definition\Concepts.hpp">
+      <Filter>ソース ファイル\Definition</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Utility\Property.hpp">
+      <Filter>ソース ファイル\Utility\Property</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Utility\Vector.hpp">
+      <Filter>ソース ファイル\Utility\Vector</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Utility\VectorImpl\Vector2.hpp">
+      <Filter>ソース ファイル\Utility\Vector</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Utility\VectorImpl\Vector3.hpp">
+      <Filter>ソース ファイル\Utility\Vector</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Utility\Size.hpp">
+      <Filter>ソース ファイル\Utility\Size</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Utility\SizeImpl\Size2.hpp">
+      <Filter>ソース ファイル\Utility\Size</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Utility\SizeImpl\Size3.hpp">
+      <Filter>ソース ファイル\Utility\Size</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

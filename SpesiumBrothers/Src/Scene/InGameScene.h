@@ -1,19 +1,22 @@
-﻿#ifndef IN_GAME_SCENE_H
+﻿
+#ifndef IN_GAME_SCENE_H
 #define IN_GAME_SCENE_H
 
-#include "SceneBase.h"
+#include <Scene/SceneBase.h>
 
-namespace scene {
-	class InGameScene : public SceneBase {
-	public:
-		InGameScene();
+namespace spesium {
+    namespace scene {
+        class InGameScene : public SceneBase {
+           public:
+            InGameScene();
 
-		virtual ~InGameScene();
+            virtual ~InGameScene();
 
-		virtual void Exec();
+            virtual void Exec();
 
-		virtual void Draw();
-	};
-}  // namespace scene
+            virtual void Draw();
+        };
+    }  // namespace scene
+}  // namespace spesium
 
 #endif  // !IN_GAME_SCENE_H

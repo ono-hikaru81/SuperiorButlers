@@ -1,26 +1,27 @@
-﻿#ifndef MONSTER_H
+﻿
+#ifndef MONSTER_H
 #define MONSTER_H
 
-#include "CharacterBase.h"
+#include <Character/CharacterBase.h>
 
-namespace character
-{
-	class Monster : public CharacterBase
-	{
-	public:
-		Monster();
-		~Monster() override;
+namespace spesium {
+    namespace character {
+        class Monster : public CharacterBase {
+           public:
+            Monster();
+            ~Monster() override;
 
-	public:
-		void Draw() override;
+           public:
+            void Draw() override;
 
-	public:
-		/*
+           public:
+            /*
 		* @brief アクセサ
 		* @param (status.pos) 座標
 		*/
-		utility::Property<utility::Vector3> Pos{ status.pos };
-	};
-}
+            BasicProperty<Vector3<double>> Pos { status.pos };
+        };
+    }  // namespace character
+}  // namespace spesium
 
-#endif // !MONSTER_H
+#endif  // !MONSTER_H

@@ -1,30 +1,30 @@
-﻿#ifndef SCENE_BASE_H
+﻿
+#ifndef SCENE_BASE_H
 #define SCENE_BASE_H
+
+#include <Manager/InputManager.h>
 
 #include <memory>
 
-#include "../Definition.h"
-#include "../Manager/InputManager.h"
-#include "../Singleton.h"
-#include "../Camera/Camera.h"
+namespace spesium {
+    namespace scene {
+        class SceneBase {
+           public:
+            SceneBase() {
+                inputManager = InputManager::Instance();
+            }
 
-namespace scene {
-	class SceneBase {
-	public:
-		SceneBase() {
-			inputManager = InputManager::Instance();
-		}
+            virtual ~SceneBase() {}
 
-		virtual ~SceneBase() {}
+           public:
+            virtual void Exec() = 0;
 
-	public:
-		virtual void Exec() = 0;
+            virtual void Draw() = 0;
 
-		virtual void Draw() = 0;
-
-	protected:
-		std::weak_ptr<InputManager> inputManager;
-	};
-}  // namespace scene
+           protected:
+            std::weak_ptr<InputManager> inputManager;
+        };
+    }  // namespace scene
+}  // namespace spesium
 
 #endif  // !SCENE_BASE_H
