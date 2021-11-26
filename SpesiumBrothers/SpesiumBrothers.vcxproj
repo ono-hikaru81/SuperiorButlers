@@ -169,6 +169,7 @@
     <ClCompile Include="Src\Manager\InputManager.cpp" />
     <ClCompile Include="Src\Manager\SceneManager.cpp" />
     <ClCompile Include="Src\Manager\StageManager.cpp" />
+    <ClCompile Include="Src\Manager\TextureManager.cpp" />
     <ClCompile Include="Src\Scene\InGameScene.cpp" />
     <ClCompile Include="Src\Scene\ResultScene.cpp" />
     <ClCompile Include="Src\Scene\TitleScene.cpp" />
@@ -186,6 +187,7 @@
     <ClInclude Include="Src\Manager\InputState.h" />
     <ClInclude Include="Src\Manager\SceneManager.h" />
     <ClInclude Include="Src\Manager\StageManager.h" />
+    <ClInclude Include="Src\Manager\TextureManager.h" />
     <ClInclude Include="Src\Scene\InGameScene.h" />
     <ClInclude Include="Src\Scene\ResultScene.h" />
     <ClInclude Include="Src\Scene\SceneBase.h" />
