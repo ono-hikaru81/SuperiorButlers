@@ -6,13 +6,17 @@
 
 #include <memory>
 
-namespace spesium {
-    namespace scene {
-        class SceneBase {
-           public:
-            SceneBase() {
-                inputManager = InputManager::Instance();
-            }
+#include "../Definition.h"
+#include "../Manager/InputManager.h"
+#include "../Singleton.h"
+#include "../Camera/Camera.h"
+
+namespace scene {
+    class SceneBase {
+       public:
+        SceneBase() {
+            inputManager = input::InputManager::Instance();
+        }
 
             virtual ~SceneBase() {}
 
@@ -21,10 +25,9 @@ namespace spesium {
 
             virtual void Draw() = 0;
 
-           protected:
-            std::weak_ptr<InputManager> inputManager;
-        };
-    }  // namespace scene
-}  // namespace spesium
+       protected:
+        std::weak_ptr<input::InputManager> inputManager;
+    };
+}  // namespace scene
 
 #endif  // !SCENE_BASE_H

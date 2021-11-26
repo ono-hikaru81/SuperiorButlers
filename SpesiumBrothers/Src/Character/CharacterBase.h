@@ -86,9 +86,9 @@ namespace spesium {
 		*/
             void UpdatePos();
 
-           protected:
-            /// @brief キーボード入力
-            std::weak_ptr<InputManager> inputManager = InputManager::Instance();
+	protected:
+		/// @brief キーボード入力
+		std::weak_ptr<input::InputManager> inputManager = input::InputManager::Instance();
 
            protected:
             /// @brief ステータス

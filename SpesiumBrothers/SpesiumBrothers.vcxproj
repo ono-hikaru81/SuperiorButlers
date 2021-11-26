@@ -165,6 +165,7 @@
     <ClCompile Include="Src\Character\CharacterBase.cpp" />
     <ClCompile Include="Src\Character\Monster.cpp" />
     <ClCompile Include="Src\Light\Light.cpp" />
+    <ClCompile Include="Src\Manager\InputControllerManager.cpp" />
     <ClCompile Include="Src\Manager\InputManager.cpp" />
     <ClCompile Include="Src\Manager\SceneManager.cpp" />
     <ClCompile Include="Src\Scene\InGameScene.cpp" />
@@ -179,7 +180,9 @@
     <ClInclude Include="Src\Definition\Concepts.hpp" />
     <ClInclude Include="Src\Definition\Definition.h" />
     <ClInclude Include="Src\Light\Light.h" />
+    <ClInclude Include="Src\Manager\InputControllerManager.h" />
     <ClInclude Include="Src\Manager\InputManager.h" />
+    <ClInclude Include="Src\Manager\InputState.h" />
     <ClInclude Include="Src\Manager\SceneManager.h" />
     <ClInclude Include="Src\Scene\InGameScene.h" />
     <ClInclude Include="Src\Scene\ResultScene.h" />
