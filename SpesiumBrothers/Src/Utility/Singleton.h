@@ -1,11 +1,10 @@
-﻿#ifndef SINGLETON_H
+﻿
+#ifndef SINGLETON_H
 #define SINGLETON_H
 
 #include <memory>
 
-#include "Utility/Property.h"
-
-namespace utility {
+namespace spesium {
     template<class T>
     class Singleton {
        protected:
@@ -28,6 +27,6 @@ namespace utility {
 
     template<class T>
     std::shared_ptr<T> Singleton<T>::instance = nullptr;
-}  // namespace utility
+}  // namespace spesium
 
 #endif  // !SINGLETON_H

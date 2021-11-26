@@ -1,26 +1,26 @@
-﻿#ifndef LIGHT_H
+﻿
+#ifndef LIGHT_H
 #define LIGHT_H
 
-#include "../Utility/Vector.h"
+#include <DxLib.h>
 
-#include "DxLib.h"
+#include <Utility/Vector.hpp>
 
-namespace tool
-{
-	class Light
-	{
-	public:
-		Light() = default;
-		~Light() = default;
+namespace spesium {
+    namespace tool {
+        class Light {
+           public:
+            Light() = default;
+            ~Light() = default;
 
-	public:
-		/*
+           public:
+            /*
 		* @breif ディレクションライト作成
 		* @param (pos_) 座標(向き指定)
 		*/
-		void CreateDirectionLight(utility::Vector3 pos_);
+            void CreateDirectionLight( Vector3<double> pos_ );
 
-		/*
+            /*
 		* @brief ポイントライト作成
 		* @param (pos_) 座標
 		* @param (max_range_) 光の届く範囲
@@ -28,9 +28,9 @@ namespace tool
 		* @param (attenuation_1_) 光の減衰率(距離に比例)
 		* @param (attenuation_2_) 光の減衰率(距離の2乗に比例)
 		*/
-		void CreatePointLight(utility::Vector3 pos_, float max_range_, float attenuation_0_, float attenuation_1_, float attenuation_2_);
+            void CreatePointLight( Vector3<double> pos_, float max_range_, float attenuation_0_, float attenuation_1_, float attenuation_2_ );
 
-		/*
+            /*
 		* @brief スポットライト作成
 		* @param (pos_) 座標
 		* @param (direction_) 方向
@@ -41,17 +41,18 @@ namespace tool
 		* @param (attenuation_1_) 光の減衰率(距離に比例)
 		* @param (attenuation_2_) 光の減衰率(距離の2乗に比例)
 		*/
-		void CreateSpotLight(utility::Vector3 pos_, utility::Vector3 direction_, float angle_, float angle_attenuation_, float max_range_, float attenuation_0_, float attenuation_1_, float attenuation_2_);
+            void CreateSpotLight( Vector3<double> pos_, Vector3<double> direction_, float angle_, float angle_attenuation_, float max_range_, float attenuation_0_, float attenuation_1_, float attenuation_2_ );
 
-		/*
+            /*
 		* @brief ライト削除
 		*/
-		void DeleteLight();
+            void DeleteLight();
 
-	private:
-		/// @brief 格納用変数
-		int32_t lightHandle{ 0 };
-	};
-}
+           private:
+            /// @brief 格納用変数
+            int32_t lightHandle { 0 };
+        };
+    }  // namespace tool
+}  // namespace spesium
 
-#endif // !LIGHT_H
+#endif  // !LIGHT_H

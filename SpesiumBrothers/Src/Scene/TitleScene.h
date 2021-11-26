@@ -1,20 +1,23 @@
-﻿#ifndef TITLE_SCENE_H
+﻿
+#ifndef TITLE_SCENE_H
 #define TITLE_SCENE_H
 
-#include "SceneBase.h"
+#include <Scene/SceneBase.h>
 
-namespace scene {
-    class TitleScene : public SceneBase {
-       public:
-        TitleScene();
+namespace spesium {
+    namespace scene {
+        class TitleScene : public SceneBase {
+           public:
+            TitleScene();
 
-        virtual ~TitleScene();
+            virtual ~TitleScene();
 
-       public:
-        virtual void Exec();
+           public:
+            virtual void Exec();
 
-        virtual void Draw();
-    };
-}  // namespace scene
+            virtual void Draw();
+        };
+    }  // namespace scene
+}  // namespace spesium
 
 #endif  // !TITLE_SCENE_H
