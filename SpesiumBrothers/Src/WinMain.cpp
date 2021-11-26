@@ -15,7 +15,7 @@ int WINAPI WinMain( [[maybe_unused]] _In_ HINSTANCE hInstance, [[maybe_unused]] 
     SetDrawScreen( DX_SCREEN_BACK );
 
     // 管理クラス作成
-    auto inputManager = spesium::InputManager::Instance();
+    auto inputManager = spesium::input::InputManager::Instance();
     auto sceneManager = spesium::scene::SceneManager::Instance();
 
     while ( true ) {

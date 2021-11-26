@@ -1,29 +1,34 @@
+
 #ifndef INPUT_STATE_H
 #define INPUT_STATE_H
 
-namespace input {
-    static constexpr int8_t ON { 1 };
-    static constexpr int8_t OFF { 0 };
+#include <cstdint>
 
-    enum class InputState {
-        none,
-        push,
-        hold,
-        release
-    };
+namespace spesium {
+    namespace input {
+        static constexpr int8_t ON { 1 };
+        static constexpr int8_t OFF { 0 };
 
-    static InputState ConvertState( const bool& current, const bool& previous ) {
-        if ( !previous && current ) {
-            return InputState::push;
-        }
-        else if ( previous && current ) {
-            return InputState::hold;
-        }
-        else if ( previous && !current ) {
-            return InputState::release;
-        }
-        return InputState::none;
-    }
+        enum class InputState {
+            none,
+            push,
+            hold,
+            release
+        };
 
-}  // namespace input
+        static constexpr InputState ConvertState( const bool& current, const bool& previous ) {
+            if ( !previous && current ) {
+                return InputState::push;
+            }
+            else if ( previous && current ) {
+                return InputState::hold;
+            }
+            else if ( previous && !current ) {
+                return InputState::release;
+            }
+            return InputState::none;
+        }
+    }  // namespace input
+}  // namespace spesium
+
 #endif  // !INPUT_STATE_H
