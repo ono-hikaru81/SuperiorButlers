@@ -165,6 +165,7 @@
     <ClCompile Include="Src\Character\CharacterBase.cpp" />
     <ClCompile Include="Src\Character\Monster.cpp" />
     <ClCompile Include="Src\Light\Light.cpp" />
+    <ClCompile Include="Src\Manager\EffectManager.cpp" />
     <ClCompile Include="Src\Manager\Input.cpp" />
     <ClCompile Include="Src\Manager\InputControllerManager.cpp" />
     <ClCompile Include="Src\Manager\InputManager.cpp" />
@@ -183,6 +184,7 @@
     <ClInclude Include="Src\Definition\Concepts.hpp" />
     <ClInclude Include="Src\Definition\Definition.h" />
     <ClInclude Include="Src\Light\Light.h" />
+    <ClInclude Include="Src\Manager\EffectManager.hpp" />
     <ClInclude Include="Src\Manager\Input.h" />
     <ClInclude Include="Src\Manager\InputControllerManager.h" />
     <ClInclude Include="Src\Manager\InputManager.h" />

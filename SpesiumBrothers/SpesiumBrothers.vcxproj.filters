@@ -14,21 +14,6 @@
     <ClCompile Include="Src\Light\Light.cpp">
       <Filter>Light</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Manager\InputControllerManager.cpp">
-      <Filter>Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Manager\InputManager.cpp">
-      <Filter>Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Manager\SceneManager.cpp">
-      <Filter>Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Manager\StageManager.cpp">
-      <Filter>Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Manager\TextureManager.cpp">
-      <Filter>Manager</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Scene\TitleScene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
@@ -38,8 +23,26 @@
     <ClCompile Include="Src\Scene\InGameScene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Manager\EffectManager.cpp">
+      <Filter>Manager\Effect</Filter>
+    </ClCompile>
     <ClCompile Include="Src\Manager\Input.cpp">
-      <Filter>Manager</Filter>
+      <Filter>Manager\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Manager\InputControllerManager.cpp">
+      <Filter>Manager\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Manager\InputManager.cpp">
+      <Filter>Manager\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Manager\SceneManager.cpp">
+      <Filter>Manager\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Manager\StageManager.cpp">
+      <Filter>Manager\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Manager\TextureManager.cpp">
+      <Filter>Manager\Texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -60,24 +63,6 @@
     </ClInclude>
     <ClInclude Include="Src\Definition\Definition.h">
       <Filter>Definition</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Manager\InputControllerManager.h">
-      <Filter>Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Manager\InputManager.h">
-      <Filter>Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Manager\InputState.h">
-      <Filter>Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Manager\SceneManager.h">
-      <Filter>Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Manager\StageManager.h">
-      <Filter>Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Manager\TextureManager.h">
-      <Filter>Manager</Filter>
     </ClInclude>
     <ClInclude Include="Src\Scene\TitleScene.h">
       <Filter>Scene</Filter>
@@ -127,8 +112,29 @@
     <ClInclude Include="Src\Utility\Vector.hpp">
       <Filter>Utility</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Manager\EffectManager.hpp">
+      <Filter>Manager\Effect</Filter>
+    </ClInclude>
     <ClInclude Include="Src\Manager\Input.h">
-      <Filter>Manager</Filter>
+      <Filter>Manager\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Manager\InputControllerManager.h">
+      <Filter>Manager\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Manager\InputManager.h">
+      <Filter>Manager\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Manager\InputState.h">
+      <Filter>Manager\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Manager\SceneManager.h">
+      <Filter>Manager\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Manager\StageManager.h">
+      <Filter>Manager\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Manager\TextureManager.h">
+      <Filter>Manager\Texture</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -164,6 +170,21 @@
     </Filter>
     <Filter Include="Utility\VectorImpl">
       <UniqueIdentifier>{730626f8-ba59-41e2-a641-63893a00db08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\Effect">
+      <UniqueIdentifier>{9bba6206-2097-4fa0-aa04-9057f88af150}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\Input">
+      <UniqueIdentifier>{e6aebea7-eeaf-4cac-985b-c4eb3f4b89fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\Scene">
+      <UniqueIdentifier>{b475eb87-07f2-49f6-9597-dbf859abb93c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\Stage">
+      <UniqueIdentifier>{ebdddc0a-6aa5-47aa-9a78-65ef53c11028}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\Texture">
+      <UniqueIdentifier>{d393f4bc-3cca-4702-9176-2846c7ea831a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
