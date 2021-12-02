@@ -1,12 +1,12 @@
 ﻿#ifndef STAGE_MANAGER_H
 #define STAGE_MANAGER_H
 
+#include <Utility/Singleton.h>
+
+#include <Utility/Property.hpp>
 #include <array>
 #include <string>
 #include <vector>
-
-#include "../Singleton.h"
-#include "../Utility/Property.h"
 
 namespace stage {
     /// マップチップ横幅
@@ -17,7 +17,7 @@ namespace stage {
     constexpr uint16_t MAPCHIP_NUM = MAPCHIP_WIDTH * MAPCHIP_HEIGHT;
 
     /// ステージ情報管理クラス
-    class StageManager : public utility::Singleton<StageManager> {
+    class StageManager : public spesium::Singleton<StageManager> {
        private:
         /// ファイルの区切り文字
         static constexpr char SPLIT = ',';

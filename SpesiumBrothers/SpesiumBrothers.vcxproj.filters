@@ -1,167 +1,169 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="ソース ファイル">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="ソース ファイル\Utility">
-      <UniqueIdentifier>{07d4e2a6-1ea6-4829-91fe-0e5ed702193b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Scene">
-      <UniqueIdentifier>{0083f8a0-221b-4a96-812c-c36328235f6f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Manager">
-      <UniqueIdentifier>{e829ac93-d120-47b1-a6f2-056f68a669c5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Character">
-      <UniqueIdentifier>{59482036-6061-4bc6-851d-91eec4e9c097}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Camera">
-      <UniqueIdentifier>{c1b19b31-78f0-4333-9fc2-feadcac94c39}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Light">
-      <UniqueIdentifier>{6eaa45ff-0b69-40e0-b9fa-4537c9dfbb13}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Utility\Property">
-      <UniqueIdentifier>{c81d9ae4-50bd-4ba2-aa08-77ab5445438e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Definition">
-      <UniqueIdentifier>{292aa710-4108-482d-8973-69831c64e35c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Utility\Vector">
-      <UniqueIdentifier>{8b780073-f9a6-488a-9b0a-f8d8e837e374}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Utility\Size">
-      <UniqueIdentifier>{804a6dd2-8c39-49f6-8d0a-901a02ad71ed}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Src\WinMain.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Scene\TitleScene.cpp">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Scene\ResultScene.cpp">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Manager\SceneManager.cpp">
-      <Filter>ソース ファイル\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Manager\InputManager.cpp">
-      <Filter>ソース ファイル\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Character\Monster.cpp">
-      <Filter>ソース ファイル\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Scene\InGameScene.cpp">
-      <Filter>ソース ファイル\Scene</Filter>
+    <ClCompile Include="Src\WinMain.cpp" />
+    <ClCompile Include="Src\Camera\Camera.cpp">
+      <Filter>Camera</Filter>
     </ClCompile>
     <ClCompile Include="Src\Character\CharacterBase.cpp">
-      <Filter>ソース ファイル\Character</Filter>
+      <Filter>Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Character\Monster.cpp">
+      <Filter>Character</Filter>
     </ClCompile>
     <ClCompile Include="Src\Light\Light.cpp">
-      <Filter>ソース ファイル\Light</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Camera\Camera.cpp">
-      <Filter>ソース ファイル\Camera</Filter>
+      <Filter>Light</Filter>
     </ClCompile>
     <ClCompile Include="Src\Manager\InputControllerManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Manager\InputManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Manager\SceneManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
     <ClCompile Include="Src\Manager\StageManager.cpp">
-      <Filter>ソース ファイル\Manager</Filter>
+      <Filter>Manager</Filter>
     </ClCompile>
     <ClCompile Include="Src\Manager\TextureManager.cpp">
-      <Filter>ソース ファイル\Manager</Filter>
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Scene\TitleScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Scene\ResultScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Scene\InGameScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Manager\Input.cpp">
+      <Filter>Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Src\Scene\SceneBase.h">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Scene\TitleScene.h">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Scene\InGameScene.h">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Scene\ResultScene.h">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Manager\SceneManager.h">
-      <Filter>ソース ファイル\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Manager\InputManager.h">
-      <Filter>ソース ファイル\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Utility\DxLibExtention.h">
-      <Filter>ソース ファイル\Utility</Filter>
+    <ClInclude Include="Src\Camera\Camera.h">
+      <Filter>Camera</Filter>
     </ClInclude>
     <ClInclude Include="Src\Character\CharacterBase.h">
-      <Filter>ソース ファイル\Character</Filter>
+      <Filter>Character</Filter>
     </ClInclude>
     <ClInclude Include="Src\Character\Monster.h">
-      <Filter>ソース ファイル\Character</Filter>
+      <Filter>Character</Filter>
     </ClInclude>
     <ClInclude Include="Src\Light\Light.h">
-      <Filter>ソース ファイル\Light</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Camera\Camera.h">
-      <Filter>ソース ファイル\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Utility\Function.h">
-      <Filter>ソース ファイル\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Utility\PropertyImpl\BasicProperty.hpp">
-      <Filter>ソース ファイル\Utility\Property</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Utility\PropertyImpl\ReadonlyProperty.hpp">
-      <Filter>ソース ファイル\Utility\Property</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Utility\Singleton.h">
-      <Filter>ソース ファイル\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Definition\Definition.h">
-      <Filter>ソース ファイル\Definition</Filter>
+      <Filter>Light</Filter>
     </ClInclude>
     <ClInclude Include="Src\Definition\Concepts.hpp">
-      <Filter>ソース ファイル\Definition</Filter>
+      <Filter>Definition</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Utility\Property.hpp">
-      <Filter>ソース ファイル\Utility\Property</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Utility\Vector.hpp">
-      <Filter>ソース ファイル\Utility\Vector</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Utility\VectorImpl\Vector2.hpp">
-      <Filter>ソース ファイル\Utility\Vector</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Utility\VectorImpl\Vector3.hpp">
-      <Filter>ソース ファイル\Utility\Vector</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Utility\Size.hpp">
-      <Filter>ソース ファイル\Utility\Size</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Utility\SizeImpl\Size2.hpp">
-      <Filter>ソース ファイル\Utility\Size</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Utility\SizeImpl\Size3.hpp">
-      <Filter>ソース ファイル\Utility\Size</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Manager\InputState.h">
-      <Filter>ソース ファイル\Manager</Filter>
+    <ClInclude Include="Src\Definition\Definition.h">
+      <Filter>Definition</Filter>
     </ClInclude>
     <ClInclude Include="Src\Manager\InputControllerManager.h">
-      <Filter>ソース ファイル\Manager</Filter>
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Manager\InputManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Manager\InputState.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Manager\SceneManager.h">
+      <Filter>Manager</Filter>
     </ClInclude>
     <ClInclude Include="Src\Manager\StageManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
     <ClInclude Include="Src\Manager\TextureManager.h">
-      <Filter>ソース ファイル\Manager</Filter>
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Scene\TitleScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Scene\ResultScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Scene\SceneBase.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Scene\InGameScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Utility\SizeImpl\Size2.hpp">
+      <Filter>Utility\SizeImpl</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Utility\VectorImpl\Vector2.hpp">
+      <Filter>Utility\VectorImpl</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Utility\VectorImpl\Vector3.hpp">
+      <Filter>Utility\VectorImpl</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Utility\SizeImpl\Size3.hpp">
+      <Filter>Utility\SizeImpl</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Utility\PropertyImpl\BasicProperty.hpp">
+      <Filter>Utility\PropertyImpl</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Utility\PropertyImpl\ReadonlyProperty.hpp">
+      <Filter>Utility\PropertyImpl</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Utility\DxLibExtention.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Utility\Function.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Utility\Property.hpp">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Utility\Singleton.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Utility\Size.hpp">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Utility\Vector.hpp">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Manager\Input.h">
+      <Filter>Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include=".clang-format">
-      <Filter>ソース ファイル</Filter>
-    </None>
+    <None Include=".clang-format" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{c40d2eb1-c0fa-4ee8-8f0c-0f7be1d92e87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Character">
+      <UniqueIdentifier>{b56c3477-2ed0-4ef1-a731-b402c7bf5823}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Definition">
+      <UniqueIdentifier>{5f5529cd-65f8-4bf9-b97e-8dd60ab7c53b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Light">
+      <UniqueIdentifier>{eb476545-9d81-486e-aeb9-da3699b85829}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager">
+      <UniqueIdentifier>{d86f3ea0-5546-4b89-844a-d7957112322f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{471c72d3-5911-4eb0-90b0-9fd3d5e0951e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{5589ecb3-4314-48a7-a0a7-bc672fbb1578}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\PropertyImpl">
+      <UniqueIdentifier>{65eef323-51a8-41b3-a373-ad1ad8cb8599}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\SizeImpl">
+      <UniqueIdentifier>{ce8506b8-297e-4f55-b215-26c401c39e35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\VectorImpl">
+      <UniqueIdentifier>{730626f8-ba59-41e2-a641-63893a00db08}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
