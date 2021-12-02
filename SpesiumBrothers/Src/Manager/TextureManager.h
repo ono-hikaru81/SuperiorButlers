@@ -1,35 +1,37 @@
+ï»¿
 #ifndef TEXTURE_MANAGER_H
 #define TEXTURE_MANAGER_H
 
-#include<map>
-#include<DxLib.h>
-#include<Definition/Definition.h>
-#include<Utility/Singleton.h>
-#include<optional>
+#include <Definition/Definition.h>
+#include <DxLib.h>
+#include <Utility/Singleton.h>
 
-namespace spesium
-{
-	class TextureManager :public Singleton<TextureManager> {
-	public:
-		TextureManager();
-		virtual ~TextureManager();
+#include <map>
+#include <optional>
 
-		/// @brief ƒeƒNƒXƒ`ƒƒ[‚Ì“Ç‚İ‚İ
-		/// @param nameFƒeƒNƒXƒ`ƒƒ[‚Ì–¼‘O
-		/// @param filePathFƒeƒNƒXƒ`ƒƒ[‚ğ•Û‘¶‚µ‚Ä‚¢‚éƒtƒ@ƒCƒ‹ƒpƒX
-		void LoadTexture(const std::string& name, const std::string& filePath);
+namespace spesium {
+    class TextureManager : public Singleton<TextureManager> {
+       public:
+        TextureManager() = default;
+        virtual ~TextureManager() = default;
 
-		/// @brief ƒeƒNƒXƒ`ƒƒ[‚Ì‘Síœ
-		void ReleaseTexture();
+        /// @brief ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®èª­ã¿è¾¼ã¿
+        /// @param nameï¼šãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®åå‰
+        /// @param filePathï¼šãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’ä¿å­˜ã—ã¦ã„ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
+        void LoadTexture( const std::string& name, const std::string& filePath );
 
-		/// @brief ƒeƒNƒXƒ`ƒƒ[‚Ìæ“¾
-		/// @param nameFƒeƒNƒXƒ`ƒƒ[‚Ì–¼‘O
-		/// @return ƒeƒNƒXƒ`ƒƒ[ƒnƒ“ƒhƒ‹
-		/// @note DrawGraph(X,Y,GetTexture(name),TransFlag)
-		std::optional<int32_t> GetTexture(const std::string& name);
+        /// @brief ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®å…¨å‰Šé™¤
+        void ReleaseTexture();
 
-	private:
-		std::map<std::string, int32_t>TextureList;
-	};
-}
-#endif // !TEXTURE_MANAGER_H
+        /// @brief ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®å–å¾—
+        /// @param nameï¼šãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®åå‰
+        /// @return ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ãƒãƒ³ãƒ‰ãƒ«
+        /// @note DrawGraph(X,Y,GetTexture(name),TransFlag)
+        std::optional<int32_t> GetTexture( const std::string& name );
+
+       private:
+        std::map<std::string, int32_t> TextureList {};
+    };
+}  // namespace spesium
+
+#endif  // !TEXTURE_MANAGER_H
