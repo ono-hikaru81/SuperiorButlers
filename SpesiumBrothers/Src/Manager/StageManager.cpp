@@ -1,9 +1,9 @@
 ﻿#include "StageManager.h"
 
+#include <Definition/Definition.h>
+
 #include <fstream>
 #include <sstream>
-
-#include "../Definition.h"
 
 namespace stage {
     bool StageManager::InputStageFile( const std::string& file_name_ ) {
