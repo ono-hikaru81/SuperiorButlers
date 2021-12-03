@@ -28,6 +28,14 @@ namespace spesium {
             x( value_type() ), y( value_type() ), z( value_type() ) {
         }
 
+        explicit Vector3( const VECTOR& value_ ) :
+            x( value_.x ), y( value_.y ), z( value_.z ) {
+        }
+
+        explicit Vector3( VECTOR&& value_ ) noexcept :
+            x( std::move( value_.x ) ), y( std::move( value_.y ) ), z( std::move( value_.z ) ) {
+        }
+
         explicit Vector3( const_reference x_, const_reference y_, const_reference z_ ) :
             x( x_ ), y( y_ ), z( z_ ) {
         }
@@ -96,7 +104,7 @@ namespace spesium {
 
         /// @brief targetとの2点間のベクトルを取得
         [[nodiscard]] auto To( const_vector_reference target_ ) const noexcept -> vector_type {
-            return target_ - *this;
+            return Vector3( target_ ) -= *this;
         }
 
         /// @brief targetとの距離を取得
@@ -165,6 +173,20 @@ namespace spesium {
         }
 
         auto operator=( rvalue_vector_reference value_ ) & noexcept -> vector_reference {
+            x = std::move( value_.x );
+            y = std::move( value_.y );
+            z = std::move( value_.z );
+            return *this;
+        }
+
+        auto operator=( const VECTOR& value_ ) & noexcept -> vector_reference {
+            x = value_.x;
+            y = value_.y;
+            z = value_.z;
+            return *this;
+        }
+
+        auto operator=( VECTOR&& value_ ) & noexcept -> vector_reference {
             x = std::move( value_.x );
             y = std::move( value_.y );
             z = std::move( value_.z );

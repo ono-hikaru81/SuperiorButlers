@@ -6,7 +6,6 @@
 namespace spesium {
     namespace character {
         CharacterBase::CharacterBase() {
-            LoadModel();
         }
 
         CharacterBase::~CharacterBase() {
@@ -27,18 +26,21 @@ namespace spesium {
 
             Jump();
 
+            Attack();
+
             UpdateDirection();
+            UpdateCollisionData();
 
             // 最後の座標処理
             UpdatePos();
         }
 
-        void CharacterBase::LoadModel() {
-            monsterModel = MV1LoadModel( monsterModelName.c_str() );
+        void CharacterBase::LoadModel( const std::string& file_path_ ) {
+            modelHandle = MV1LoadModel( file_path_.c_str() );
         }
 
         void CharacterBase::ReleaseModel() {
-            MV1DeleteModel( monsterModel );
+            MV1DeleteModel( modelHandle );
         }
 
         void CharacterBase::Move() {
@@ -65,6 +67,21 @@ namespace spesium {
             if ( IsStanding() ) {
                 velocity.Y = status.jumpPower;
             }
+        }
+
+        void CharacterBase::Attack() {
+            if ( !inputManager.lock()->IsKeyPushed( KEY_INPUT_SPACE ) ) { return; }
+
+#if _DEBUG
+            // キーが押されたときにランダムな部位を攻撃中にする
+            for ( auto& frame : frameDataList ) {
+                frame.attacking = false;
+            }
+
+            auto size { frameDataList.size() };
+            auto index { GetRand( size - 1 ) };
+            frameDataList.at( index ).attacking = true;
+#endif  //!_DEBUG
         }
 
         void CharacterBase::UpdateDirection() {
@@ -115,6 +132,12 @@ namespace spesium {
             // Y座標
             moveVec.Y = velocity.Y;
             status.pos.Y += moveVec.Y;
+        }
+
+        void CharacterBase::UpdateCollisionData() & noexcept {
+            for ( auto& frame : frameDataList ) {
+                frame.position = MV1GetFramePosition( modelHandle, frame.number );
+            }
         }
     }  // namespace character
 }  // namespace spesium

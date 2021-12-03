@@ -7,6 +7,7 @@
 namespace spesium {
     namespace scene {
         InGameScene::InGameScene() {
+            detector.Set( monster1, monster2 );
         }
 
         InGameScene::~InGameScene() {
@@ -16,9 +17,17 @@ namespace spesium {
             if ( inputManager.lock()->IsKeyPushed( KEY_INPUT_RETURN ) ) {
                 SceneManager::Instance().lock()->NextScene = Scene::Result;
             }
+
+            monster1->Exec();
+            monster2->Exec();
+            monster2->Exec();
+            camera->UpdatePos( monster1->Pos, monster2->Pos );
+            detector.Update();
         }
 
         void InGameScene::Draw() {
+            monster1->Draw();
+            monster2->Draw();
             DrawString( 120, 120, "InGame", GetColor( 0, 0, 0 ) );
         }
     }  // namespace scene
