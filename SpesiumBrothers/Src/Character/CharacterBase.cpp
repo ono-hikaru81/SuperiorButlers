@@ -6,7 +6,6 @@
 namespace spesium {
     namespace character {
         CharacterBase::CharacterBase() {
-            LoadModel();
         }
 
         CharacterBase::~CharacterBase() {
@@ -28,17 +27,18 @@ namespace spesium {
             Jump();
 
             UpdateDirection();
+            UpdateCollisionData();
 
             // 最後の座標処理
             UpdatePos();
         }
 
-        void CharacterBase::LoadModel() {
-            monsterModel = MV1LoadModel( monsterModelName.c_str() );
+        void CharacterBase::LoadModel( const std::string& file_path_ ) {
+            modelHandle = MV1LoadModel( file_path_.c_str() );
         }
 
         void CharacterBase::ReleaseModel() {
-            MV1DeleteModel( monsterModel );
+            MV1DeleteModel( modelHandle );
         }
 
         void CharacterBase::Move() {
@@ -115,6 +115,12 @@ namespace spesium {
             // Y座標
             moveVec.Y = velocity.Y;
             status.pos.Y += moveVec.Y;
+        }
+
+        void CharacterBase::UpdateCollisionData() & noexcept {
+            for ( auto& frame : frameDataList ) {
+                frame.position = MV1GetFramePosition( modelHandle, frame.number );
+            }
         }
     }  // namespace character
 }  // namespace spesium

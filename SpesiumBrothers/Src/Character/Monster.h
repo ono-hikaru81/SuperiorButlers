@@ -14,12 +14,7 @@ namespace spesium {
            public:
             void Draw() override;
 
-           public:
-            /*
-		* @brief アクセサ
-		* @param (status.pos) 座標
-		*/
-            BasicProperty<Vector3<double>> Pos { status.pos };
+            void OnCollision() override;
         };
     }  // namespace character
 }  // namespace spesium

@@ -7,6 +7,7 @@
 
 #include <Utility/Vector.hpp>
 #include <memory>
+#include <vector>
 
 namespace spesium {
     namespace character {
@@ -30,6 +31,12 @@ namespace spesium {
             };
 
            public:
+            struct FrameData {
+                uint32_t number {};
+                Vector3<double> position {};
+                const double radius {};
+            };
+
             /**
    * @brief 実行関数
    */
@@ -40,11 +47,13 @@ namespace spesium {
    */
             virtual void Draw() = 0;
 
+            virtual void OnCollision() = 0;
+
            protected:
             /**
    * @brief モデル読み込み関数
    */
-            void LoadModel();
+            void LoadModel( const std::string& file_path_ );
 
             /**
    * @brief モデル解放関数
@@ -86,23 +95,21 @@ namespace spesium {
    */
             void UpdatePos();
 
+            void UpdateCollisionData() & noexcept;
+
            protected:
             /// @brief キーボード入力
             std::weak_ptr<input::InputManager> inputManager = input::InputManager::Instance();
 
+           public:
+            /// @brief 位置
+            BasicProperty<Vector3<double>> Pos { status.pos };
+
+            ReadonlyProperty<std::vector<FrameData>> FrameDataList { frameDataList };
+
            protected:
             /// @brief ステータス
-            Status status {
-                { Vector3( 0.0, 0.0, 0.0 ) },  // キャラ座標
-                0.0,  // 回転角
-
-                0,  // 体力
-                0,  // シールド量
-                0,  // 攻撃力
-                1.0,  // 移動速度
-                10.0,  // 最大移動速度
-                10.0,  // ジャンプ力
-            };
+            Status status {};
 
             /// @breif 左向きの角度
             static constexpr double angleOfDirectionLeft { 90.0 };
@@ -110,9 +117,9 @@ namespace spesium {
             static constexpr double angleOfDirectionRight { 270.0 };
 
             /// @brief 移動量
-            Vector3<double> moveVec { 0.0, 0.0, 0.0 };
+            Vector3<double> moveVec {};
             /// @brief 移動速度量
-            Vector3<double> velocity { 0.0, 0.0, 0.0 };
+            Vector3<double> velocity {};
 
             /// @brief 生存フラグ
             bool isAlive { false };
@@ -123,10 +130,10 @@ namespace spesium {
             /// @brief ダウンしたか(倒れたか)
             bool isKnockdown { false };
 
-            /// @brief モンスターモデル格納用
-            int32_t monsterModel { 0 };
-            /// @breif モンスターモデル名
-            const std::string monsterModelName { "Res/Model/monster_04.mv1" };
+            /// @brief モデルのハンドル
+            int32_t modelHandle {};
+
+            std::vector<FrameData> frameDataList {};
         };
     }  // namespace character
 }  // namespace spesium
