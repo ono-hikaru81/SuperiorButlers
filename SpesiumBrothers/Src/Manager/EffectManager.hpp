@@ -8,7 +8,6 @@
 
 #include <Utility/Vector.hpp>
 #include <map>
-#include <optional>
 #include <string>
 
 namespace spesium {
@@ -19,11 +18,11 @@ namespace spesium {
         ~EffectManager() = default;
 
        public:
-        void Load( const std::string& name_, const std::string& filePath_ ) &;
+        void Load( const std::string& name_, const std::string& file_path_ ) &;
 
         void Clear() & noexcept;
 
-        [[nodiscard]] auto Get( const std::string& name_ ) const& noexcept -> std::optional<int32_t>;
+        [[nodiscard]] auto Get( const std::string& name_ ) const& -> int32_t;
 
         void Generate( const std::string& name_, const Vector3<double>& position_ ) const& noexcept;
 
