@@ -15,6 +15,8 @@ namespace spesium {
             void Draw() override;
 
             void OnCollision() override;
+
+            void TakeDamage( const int32_t& damage_ ) override;
         };
     }  // namespace character
 }  // namespace spesium

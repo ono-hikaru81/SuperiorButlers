@@ -26,6 +26,8 @@ namespace spesium {
 
             Jump();
 
+            Attack();
+
             UpdateDirection();
             UpdateCollisionData();
 
@@ -65,6 +67,21 @@ namespace spesium {
             if ( IsStanding() ) {
                 velocity.Y = status.jumpPower;
             }
+        }
+
+        void CharacterBase::Attack() {
+            if ( !inputManager.lock()->IsKeyPushed( KEY_INPUT_SPACE ) ) { return; }
+
+#if _DEBUG
+            // キーが押されたときにランダムな部位を攻撃中にする
+            for ( auto& frame : frameDataList ) {
+                frame.attacking = false;
+            }
+
+            auto size { frameDataList.size() };
+            auto index { GetRand( size - 1 ) };
+            frameDataList.at( index ).attacking = true;
+#endif  //!_DEBUG
         }
 
         void CharacterBase::UpdateDirection() {

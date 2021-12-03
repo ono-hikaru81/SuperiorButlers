@@ -32,9 +32,12 @@ namespace spesium {
 
            public:
             struct FrameData {
-                uint32_t number {};
-                Vector3<double> position {};
+                const uint32_t number {};
                 const double radius {};
+                const int32_t damage {};
+
+                Vector3<double> position {};
+                bool attacking { false };
             };
 
             /**
@@ -48,6 +51,8 @@ namespace spesium {
             virtual void Draw() = 0;
 
             virtual void OnCollision() = 0;
+
+            virtual void TakeDamage( const int32_t& damage_ ) = 0;
 
            protected:
             /**
@@ -69,6 +74,8 @@ namespace spesium {
    * @brief ジャンプ関数
    */
             void Jump();
+
+            void Attack();
 
             /*
    * @brief 向き変更
@@ -134,6 +141,8 @@ namespace spesium {
             int32_t modelHandle {};
 
             std::vector<FrameData> frameDataList {};
+
+            int32_t attackingParts {};
         };
     }  // namespace character
 }  // namespace spesium

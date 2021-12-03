@@ -19,20 +19,22 @@ namespace spesium {
 
             LoadModel( "Res/Model/motion_monster.mv1" );
 
-            frameDataList.emplace_back( MV1SearchFrame( modelHandle, "koshi" ), Vector3<>::Zero(), 24.0 );
-            frameDataList.emplace_back( MV1SearchFrame( modelHandle, "hitosasi_hidari3" ), Vector3<>::Zero(), 18.0 );
-            frameDataList.emplace_back( MV1SearchFrame( modelHandle, "hitosasi_migi3" ), Vector3<>::Zero(), 18.0 );
-            frameDataList.emplace_back( MV1SearchFrame( modelHandle, "gyakukansetu_hidari" ), Vector3<>::Zero(), 14.0 );
-            frameDataList.emplace_back( MV1SearchFrame( modelHandle, "gyakukansetu_migi" ), Vector3<>::Zero(), 14.0 );
-            frameDataList.emplace_back( MV1SearchFrame( modelHandle, "tumasaki_hidari" ), Vector3<>::Zero(), 16.0 );
-            frameDataList.emplace_back( MV1SearchFrame( modelHandle, "tumasaki_migi" ), Vector3<>::Zero(), 16.0 );
-            frameDataList.emplace_back( MV1SearchFrame( modelHandle, "hiza_hidari" ), Vector3<>::Zero(), 10.0 );
-            frameDataList.emplace_back( MV1SearchFrame( modelHandle, "hiza_migi" ), Vector3<>::Zero(), 10.0 );
-            frameDataList.emplace_back( MV1SearchFrame( modelHandle, "hiji_hidari" ), Vector3<>::Zero(), 16.0 );
-            frameDataList.emplace_back( MV1SearchFrame( modelHandle, "hiji_migi" ), Vector3<>::Zero(), 16.0 );
-            frameDataList.emplace_back( MV1SearchFrame( modelHandle, "kubi1" ), Vector3<>::Zero(), 20.0 );
-            frameDataList.emplace_back( MV1SearchFrame( modelHandle, "kubi3" ), Vector3<>::Zero(), 12.0 );
-            frameDataList.emplace_back( MV1SearchFrame( modelHandle, "atama2" ), Vector3<>::Zero(), 12.0 );
+            frameDataList.emplace_back( MV1SearchFrame( modelHandle, "atama2" ), 12.0 );
+            frameDataList.emplace_back( MV1SearchFrame( modelHandle, "kubi3" ), 12.0 );
+            frameDataList.emplace_back( MV1SearchFrame( modelHandle, "kubi1" ), 20.0 );
+            frameDataList.emplace_back( MV1SearchFrame( modelHandle, "koshi" ), 24.0 );
+
+            frameDataList.emplace_back( MV1SearchFrame( modelHandle, "hiji_hidari" ), 16.0, 10 );
+            frameDataList.emplace_back( MV1SearchFrame( modelHandle, "hiji_migi" ), 16.0, 10 );
+            frameDataList.emplace_back( MV1SearchFrame( modelHandle, "hitosasi_hidari3" ), 18.0, 20 );
+            frameDataList.emplace_back( MV1SearchFrame( modelHandle, "hitosasi_migi3" ), 18.0, 20 );
+
+            frameDataList.emplace_back( MV1SearchFrame( modelHandle, "gyakukansetu_hidari" ), 14.0 );
+            frameDataList.emplace_back( MV1SearchFrame( modelHandle, "gyakukansetu_migi" ), 14.0 );
+            frameDataList.emplace_back( MV1SearchFrame( modelHandle, "hiza_hidari" ), 10.0, 15 );
+            frameDataList.emplace_back( MV1SearchFrame( modelHandle, "hiza_migi" ), 10.0, 15 );
+            frameDataList.emplace_back( MV1SearchFrame( modelHandle, "tumasaki_hidari" ), 16.0, 15 );
+            frameDataList.emplace_back( MV1SearchFrame( modelHandle, "tumasaki_migi" ), 16.0, 15 );
 
             MV1AttachAnim( modelHandle, 0 );
         }
@@ -59,13 +61,17 @@ namespace spesium {
             printfDx( "anim : %f / %f\n", MV1GetAttachAnimTime( modelHandle, 0 ), MV1GetAttachAnimTotalTime( modelHandle, 0 ) );
             for ( auto& frame : frameDataList ) {
                 auto drawPos { frame.position };
-                DrawSphere3D( drawPos, frame.radius, 8, GetColor( 0, 0, 255 ), GetColor( 255, 255, 255 ), FALSE );
+                auto color { ( frame.attacking ) ? GetColor( 255, 0, 0 ) : GetColor( 0, 0, 255 ) };
+                DrawSphere3D( drawPos, frame.radius, 8, color, GetColor( 255, 255, 255 ), FALSE );
             }
 #endif  // _DEBUG
         }
 
         void Monster::OnCollision() {
-            printfDx( "HIT!!\n" );
+        }
+
+        void Monster::TakeDamage( const int32_t& damage_ ) {
+            printfDx( "Take damage the %d\n", damage_ );
         }
     }  // namespace character
 }  // namespace spesium

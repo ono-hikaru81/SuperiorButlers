@@ -20,8 +20,17 @@ namespace spesium {
 
                 distance -= p1Frame.radius + p2Frame.radius;
                 if ( distance <= 0.0 ) {
+                    // 当たっている
                     player1.lock()->OnCollision();
                     player2.lock()->OnCollision();
+
+                    // 攻撃中ならダメージを与える
+                    if ( p1Frame.attacking && !p2Frame.attacking ) {
+                        player2.lock()->TakeDamage( p1Frame.damage );
+                    }
+                    else if ( !p1Frame.attacking && p2Frame.attacking ) {
+                        player1.lock()->TakeDamage( p2Frame.damage );
+                    }
                 }
             }
         }
