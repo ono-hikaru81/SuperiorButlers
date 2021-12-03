@@ -1,15 +1,15 @@
-
-#ifndef MONSTER_H
-#define MONSTER_H
+﻿
+#ifndef HUMAN_H
+#define HUMAN_H
 
 #include <Character/CharacterBase.h>
 
 namespace spesium {
     namespace character {
-        class Monster : public CharacterBase {
+        class Human : public CharacterBase {
            public:
-            Monster();
-            ~Monster() override;
+            Human();
+            ~Human() override;
 
            private:
             /// @brief モーションフレーム
@@ -25,15 +25,15 @@ namespace spesium {
                 static constexpr MotionFrame jump { .start { 169.0f }, .total { 239.0f } };  // ジャンプ
                 static constexpr MotionFrame doubleJump { .start { 240.0f }, .total { 298.0f } };  // 2段ジャンプ
                 static constexpr MotionFrame guard { .start { 299.0f }, .total { 305.0f } };  // ガード
-                static constexpr MotionFrame neutralAttack { .start { 306.0f }, .total { 331.0f } };  // 弱攻撃
-                static constexpr MotionFrame strongAttack { .start { 332.0f }, .total { 363.0f } };  // 強攻撃
-                static constexpr MotionFrame aerialNeutralAttack { .start { 364.0f }, .total { 394.0f } };  // 空中弱攻撃
-                static constexpr MotionFrame aerialStrongAttack { .start { 395.0f }, .total { 433.0f } };  // 空中強攻撃
-                static constexpr MotionFrame fallLanding { .start { 434.0f }, .total { 467.0f } };  // 落下着地
-                static constexpr MotionFrame smallHitBack { .start { 468.0f }, .total { 472.0 } };  // ノックバック小
-                static constexpr MotionFrame bigHitBack { .start { 473.0f }, .total { 515.0f } };  // ノックバック大
-                static constexpr MotionFrame fall { .start { 516.0f }, .total { 562.0f } };  //　落下
-                static constexpr MotionFrame turn { .start { 563.0f }, .total { 568.0f } };  // 振りむき
+                static constexpr MotionFrame neutralAttack { .start { 306.0f }, .total { 317.0f } };  // 弱攻撃
+                static constexpr MotionFrame strongAttack { .start { 318.0f }, .total { 339.0f } };  // 強攻撃
+                static constexpr MotionFrame aerialNeutralAttack { .start { 340.0f }, .total { 357.0f } };  // 空中弱攻撃
+                static constexpr MotionFrame aerialStrongAttack { .start { 358.0f }, .total { 386.0f } };  // 空中強攻撃
+                static constexpr MotionFrame fallLanding { .start { 387.0f }, .total { 420.0f } };  // 落下着地
+                static constexpr MotionFrame smallHitBack { .start { 421.0f }, .total { 425.0 } };  // ノックバック小
+                static constexpr MotionFrame bigHitBack { .start { 426.0f }, .total { 468.0f } };  // ノックバック大
+                static constexpr MotionFrame fall { .start { 469.0f }, .total { 515.0f } };  //　落下
+                static constexpr MotionFrame turn { .start { 516.0f }, .total { 521.0f } };  // 振りむき
             };
 
            public:
@@ -47,4 +47,4 @@ namespace spesium {
     }  // namespace character
 }  // namespace spesium
 
-#endif  // !MONSTER_H
+#endif
