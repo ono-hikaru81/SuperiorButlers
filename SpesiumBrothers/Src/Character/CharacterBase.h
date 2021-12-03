@@ -1,4 +1,4 @@
-﻿
+
 #ifndef CHARACTER_BASE_H
 #define CHARACTER_BASE_H
 
@@ -49,6 +49,9 @@ namespace spesium {
             /// @brief ジャンプ関数
             void Jump();
 
+            /// @breif 2段ジャンプ関数
+            void TwoStepJump();
+
             /// @brief 向き変更
             void UpdateDirection();
 
@@ -66,6 +69,49 @@ namespace spesium {
 
             /// @breif 吹っ飛びの計算
             void BlowOffCalculation();
+
+           protected:
+            /// @breif 待機モーション
+            virtual void WaitMotion() = 0;
+
+            /// @breif ダッシュモーション
+            virtual void DashMotion() = 0;
+
+            /// @breif ジャンプモーション
+            virtual void JumpMotion() = 0;
+
+            /// @breif 2段ジャンプモーション
+            virtual void TwoStepJumpMotion() = 0;
+
+            /// @breif ガードモーション
+            virtual void GuardMotion() = 0;
+
+            /// @breif 弱攻撃モーション
+            virtual void NeutralAttackMotion() = 0;
+
+            /// @breif 強攻撃モーション
+            virtual void StrongAttackMotion() = 0;
+
+            /// @breif 空中弱攻撃モーション
+            virtual void AerialNeutralAttackMotion() = 0;
+
+            /// @breif 空中強攻撃モーション
+            virtual void AerialStrongAttackMotion() = 0;
+
+            /// @breif 着地モーション
+            virtual void LandingMotion() = 0;
+
+            /// @breif ヒットバックモーション小
+            virtual void SmallHitBackMotion() = 0;
+
+            /// @breif ヒットバックモーション大
+            virtual void BigHitBackMotion() = 0;
+
+            /// @breif 落下モーション
+            virtual void FallMotion() = 0;
+
+            /// @brief 振り向きモーション
+            virtual void TurnMotion() = 0;
 
            protected:
             /// @brief キーボード入力
@@ -110,6 +156,40 @@ namespace spesium {
             int32_t monsterModel { 0 };
             /// @breif モンスターモデル名
             const std::string monsterModelName { "Res/Model/monster_04.mv1" };
+
+            struct MotionModel {
+                int32_t wait { 0 };
+                int32_t dash { 0 };
+                int32_t jump { 0 };
+                int32_t twoStepJump { 0 };
+                int32_t guard { 0 };
+                int32_t neutralAttack { 0 };
+                int32_t strongAttack { 0 };
+                int32_t aerialNeutralAttack { 0 };
+                int32_t aerialStrongAttack { 0 };
+                int32_t Landing { 0 };
+                int32_t SmallHitBackMotion { 0 };
+                int32_t BigHitBackMotion { 0 };
+                int32_t fall { 0 };
+                int32_t turn { 0 };
+            };
+
+            struct MotionModelName {
+                std::string wait { 0 };
+                std::string dash { 0 };
+                std::string jump { 0 };
+                std::string twoStepJump { 0 };
+                std::string guard { 0 };
+                std::string neutralAttack { 0 };
+                std::string strongAttack { 0 };
+                std::string aerialNeutralAttack { 0 };
+                std::string aerialStrongAttack { 0 };
+                std::string Landing { 0 };
+                std::string SmallHitBackMotion { 0 };
+                std::string BigHitBackMotion { 0 };
+                std::string fall { 0 };
+                std::string turn { 0 };
+            };
         };
     }  // namespace character
 }  // namespace spesium
