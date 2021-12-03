@@ -16,7 +16,8 @@ namespace spesium {
 
         for ( auto&& p1Frame : std::as_const( p1List ) ) {
             for ( auto&& p2Frame : std::as_const( p2List ) ) {
-                auto distance { p1Frame.position.Distance( p2Frame.position ) };
+                auto distance { ConvertDimention( p1Frame.position ).Distance( ConvertDimention( p2Frame.position ) ) };
+
                 distance -= p1Frame.radius + p2Frame.radius;
                 if ( distance <= 0.0 ) {
                     player1.lock()->OnCollision();

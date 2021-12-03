@@ -19,7 +19,8 @@ namespace spesium {
             }
 
             monster1->Exec();
-            //monster2->Exec();
+            monster2->Exec();
+            monster2->Exec();
             camera->UpdatePos( monster1->Pos, monster2->Pos );
             detector.Update();
         }
