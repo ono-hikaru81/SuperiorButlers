@@ -3,6 +3,7 @@
 #include <DxLib.h>
 #include <Manager/InputManager.h>
 #include <Manager/SceneManager.h>
+#include <Manager/TextureManager.h>
 #include <Utility/DxLibExtention.h>
 
 int WINAPI WinMain( [[maybe_unused]] _In_ HINSTANCE hInstance, [[maybe_unused]] _In_opt_ HINSTANCE hPrevInstance, [[maybe_unused]] _In_ LPSTR lpCmdLine, [[maybe_unused]] _In_ int nCmdShow ) {
@@ -17,6 +18,7 @@ int WINAPI WinMain( [[maybe_unused]] _In_ HINSTANCE hInstance, [[maybe_unused]] 
     // 管理クラス作成
     auto inputManager = spesium::input::InputManager::Instance();
     auto sceneManager = spesium::scene::SceneManager::Instance();
+    auto textureManager = spesium::TextureManager::Instance();
 
     while ( true ) {
         // ループを抜ける条件
