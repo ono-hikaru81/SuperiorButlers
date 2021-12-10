@@ -27,6 +27,79 @@ namespace spesium {
                 double speed { 0.0 };  // 移動速度
                 double maxSpeed { 0.0 };  // 最大移動速度
                 double jumpPower { 0.0 };  // ジャンプ力
+                int32_t canJumpNum { 0 };  // ジャンプできる回数
+            };
+
+            /// @brief モーションモデル
+            struct MotionModel {
+                int32_t wait { 0 };
+                int32_t dash { 0 };
+                int32_t jump { 0 };
+                int32_t twoStepJump { 0 };
+                int32_t guard { 0 };
+                int32_t neutralAttack { 0 };
+                int32_t strongAttack { 0 };
+                int32_t aerialNeutralAttack { 0 };
+                int32_t aerialStrongAttack { 0 };
+                int32_t landing { 0 };
+                int32_t smallHitBackMotion { 0 };
+                int32_t bigHitBackMotion { 0 };
+                int32_t fall { 0 };
+                int32_t turn { 0 };
+            };
+
+            /// @brief モーションモデルのファイルネーム
+            struct MotionModelName {
+                std::string wait { 0 };
+                std::string dash { 0 };
+                std::string jump { 0 };
+                std::string twoStepJump { 0 };
+                std::string guard { 0 };
+                std::string neutralAttack { 0 };
+                std::string strongAttack { 0 };
+                std::string aerialNeutralAttack { 0 };
+                std::string aerialStrongAttack { 0 };
+                std::string landing { 0 };
+                std::string smallHitBackMotion { 0 };
+                std::string bigHitBackMotion { 0 };
+                std::string fall { 0 };
+                std::string turn { 0 };
+            };
+
+            /// @brief モーションの再生時間
+            struct PlayMotionTime {
+                int32_t wait { 0 };
+                int32_t dash { 0 };
+                int32_t jump { 0 };
+                int32_t twoStepJump { 0 };
+                int32_t guard { 0 };
+                int32_t neutralAttack { 0 };
+                int32_t strongAttack { 0 };
+                int32_t aerialNeutralAttack { 0 };
+                int32_t aerialStrongAttack { 0 };
+                int32_t landing { 0 };
+                int32_t smallHitBackMotion { 0 };
+                int32_t bigHitBackMotion { 0 };
+                int32_t fall { 0 };
+                int32_t turn { 0 };
+            };
+
+            /// @brief モーションの総再生時間
+            struct PlayTotalMotionTime {
+                int32_t wait { 0 };
+                int32_t dash { 0 };
+                int32_t jump { 0 };
+                int32_t twoStepJump { 0 };
+                int32_t guard { 0 };
+                int32_t neutralAttack { 0 };
+                int32_t strongAttack { 0 };
+                int32_t aerialNeutralAttack { 0 };
+                int32_t aerialStrongAttack { 0 };
+                int32_t landing { 0 };
+                int32_t smallHitBackMotion { 0 };
+                int32_t bigHitBackMotion { 0 };
+                int32_t fall { 0 };
+                int32_t turn { 0 };
             };
 
            public:
@@ -48,9 +121,6 @@ namespace spesium {
 
             /// @brief ジャンプ関数
             void Jump();
-
-            /// @breif 2段ジャンプ関数
-            void TwoStepJump();
 
             /// @brief 向き変更
             void UpdateDirection();
@@ -126,9 +196,10 @@ namespace spesium {
                 0,  // 体力
                 0,  // シールド量
                 0,  // 攻撃力
-                1.0,  // 移動速度
-                10.0,  // 最大移動速度
-                10.0,  // ジャンプ力
+                0.0,  // 移動速度
+                0.0,  // 最大移動速度
+                0.0,  // ジャンプ力
+                0,  // ジャンプ出来る回数
             };
 
             /// @breif 左向きの角度
@@ -156,40 +227,14 @@ namespace spesium {
             int32_t monsterModel { 0 };
             /// @breif モンスターモデル名
             const std::string monsterModelName { "Res/Model/monster_04.mv1" };
-
-            struct MotionModel {
-                int32_t wait { 0 };
-                int32_t dash { 0 };
-                int32_t jump { 0 };
-                int32_t twoStepJump { 0 };
-                int32_t guard { 0 };
-                int32_t neutralAttack { 0 };
-                int32_t strongAttack { 0 };
-                int32_t aerialNeutralAttack { 0 };
-                int32_t aerialStrongAttack { 0 };
-                int32_t Landing { 0 };
-                int32_t SmallHitBackMotion { 0 };
-                int32_t BigHitBackMotion { 0 };
-                int32_t fall { 0 };
-                int32_t turn { 0 };
-            };
-
-            struct MotionModelName {
-                std::string wait { 0 };
-                std::string dash { 0 };
-                std::string jump { 0 };
-                std::string twoStepJump { 0 };
-                std::string guard { 0 };
-                std::string neutralAttack { 0 };
-                std::string strongAttack { 0 };
-                std::string aerialNeutralAttack { 0 };
-                std::string aerialStrongAttack { 0 };
-                std::string Landing { 0 };
-                std::string SmallHitBackMotion { 0 };
-                std::string BigHitBackMotion { 0 };
-                std::string fall { 0 };
-                std::string turn { 0 };
-            };
+            /// @brief モーションモデル
+            MotionModel motionModel { 0 };
+            /// @brief モーションモデルのファイルネーム
+            MotionModelName motionModelName { "Res/" };
+            /// @brief モーションの再生時間
+            PlayMotionTime playMotionTime { 0 };
+            /// @brief モーションの総再生時間
+            PlayTotalMotionTime playTotalMotionTime { 0 };
         };
     }  // namespace character
 }  // namespace spesium

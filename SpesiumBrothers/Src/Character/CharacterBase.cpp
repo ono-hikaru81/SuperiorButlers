@@ -79,9 +79,6 @@ namespace spesium {
             }
         }
 
-        void CharacterBase::TwoStepJump() {
-        }
-
         void CharacterBase::UpdateDirection() {
             // 右向きに変更
             if ( velocity.X > 0 && ( !inputManager.lock()->IsKeyPushed( KEY_INPUT_RIGHT ) || !inputManager.lock()->IsKeyHeld( KEY_INPUT_RIGHT ) ) ) {
