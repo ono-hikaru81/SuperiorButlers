@@ -163,6 +163,7 @@
   <ItemGroup>
     <ClCompile Include="Src\Camera\Camera.cpp" />
     <ClCompile Include="Src\Character\CharacterBase.cpp" />
+    <ClCompile Include="Src\Character\Human.cpp" />
     <ClCompile Include="Src\Character\Monster.cpp" />
     <ClCompile Include="Src\Light\Light.cpp" />
     <ClCompile Include="Src\Manager\Input.cpp" />
@@ -179,6 +180,7 @@
   <ItemGroup>
     <ClInclude Include="Src\Camera\Camera.h" />
     <ClInclude Include="Src\Character\CharacterBase.h" />
+    <ClInclude Include="Src\Character\Human.h" />
     <ClInclude Include="Src\Character\Monster.h" />
     <ClInclude Include="Src\Definition\Concepts.hpp" />
     <ClInclude Include="Src\Definition\Definition.h" />
