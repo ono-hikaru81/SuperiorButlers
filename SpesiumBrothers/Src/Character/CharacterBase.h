@@ -18,9 +18,6 @@ namespace spesium {
            protected:
             /// @brief キャラのステータス
             struct Status {
-                Vector3<double> pos { 0.0, 0.0, 0.0 };  // キャラ座標
-                double angle { 0.0 };  // 回転角
-
                 int32_t hp { 0 };  // 体力
                 int32_t shieldAmount { 0 };  // シールド量
                 int32_t power { 0 };  // 攻撃力
@@ -190,18 +187,19 @@ namespace spesium {
            protected:
             /// @brief ステータス
             Status status {
-                { Vector3( 0.0, 0.0, 0.0 ) },  // キャラ座標
-                0.0,  // 回転角
-
-                0,  // 体力
-                0,  // シールド量
-                0,  // 攻撃力
-                0.0,  // 移動速度
-                0.0,  // 最大移動速度
-                0.0,  // ジャンプ力
-                0,  // ジャンプ出来る回数
+                .hp = 0,
+                .shieldAmount = 0,
+                .power = 0,
+                .speed = 0.0,
+                .maxSpeed = 0.0,
+                .jumpPower = 0.0,
+                .canJumpNum = 0,
             };
 
+            /// @breif 座標
+            Vector3<double> pos { 0.0, 0.0, 0.0 };
+            /// @brief 回転角
+            double angle { 0.0 };
             /// @breif 左向きの角度
             static constexpr double angleOfDirectionLeft { 90.0 };
             /// @breif 右向きの角度

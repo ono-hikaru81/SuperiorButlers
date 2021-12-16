@@ -60,7 +60,7 @@ namespace spesium {
            public:
             /// @brief アクセサ
             /// @param (status.pos) 座標
-            BasicProperty<Vector3<double>> Pos { status.pos };
+            BasicProperty<Vector3<double>> Pos { pos };
         };
     }  // namespace character
 }  // namespace spesium

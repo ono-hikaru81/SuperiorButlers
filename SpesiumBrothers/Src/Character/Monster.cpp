@@ -6,15 +6,13 @@ namespace spesium {
     namespace character {
         Monster::Monster() {
             status = {
-                { Vector3( 0.0, 0.0, 0.0 ) },  // 座標
-                0.0,  // 回転角
-
-                0,  // 体力
-                0,  // シールド量
-                0,  // 攻撃力
-                1.0,  // 速度
-                10.0,  // 最大速度
-                10.0,  // ジャンプ力
+                .hp = 0,
+                .shieldAmount = 0,
+                .power = 0,
+                .speed = 1.0,
+                .maxSpeed = 10.0,
+                .jumpPower = 10.0,
+                .canJumpNum = 2,
             };
 
             motionModel = {};
@@ -30,14 +28,14 @@ namespace spesium {
         }
 
         void Monster::Draw() {
-            MV1SetPosition( monsterModel, status.pos );
+            MV1SetPosition( monsterModel, pos );
 
-            MV1SetRotationXYZ( monsterModel, Vector3( 0.0, status.angle / 180.0 * DX_PI, 0.0 ) );
+            MV1SetRotationXYZ( monsterModel, Vector3( 0.0, angle / 180.0 * DX_PI, 0.0 ) );
 
             MV1DrawModel( monsterModel );
 
 #if _DEBUG
-            DrawFormatString( 0, 0, GetColor( 0, 255, 0 ), "モンスター座標[%d,%d]", static_cast<int32_t>( status.pos.X ), static_cast<int32_t>( status.pos.Y ) );
+            DrawFormatString( 0, 0, GetColor( 0, 255, 0 ), "モンスター座標[%d,%d]", static_cast<int32_t>( pos.X ), static_cast<int32_t>( pos.Y ) );
 #endif  // _DEBUG
         }
 

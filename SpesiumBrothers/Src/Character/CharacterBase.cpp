@@ -82,12 +82,12 @@ namespace spesium {
         void CharacterBase::UpdateDirection() {
             // 右向きに変更
             if ( velocity.X > 0 && ( !inputManager.lock()->IsKeyPushed( KEY_INPUT_RIGHT ) || !inputManager.lock()->IsKeyHeld( KEY_INPUT_RIGHT ) ) ) {
-                status.angle = angleOfDirectionRight;
+                angle = angleOfDirectionRight;
             }
 
             // 左向きに変更
             if ( velocity.X < 0 && ( !inputManager.lock()->IsKeyPushed( KEY_INPUT_LEFT ) || !inputManager.lock()->IsKeyHeld( KEY_INPUT_LEFT ) ) ) {
-                status.angle = angleOfDirectionLeft;
+                angle = angleOfDirectionLeft;
             }
         }
 
@@ -96,7 +96,7 @@ namespace spesium {
         }
 
         bool CharacterBase::IsStanding() const {
-            return ( status.pos.Y < 0 );
+            return ( pos.Y < 0 );
         }
 
         void CharacterBase::KineticFriction() {
@@ -104,7 +104,7 @@ namespace spesium {
             if ( velocity.X > 0 && ( !inputManager.lock()->IsKeyPushed( KEY_INPUT_RIGHT ) || !inputManager.lock()->IsKeyHeld( KEY_INPUT_RIGHT ) ) ) {
                 velocity.X -= friction::Force;
 
-                status.angle = angleOfDirectionRight;
+                angle = angleOfDirectionRight;
 
                 DisabledBelow( 0.0, *velocity.X );
             }
@@ -113,7 +113,7 @@ namespace spesium {
             if ( velocity.X < 0 && ( !inputManager.lock()->IsKeyPushed( KEY_INPUT_LEFT ) || !inputManager.lock()->IsKeyHeld( KEY_INPUT_LEFT ) ) ) {
                 velocity.X += friction::Force;
 
-                status.angle = angleOfDirectionLeft;
+                angle = angleOfDirectionLeft;
 
                 DisabledExceed( 0.0, *velocity.X );
             }
@@ -122,11 +122,11 @@ namespace spesium {
         void CharacterBase::UpdatePos() {
             // X座標
             moveVec.X = velocity.X;
-            status.pos.X += moveVec.X;
+            pos.X += moveVec.X;
 
             // Y座標
             moveVec.Y = velocity.Y;
-            status.pos.Y += moveVec.Y;
+            pos.Y += moveVec.Y;
         }
 
         void CharacterBase::BlowOffCalculation() {
