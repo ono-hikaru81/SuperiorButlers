@@ -186,15 +186,7 @@ namespace spesium {
 
            protected:
             /// @brief ステータス
-            Status status {
-                .hp = 0,
-                .shieldAmount = 0,
-                .power = 0,
-                .speed = 0.0,
-                .maxSpeed = 0.0,
-                .jumpPower = 0.0,
-                .canJumpNum = 0,
-            };
+            Status status { 0 };
 
             /// @breif 座標
             Vector3<double> pos { 0.0, 0.0, 0.0 };
@@ -221,10 +213,10 @@ namespace spesium {
             /// @brief 接触したか
             bool isCollision { false };
 
-            /// @brief モンスターモデル格納用
-            int32_t monsterModel { 0 };
-            /// @breif モンスターモデル名
-            const std::string monsterModelName { "Res/Model/monster_04.mv1" };
+            /// @brief モデル格納用
+            int32_t model { 0 };
+            /// @breif モデル名
+            const std::string modelName { "Res/Model/monster_04.mv1" };
             /// @brief モーションモデル
             MotionModel motionModel { 0 };
             /// @brief モーションモデルのファイルネーム

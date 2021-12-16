@@ -36,11 +36,11 @@ namespace spesium {
         }
 
         void CharacterBase::LoadModel() {
-            monsterModel = MV1LoadModel( monsterModelName.c_str() );
+            model = MV1LoadModel( modelName.c_str() );
         }
 
         void CharacterBase::ReleaseModel() {
-            MV1DeleteModel( monsterModel );
+            MV1DeleteModel( model );
         }
 
         void CharacterBase::Move() {

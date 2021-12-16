@@ -28,11 +28,11 @@ namespace spesium {
         }
 
         void Monster::Draw() {
-            MV1SetPosition( monsterModel, pos );
+            MV1SetPosition( model, pos );
 
-            MV1SetRotationXYZ( monsterModel, Vector3( 0.0, angle / 180.0 * DX_PI, 0.0 ) );
+            MV1SetRotationXYZ( model, Vector3( 0.0, angle / 180.0 * DX_PI, 0.0 ) );
 
-            MV1DrawModel( monsterModel );
+            MV1DrawModel( model );
 
 #if _DEBUG
             DrawFormatString( 0, 0, GetColor( 0, 255, 0 ), "モンスター座標[%d,%d]", static_cast<int32_t>( pos.X ), static_cast<int32_t>( pos.Y ) );
@@ -45,59 +45,59 @@ namespace spesium {
                 playMotionTime.wait = 0.0f;
             }
 
-            MV1SetAttachAnimTime( monsterModel, motionModel.wait, playMotionTime.wait );
+            MV1SetAttachAnimTime( model, motionModel.wait, playMotionTime.wait );
         }
 
         void Monster::DashMotion() {
-            MV1SetAttachAnimTime( monsterModel, motionModel.dash, playMotionTime.dash );
+            MV1SetAttachAnimTime( model, motionModel.dash, playMotionTime.dash );
         }
 
         void Monster::JumpMotion() {
-            MV1SetAttachAnimTime( monsterModel, motionModel.jump, playMotionTime.jump );
+            MV1SetAttachAnimTime( model, motionModel.jump, playMotionTime.jump );
         }
 
         void Monster::TwoStepJumpMotion() {
-            MV1SetAttachAnimTime( monsterModel, motionModel.twoStepJump, playMotionTime.twoStepJump );
+            MV1SetAttachAnimTime( model, motionModel.twoStepJump, playMotionTime.twoStepJump );
         }
 
         void Monster::GuardMotion() {
-            MV1SetAttachAnimTime( monsterModel, motionModel.guard, playMotionTime.guard );
+            MV1SetAttachAnimTime( model, motionModel.guard, playMotionTime.guard );
         }
 
         void Monster::NeutralAttackMotion() {
-            MV1SetAttachAnimTime( monsterModel, motionModel.neutralAttack, playMotionTime.neutralAttack );
+            MV1SetAttachAnimTime( model, motionModel.neutralAttack, playMotionTime.neutralAttack );
         }
 
         void Monster::StrongAttackMotion() {
-            MV1SetAttachAnimTime( monsterModel, motionModel.strongAttack, playMotionTime.strongAttack );
+            MV1SetAttachAnimTime( model, motionModel.strongAttack, playMotionTime.strongAttack );
         }
 
         void Monster::AerialNeutralAttackMotion() {
-            MV1SetAttachAnimTime( monsterModel, motionModel.aerialNeutralAttack, playMotionTime.aerialNeutralAttack );
+            MV1SetAttachAnimTime( model, motionModel.aerialNeutralAttack, playMotionTime.aerialNeutralAttack );
         }
 
         void Monster::AerialStrongAttackMotion() {
-            MV1SetAttachAnimTime( monsterModel, motionModel.aerialStrongAttack, playMotionTime.aerialStrongAttack );
+            MV1SetAttachAnimTime( model, motionModel.aerialStrongAttack, playMotionTime.aerialStrongAttack );
         }
 
         void Monster::LandingMotion() {
-            MV1SetAttachAnimTime( monsterModel, motionModel.landing, playMotionTime.landing );
+            MV1SetAttachAnimTime( model, motionModel.landing, playMotionTime.landing );
         }
 
         void Monster::SmallHitBackMotion() {
-            MV1SetAttachAnimTime( monsterModel, motionModel.smallHitBackMotion, playMotionTime.landing );
+            MV1SetAttachAnimTime( model, motionModel.smallHitBackMotion, playMotionTime.landing );
         }
 
         void Monster::BigHitBackMotion() {
-            MV1SetAttachAnimTime( monsterModel, motionModel.bigHitBackMotion, playMotionTime.bigHitBackMotion );
+            MV1SetAttachAnimTime( model, motionModel.bigHitBackMotion, playMotionTime.bigHitBackMotion );
         }
 
         void Monster::FallMotion() {
-            MV1SetAttachAnimTime( monsterModel, motionModel.fall, playMotionTime.fall );
+            MV1SetAttachAnimTime( model, motionModel.fall, playMotionTime.fall );
         }
 
         void Monster::TurnMotion() {
-            MV1SetAttachAnimTime( monsterModel, motionModel.turn, playMotionTime.turn );
+            MV1SetAttachAnimTime( model, motionModel.turn, playMotionTime.turn );
         }
     }  // namespace character
 }  // namespace spesium
