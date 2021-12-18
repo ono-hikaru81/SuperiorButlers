@@ -7,14 +7,6 @@
 
 namespace spesium {
     namespace character {
-        CharacterBase::CharacterBase() {
-            LoadModel();
-        }
-
-        CharacterBase::~CharacterBase() {
-            ReleaseModel();
-        }
-
         void CharacterBase::Exec() {
             Move();
 

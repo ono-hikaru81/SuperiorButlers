@@ -12,8 +12,8 @@ namespace spesium {
     namespace character {
         class CharacterBase {
            public:
-            CharacterBase();
-            virtual ~CharacterBase();
+            CharacterBase() = default;
+            virtual ~CharacterBase() = default;
 
            protected:
             /// @brief キャラのステータス
@@ -65,38 +65,38 @@ namespace spesium {
 
             /// @brief モーションの再生時間
             struct PlayMotionTime {
-                int32_t wait { 0 };
-                int32_t dash { 0 };
-                int32_t jump { 0 };
-                int32_t twoStepJump { 0 };
-                int32_t guard { 0 };
-                int32_t neutralAttack { 0 };
-                int32_t strongAttack { 0 };
-                int32_t aerialNeutralAttack { 0 };
-                int32_t aerialStrongAttack { 0 };
-                int32_t landing { 0 };
-                int32_t smallHitBackMotion { 0 };
-                int32_t bigHitBackMotion { 0 };
-                int32_t fall { 0 };
-                int32_t turn { 0 };
+                double wait { 0 };
+                double dash { 0 };
+                double jump { 0 };
+                double twoStepJump { 0 };
+                double guard { 0 };
+                double neutralAttack { 0 };
+                double strongAttack { 0 };
+                double aerialNeutralAttack { 0 };
+                double aerialStrongAttack { 0 };
+                double landing { 0 };
+                double smallHitBackMotion { 0 };
+                double bigHitBackMotion { 0 };
+                double fall { 0 };
+                double turn { 0 };
             };
 
             /// @brief モーションの総再生時間
             struct PlayTotalMotionTime {
-                int32_t wait { 0 };
-                int32_t dash { 0 };
-                int32_t jump { 0 };
-                int32_t twoStepJump { 0 };
-                int32_t guard { 0 };
-                int32_t neutralAttack { 0 };
-                int32_t strongAttack { 0 };
-                int32_t aerialNeutralAttack { 0 };
-                int32_t aerialStrongAttack { 0 };
-                int32_t landing { 0 };
-                int32_t smallHitBackMotion { 0 };
-                int32_t bigHitBackMotion { 0 };
-                int32_t fall { 0 };
-                int32_t turn { 0 };
+                double wait { 0 };
+                double dash { 0 };
+                double jump { 0 };
+                double twoStepJump { 0 };
+                double guard { 0 };
+                double neutralAttack { 0 };
+                double strongAttack { 0 };
+                double aerialNeutralAttack { 0 };
+                double aerialStrongAttack { 0 };
+                double landing { 0 };
+                double smallHitBackMotion { 0 };
+                double bigHitBackMotion { 0 };
+                double fall { 0 };
+                double turn { 0 };
             };
 
            public:
@@ -108,10 +108,10 @@ namespace spesium {
 
            protected:
             /// @brief モデル読み込み関数
-            void LoadModel();
+            virtual void LoadModel();
 
             /// @brief モデル解放関数
-            void ReleaseModel();
+            virtual void ReleaseModel();
 
             /// @brief 移動関数
             void Move();
@@ -216,7 +216,7 @@ namespace spesium {
             /// @brief モデル格納用
             int32_t model { 0 };
             /// @breif モデル名
-            const std::string modelName { "Res/Model/monster_04.mv1" };
+            std::string modelName {};
             /// @brief モーションモデル
             MotionModel motionModel { 0 };
             /// @brief モーションモデルのファイルネーム
@@ -225,6 +225,8 @@ namespace spesium {
             PlayMotionTime playMotionTime { 0 };
             /// @brief モーションの総再生時間
             PlayTotalMotionTime playTotalMotionTime { 0 };
+
+            int32_t count = 0;
         };
     }  // namespace character
 }  // namespace spesium

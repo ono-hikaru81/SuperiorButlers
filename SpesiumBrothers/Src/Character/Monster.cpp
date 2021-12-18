@@ -15,6 +15,8 @@ namespace spesium {
                 .canJumpNum = 2,
             };
 
+            modelName = "Res/Model/motion_monster.mv1";
+
             motionModel = {};
 
             motionModelName = {};
@@ -22,9 +24,12 @@ namespace spesium {
             playMotionTime = {};
 
             playTotalMotionTime = {};
+
+            LoadModel();
         }
 
         Monster::~Monster() {
+            ReleaseModel();
         }
 
         void Monster::Draw() {
