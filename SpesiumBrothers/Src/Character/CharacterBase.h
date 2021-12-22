@@ -29,74 +29,92 @@ namespace spesium {
 
             /// @brief モーションモデル
             struct MotionModel {
-                int32_t wait { 0 };
-                int32_t dash { 0 };
-                int32_t jump { 0 };
-                int32_t twoStepJump { 0 };
-                int32_t guard { 0 };
-                int32_t neutralAttack { 0 };
-                int32_t strongAttack { 0 };
-                int32_t aerialNeutralAttack { 0 };
-                int32_t aerialStrongAttack { 0 };
-                int32_t landing { 0 };
-                int32_t smallHitBackMotion { 0 };
-                int32_t bigHitBackMotion { 0 };
-                int32_t fall { 0 };
-                int32_t turn { 0 };
+                int32_t wait;  // 待機
+                int32_t run;  // 移動
+                int32_t jump;  // ジャンプ
+                int32_t doubleJump;  // 2段ジャンプ
+                int32_t guard;  // ガード
+                int32_t neutralAttack;  // 弱攻撃
+                int32_t strongAttack;  // 強攻撃
+                int32_t aerialNeutralAttack;  // 空中弱攻撃
+                int32_t aerialStrongAttack;  // 空中強攻撃
+                int32_t fallLanding;  // 落下着地
+                int32_t smallHitBack;  // ノックバック小
+                int32_t bigHitBack;  // ノックバック大
+                int32_t fall;  //　落下
+                int32_t turn;  // 振りむき
             };
 
-            /// @brief モーションモデルのファイルネーム
-            struct MotionModelName {
-                std::string wait { 0 };
-                std::string dash { 0 };
-                std::string jump { 0 };
-                std::string twoStepJump { 0 };
-                std::string guard { 0 };
-                std::string neutralAttack { 0 };
-                std::string strongAttack { 0 };
-                std::string aerialNeutralAttack { 0 };
-                std::string aerialStrongAttack { 0 };
-                std::string landing { 0 };
-                std::string smallHitBackMotion { 0 };
-                std::string bigHitBackMotion { 0 };
-                std::string fall { 0 };
-                std::string turn { 0 };
+            /// @breif モーションの種類
+            enum class KindMotion {
+                WAIT,  // 待機
+                RUN,  // 移動
+                JUMP,  // ジャンプ
+                DOUBLE_JUMP,  // 2段ジャンプ
+                GUARD,  // ガード
+                NEUTRAL_ATTACK,  // 弱攻撃
+                STRONG_ATTACK,  // 強攻撃
+                AERIAL_NEUTRAL_ATTACK,  // 空中弱攻撃
+                AERIAL_STRONG_ATTACK,  // 空中強攻撃
+                FAll_LANDING,  // 落下着地
+                SMALL_HITBACK,  // ノックバック小
+                BIG_HITBACK,  // ノックバック大
+                FALL,  //　落下
+                TURN,  // 振りむき
+            };
+
+            /// @brief モーションの開始時間
+            struct MotionStartTime {
+                float wait;  // 待機
+                float run;  // 移動
+                float jump;  // ジャンプ
+                float doubleJump;  // 2段ジャンプ
+                float guard;  // ガード
+                float neutralAttack;  // 弱攻撃
+                float strongAttack;  // 強攻撃
+                float aerialNeutralAttack;  // 空中弱攻撃
+                float aerialStrongAttack;  // 空中強攻撃
+                float fallLanding;  // 落下着地
+                float smallHitBack;  // ノックバック小
+                float bigHitBack;  // ノックバック大
+                float fall;  //　落下
+                float turn;  // 振りむき
             };
 
             /// @brief モーションの再生時間
-            struct PlayMotionTime {
-                double wait { 0 };
-                double dash { 0 };
-                double jump { 0 };
-                double twoStepJump { 0 };
-                double guard { 0 };
-                double neutralAttack { 0 };
-                double strongAttack { 0 };
-                double aerialNeutralAttack { 0 };
-                double aerialStrongAttack { 0 };
-                double landing { 0 };
-                double smallHitBackMotion { 0 };
-                double bigHitBackMotion { 0 };
-                double fall { 0 };
-                double turn { 0 };
+            struct MotionPlayTime {
+                float wait;  // 待機
+                float run;  // 移動
+                float jump;  // ジャンプ
+                float doubleJump;  // 2段ジャンプ
+                float guard;  // ガード
+                float neutralAttack;  // 弱攻撃
+                float strongAttack;  // 強攻撃
+                float aerialNeutralAttack;  // 空中弱攻撃
+                float aerialStrongAttack;  // 空中強攻撃
+                float fallLanding;  // 落下着地
+                float smallHitBack;  // ノックバック小
+                float bigHitBack;  // ノックバック大
+                float fall;  //　落下
+                float turn;  // 振りむき
             };
 
-            /// @brief モーションの総再生時間
-            struct PlayTotalMotionTime {
-                double wait { 0 };
-                double dash { 0 };
-                double jump { 0 };
-                double twoStepJump { 0 };
-                double guard { 0 };
-                double neutralAttack { 0 };
-                double strongAttack { 0 };
-                double aerialNeutralAttack { 0 };
-                double aerialStrongAttack { 0 };
-                double landing { 0 };
-                double smallHitBackMotion { 0 };
-                double bigHitBackMotion { 0 };
-                double fall { 0 };
-                double turn { 0 };
+            /// @brief モーションの総時間
+            struct MotionTotalTime {
+                float wait;  // 待機
+                float run;  // 移動
+                float jump;  // ジャンプ
+                float doubleJump;  // 2段ジャンプ
+                float guard;  // ガード
+                float neutralAttack;  // 弱攻撃
+                float strongAttack;  // 強攻撃
+                float aerialNeutralAttack;  // 空中弱攻撃
+                float aerialStrongAttack;  // 空中強攻撃
+                float fallLanding;  // 落下着地
+                float smallHitBack;  // ノックバック小
+                float bigHitBack;  // ノックバック大
+                float fall;  //　落下
+                float turn;  // 振りむき
             };
 
            public:
@@ -148,7 +166,7 @@ namespace spesium {
             virtual void JumpMotion() = 0;
 
             /// @breif 2段ジャンプモーション
-            virtual void TwoStepJumpMotion() = 0;
+            virtual void DoubleJumpMotion() = 0;
 
             /// @breif ガードモーション
             virtual void GuardMotion() = 0;
@@ -166,7 +184,7 @@ namespace spesium {
             virtual void AerialStrongAttackMotion() = 0;
 
             /// @breif 着地モーション
-            virtual void LandingMotion() = 0;
+            virtual void FallLandingMotion() = 0;
 
             /// @breif ヒットバックモーション小
             virtual void SmallHitBackMotion() = 0;
@@ -179,6 +197,9 @@ namespace spesium {
 
             /// @brief 振り向きモーション
             virtual void TurnMotion() = 0;
+
+            /// @breif モーション切り替え
+            void SwitchMotion();
 
            protected:
             /// @brief キーボード入力
@@ -219,14 +240,15 @@ namespace spesium {
             std::string modelName {};
             /// @brief モーションモデル
             MotionModel motionModel { 0 };
-            /// @brief モーションモデルのファイルネーム
-            MotionModelName motionModelName { "Res/" };
+            /// @breif モーションの開始時間
+            MotionStartTime motionStartTime { 0.0f };
             /// @brief モーションの再生時間
-            PlayMotionTime playMotionTime { 0 };
+            MotionPlayTime motionPlayTime { 0.0f };
             /// @brief モーションの総再生時間
-            PlayTotalMotionTime playTotalMotionTime { 0 };
+            MotionTotalTime motionTotalTime { 0.0f };
 
-            int32_t count = 0;
+            /// 現在のモーション
+            KindMotion currentMotion { KindMotion::WAIT };
         };
     }  // namespace character
 }  // namespace spesium

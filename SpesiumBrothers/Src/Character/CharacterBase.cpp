@@ -39,17 +39,23 @@ namespace spesium {
             const double reverseMaxSpeed = status.maxSpeed * -1;
 
             // 右移動
-            if ( inputManager.lock()->IsKeyPushed( KEY_INPUT_RIGHT ) || inputManager.lock()->IsKeyHeld( KEY_INPUT_RIGHT ) ) {
+            if ( inputManager.lock()->IsKeyPushed( KEY_INPUT_D ) || inputManager.lock()->IsKeyHeld( KEY_INPUT_D ) ) {
                 velocity.X += status.speed;
 
                 DisabledExceed( status.maxSpeed, *velocity.X );
-            }
 
+                currentMotion = KindMotion::RUN;
+            }
             // 左移動
-            if ( inputManager.lock()->IsKeyPushed( KEY_INPUT_LEFT ) || inputManager.lock()->IsKeyHeld( KEY_INPUT_LEFT ) ) {
+            else if ( inputManager.lock()->IsKeyPushed( KEY_INPUT_A ) || inputManager.lock()->IsKeyHeld( KEY_INPUT_A ) ) {
                 velocity.X -= status.speed;
 
                 DisabledBelow( reverseMaxSpeed, *velocity.X );
+
+                currentMotion = KindMotion::RUN;
+            }
+            else {
+                currentMotion = KindMotion::WAIT;
             }
 
             // 接触
@@ -64,7 +70,7 @@ namespace spesium {
         }
 
         void CharacterBase::Jump() {
-            if ( !inputManager.lock()->IsKeyPushed( KEY_INPUT_UP ) ) { return; }
+            if ( !inputManager.lock()->IsKeyPushed( KEY_INPUT_W ) ) { return; }
 
             if ( IsStanding() ) {
                 velocity.Y = status.jumpPower;
@@ -73,12 +79,12 @@ namespace spesium {
 
         void CharacterBase::UpdateDirection() {
             // 右向きに変更
-            if ( velocity.X > 0 && ( !inputManager.lock()->IsKeyPushed( KEY_INPUT_RIGHT ) || !inputManager.lock()->IsKeyHeld( KEY_INPUT_RIGHT ) ) ) {
+            if ( velocity.X > 0 && ( !inputManager.lock()->IsKeyPushed( KEY_INPUT_D ) || !inputManager.lock()->IsKeyHeld( KEY_INPUT_D ) ) ) {
                 angle = angleOfDirectionRight;
             }
 
             // 左向きに変更
-            if ( velocity.X < 0 && ( !inputManager.lock()->IsKeyPushed( KEY_INPUT_LEFT ) || !inputManager.lock()->IsKeyHeld( KEY_INPUT_LEFT ) ) ) {
+            if ( velocity.X < 0 && ( !inputManager.lock()->IsKeyPushed( KEY_INPUT_A ) || !inputManager.lock()->IsKeyHeld( KEY_INPUT_A ) ) ) {
                 angle = angleOfDirectionLeft;
             }
         }
@@ -93,7 +99,7 @@ namespace spesium {
 
         void CharacterBase::KineticFriction() {
             // 右移動
-            if ( velocity.X > 0 && ( !inputManager.lock()->IsKeyPushed( KEY_INPUT_RIGHT ) || !inputManager.lock()->IsKeyHeld( KEY_INPUT_RIGHT ) ) ) {
+            if ( velocity.X > 0 && ( !inputManager.lock()->IsKeyPushed( KEY_INPUT_D ) || !inputManager.lock()->IsKeyHeld( KEY_INPUT_D ) ) ) {
                 velocity.X -= friction::Force;
 
                 angle = angleOfDirectionRight;
@@ -102,7 +108,7 @@ namespace spesium {
             }
 
             // 左移動
-            if ( velocity.X < 0 && ( !inputManager.lock()->IsKeyPushed( KEY_INPUT_LEFT ) || !inputManager.lock()->IsKeyHeld( KEY_INPUT_LEFT ) ) ) {
+            if ( velocity.X < 0 && ( !inputManager.lock()->IsKeyPushed( KEY_INPUT_A ) || !inputManager.lock()->IsKeyHeld( KEY_INPUT_A ) ) ) {
                 velocity.X += friction::Force;
 
                 angle = angleOfDirectionLeft;
@@ -131,6 +137,35 @@ namespace spesium {
 
             velocity.X = initVelocity * cosh( radian );
             velocity.Y = initVelocity * sinh( radian );
+
+            currentMotion = KindMotion::BIG_HITBACK;
+        }
+
+        void CharacterBase::SwitchMotion() {
+            switch ( currentMotion ) {
+                case KindMotion::WAIT: WaitMotion(); break;
+                case KindMotion::RUN: DashMotion(); break;
+                case KindMotion::JUMP: JumpMotion(); break;
+                case KindMotion::DOUBLE_JUMP: DoubleJumpMotion(); break;
+                case KindMotion::GUARD: GuardMotion(); break;
+                case KindMotion::NEUTRAL_ATTACK: NeutralAttackMotion(); break;
+                case KindMotion::STRONG_ATTACK: StrongAttackMotion(); break;
+                case KindMotion::AERIAL_NEUTRAL_ATTACK: AerialNeutralAttackMotion(); break;
+                case KindMotion::AERIAL_STRONG_ATTACK: AerialStrongAttackMotion(); break;
+                case KindMotion::FAll_LANDING: FallLandingMotion(); break;
+                case KindMotion::SMALL_HITBACK: SmallHitBackMotion(); break;
+                case KindMotion::BIG_HITBACK: BigHitBackMotion(); break;
+                case KindMotion::FALL: FallMotion(); break;
+                case KindMotion::TURN: TurnMotion(); break;
+            }
+
+            /*if () {
+            }
+            else {
+                currentMotion = KindMotion::WAIT;
+            }*/
+
+            DrawFormatString( 300, 100, GetColor( 0, 255, 0 ), "%d\n", currentMotion );
         }
     }  // namespace character
 }  // namespace spesium

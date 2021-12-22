@@ -15,44 +15,42 @@ namespace spesium {
                 .canJumpNum = 2,
             };
 
-            modelName = "Res/Model/motion_human.mv1";
+            modelName = "Res/Model/test.mv1";
 
-            motionModel = {};
+            motionModel = { 0 };
 
-            motionModelName = {};
-
-            playMotionTime = {
-                .wait = 0.0,
-                .dash = 121.0 / 2,
-                .jump = 169.0 / 2,
-                .twoStepJump = 240.0 / 2,
-                .guard = 299.0 / 2,
-                .neutralAttack = 306.0,
-                .strongAttack = 318.0,
-                .aerialNeutralAttack = 340.0,
-                .aerialStrongAttack = 358.0,
-                .landing = 387.0,
-                .smallHitBackMotion = 421.0,
-                .bigHitBackMotion = 426.0,
-                .fall = 469.0,
-                .turn = 516.0,
+            motionPlayTime = {
+                .wait = InitMotionTime::wait,
+                .run = InitMotionTime::run,
+                .jump = InitMotionTime::jump,
+                .doubleJump = InitMotionTime::doubleJump,
+                .guard = InitMotionTime::guard,
+                .neutralAttack = InitMotionTime::neutralAttack,
+                .strongAttack = InitMotionTime::strongAttack,
+                .aerialNeutralAttack = InitMotionTime::aerialNeutralAttack,
+                .aerialStrongAttack = InitMotionTime::aerialStrongAttack,
+                .fallLanding = InitMotionTime::fallLanding,
+                .smallHitBack = InitMotionTime::smallHitBack,
+                .bigHitBack = InitMotionTime::bigHitBack,
+                .fall = InitMotionTime::fall,
+                .turn = InitMotionTime::turn,
             };
 
-            playTotalMotionTime = {
-                .wait = 120.0 / 2,
-                .dash = 168.0 / 2,
-                .jump = 239.0 / 2,
-                .twoStepJump = 298.0 / 2,
-                .guard = 305.0 / 2,
-                .neutralAttack = 317.0 / 2,
-                .strongAttack = 339.0 / 2,
-                .aerialNeutralAttack = 357.0 / 2,
-                .aerialStrongAttack = 386.0 / 2,
-                .landing = 420.0 / 2,
-                .smallHitBackMotion = 425.0 / 2,
-                .bigHitBackMotion = 468.0 / 2,
-                .fall = 515.0 / 2,
-                .turn = 521.0 / 2,
+            motionTotalTime = {
+                .wait = 120.0f,
+                .run = 168.0f,
+                .jump = 239.0f,
+                .doubleJump = 298.0f,
+                .guard = 305.0f,
+                .neutralAttack = 317.0f,
+                .strongAttack = 339.0f,
+                .aerialNeutralAttack = 357.0f,
+                .aerialStrongAttack = 386.0f,
+                .fallLanding = 420.0f,
+                .smallHitBack = 425.0,
+                .bigHitBack = 468.0f,
+                .fall = 515.0f,
+                .turn = 521.0f,
             };
 
             LoadModel();
@@ -69,7 +67,7 @@ namespace spesium {
 
             MV1SetRotationXYZ( model, Vector3( 0.0, angle / 180.0 * DX_PI, 0.0 ) );
 
-            TurnMotion();
+            SwitchMotion();
 
             MV1DrawModel( model );
 
@@ -79,202 +77,172 @@ namespace spesium {
         }
 
         void Human::WaitMotion() {
-            count += 1;
-
-            if ( count % 2 == 0 ) {
-                playMotionTime.wait += 1;
-            }
+            motionPlayTime.wait += 1.0f;
 
             // 再生時間を0に戻す
-            if ( playMotionTime.wait >= playTotalMotionTime.wait ) {
-                playMotionTime.wait = 0.0;
+            if ( motionPlayTime.wait >= motionTotalTime.wait ) {
+                motionPlayTime.wait = InitMotionTime::wait;
             }
 
-            MV1SetAttachAnimTime( model, motionModel.wait, playMotionTime.wait );
+            MV1SetAttachAnimTime( model, motionModel.wait, motionPlayTime.wait );
 
-            DrawFormatString( 300, 0, GetColor( 0, 255, 0 ), "待機モーション再生時間(加算値)[%d]", playMotionTime.wait );
+            DrawFormatString( 300, 0, GetColor( 0, 255, 0 ), "待機モーション再生時間(加算値)[%lf]", motionPlayTime.wait );
         }
 
         void Human::DashMotion() {
-            count += 1;
+            motionPlayTime.run += 1.0f;
 
-            if ( count % 2 == 0 ) {
-                playMotionTime.dash += 1;
+            if ( motionPlayTime.run >= motionTotalTime.run ) {
+                motionPlayTime.run = InitMotionTime::run;
             }
 
-            if ( playMotionTime.dash >= playTotalMotionTime.dash ) {
-                playMotionTime.dash = 121.0 / 2;
-            }
+            MV1SetAttachAnimTime( model, motionModel.run, motionPlayTime.run );
 
-            MV1SetAttachAnimTime( model, motionModel.dash, playMotionTime.dash );
+            DrawFormatString( 300, 0, GetColor( 0, 255, 0 ), "待機モーション再生時間(加算値)[%lf]", motionPlayTime.run );
         }
 
         void Human::JumpMotion() {
-            count += 1;
+            motionPlayTime.jump += 1.0f;
 
-            if ( count % 2 == 0 ) {
-                playMotionTime.jump += 1;
+            if ( motionPlayTime.jump >= motionTotalTime.jump ) {
+                motionPlayTime.jump = InitMotionTime::jump;
             }
 
-            if ( playMotionTime.jump >= playTotalMotionTime.jump ) {
-                playMotionTime.jump = 169.0 / 2;
-            }
+            MV1SetAttachAnimTime( model, motionModel.jump, motionPlayTime.jump );
 
-            MV1SetAttachAnimTime( model, motionModel.jump, playMotionTime.jump );
+            DrawFormatString( 300, 0, GetColor( 0, 255, 0 ), "待機モーション再生時間(加算値)[%lf]", motionPlayTime.jump );
         }
 
-        void Human::TwoStepJumpMotion() {
-            count += 1;
+        void Human::DoubleJumpMotion() {
+            motionPlayTime.doubleJump += 1.0f;
 
-            if ( count % 2 == 0 ) {
-                playMotionTime.twoStepJump += 1;
+            if ( motionPlayTime.doubleJump >= motionTotalTime.doubleJump ) {
+                motionPlayTime.doubleJump = InitMotionTime::doubleJump;
             }
 
-            if ( playMotionTime.twoStepJump >= playTotalMotionTime.twoStepJump ) {
-                playMotionTime.twoStepJump = 240.0 / 2;
-            }
+            MV1SetAttachAnimTime( model, motionModel.doubleJump, motionPlayTime.doubleJump );
 
-            MV1SetAttachAnimTime( model, motionModel.twoStepJump, playMotionTime.twoStepJump );
+            DrawFormatString( 300, 0, GetColor( 0, 255, 0 ), "待機モーション再生時間(加算値)[%lf]", motionPlayTime.doubleJump );
         }
 
         void Human::GuardMotion() {
-            count += 1;
+            motionPlayTime.guard += 1.0f;
 
-            if ( count % 2 == 0 ) {
-                playMotionTime.guard += 1;
+            if ( motionPlayTime.guard >= motionTotalTime.guard ) {
+                motionPlayTime.guard = InitMotionTime::guard;
             }
 
-            if ( playMotionTime.guard >= playTotalMotionTime.guard ) {
-                playMotionTime.guard = 299.0 / 2;
-            }
+            MV1SetAttachAnimTime( model, motionModel.guard, motionPlayTime.guard );
 
-            MV1SetAttachAnimTime( model, motionModel.guard, playMotionTime.guard );
+            DrawFormatString( 300, 0, GetColor( 0, 255, 0 ), "待機モーション再生時間(加算値)[%lf]", motionPlayTime.guard );
         }
 
         void Human::NeutralAttackMotion() {
-            count += 1;
+            motionPlayTime.neutralAttack += 1.0f;
 
-            if ( count % 2 == 0 ) {
-                playMotionTime.neutralAttack += 1;
+            if ( motionPlayTime.neutralAttack >= motionTotalTime.neutralAttack ) {
+                motionPlayTime.neutralAttack = InitMotionTime::neutralAttack;
             }
 
-            if ( playMotionTime.neutralAttack >= playTotalMotionTime.neutralAttack ) {
-                playMotionTime.neutralAttack = 306.0 / 2;
-            }
+            MV1SetAttachAnimTime( model, motionModel.neutralAttack, motionPlayTime.neutralAttack );
 
-            MV1SetAttachAnimTime( model, motionModel.neutralAttack, playMotionTime.neutralAttack );
+            DrawFormatString( 300, 0, GetColor( 0, 255, 0 ), "待機モーション再生時間(加算値)[%lf]", motionPlayTime.neutralAttack );
         }
 
         void Human::StrongAttackMotion() {
-            count += 1;
+            motionPlayTime.strongAttack += 1.0f;
 
-            if ( count % 2 == 0 ) {
-                playMotionTime.strongAttack += 1;
+            if ( motionPlayTime.strongAttack >= motionTotalTime.strongAttack ) {
+                motionPlayTime.strongAttack = InitMotionTime::strongAttack;
             }
 
-            if ( playMotionTime.strongAttack >= playTotalMotionTime.strongAttack ) {
-                playMotionTime.strongAttack = 318.0 / 2;
-            }
+            MV1SetAttachAnimTime( model, motionModel.strongAttack, motionPlayTime.strongAttack );
 
-            MV1SetAttachAnimTime( model, motionModel.strongAttack, playMotionTime.strongAttack );
+            DrawFormatString( 300, 0, GetColor( 0, 255, 0 ), "待機モーション再生時間(加算値)[%lf]", motionPlayTime.strongAttack );
         }
 
         void Human::AerialNeutralAttackMotion() {
-            count += 1;
+            motionPlayTime.aerialNeutralAttack += 1.0f;
 
-            if ( count % 2 == 0 ) {
-                playMotionTime.aerialNeutralAttack += 1;
+            if ( motionPlayTime.aerialNeutralAttack >= motionTotalTime.aerialNeutralAttack ) {
+                motionPlayTime.aerialNeutralAttack = InitMotionTime::aerialNeutralAttack;
             }
 
-            if ( playMotionTime.aerialNeutralAttack >= playTotalMotionTime.aerialNeutralAttack ) {
-                playMotionTime.aerialNeutralAttack = 340.0 / 2;
-            }
+            MV1SetAttachAnimTime( model, motionModel.aerialNeutralAttack, motionPlayTime.aerialNeutralAttack );
 
-            MV1SetAttachAnimTime( model, motionModel.aerialNeutralAttack, playMotionTime.aerialNeutralAttack );
+            DrawFormatString( 300, 0, GetColor( 0, 255, 0 ), "待機モーション再生時間(加算値)[%lf]", motionPlayTime.aerialNeutralAttack );
         }
 
         void Human::AerialStrongAttackMotion() {
-            count += 1;
+            motionPlayTime.aerialStrongAttack += 1.0f;
 
-            if ( count % 2 == 0 ) {
-                playMotionTime.aerialStrongAttack += 1;
+            if ( motionPlayTime.aerialStrongAttack >= motionTotalTime.aerialStrongAttack ) {
+                motionPlayTime.aerialStrongAttack = InitMotionTime::aerialStrongAttack;
             }
 
-            if ( playMotionTime.aerialStrongAttack >= playTotalMotionTime.aerialStrongAttack ) {
-                playMotionTime.aerialStrongAttack = 358.0 / 2;
-            }
+            MV1SetAttachAnimTime( model, motionModel.aerialStrongAttack, motionPlayTime.aerialStrongAttack );
 
-            MV1SetAttachAnimTime( model, motionModel.aerialStrongAttack, playMotionTime.aerialStrongAttack );
+            DrawFormatString( 300, 0, GetColor( 0, 255, 0 ), "待機モーション再生時間(加算値)[%lf]", motionPlayTime.aerialStrongAttack );
         }
 
-        void Human::LandingMotion() {
-            count += 1;
+        void Human::FallLandingMotion() {
+            motionPlayTime.fallLanding += 1.0f;
 
-            if ( count % 2 == 0 ) {
-                playMotionTime.landing += 1;
+            if ( motionPlayTime.fallLanding >= motionTotalTime.fallLanding ) {
+                motionPlayTime.fallLanding = InitMotionTime::fallLanding;
             }
 
-            if ( playMotionTime.landing >= playTotalMotionTime.landing ) {
-                playMotionTime.landing = 387.0 / 2;
-            }
+            MV1SetAttachAnimTime( model, motionModel.fallLanding, motionPlayTime.fallLanding );
 
-            MV1SetAttachAnimTime( model, motionModel.landing, playMotionTime.landing );
+            DrawFormatString( 300, 0, GetColor( 0, 255, 0 ), "待機モーション再生時間(加算値)[%lf]", motionPlayTime.fallLanding );
         }
 
         void Human::SmallHitBackMotion() {
-            count += 1;
+            motionPlayTime.smallHitBack += 1.0f;
 
-            if ( count % 2 == 0 ) {
-                playMotionTime.smallHitBackMotion += 1;
+            if ( motionPlayTime.smallHitBack >= motionTotalTime.smallHitBack ) {
+                motionPlayTime.smallHitBack = InitMotionTime::smallHitBack;
             }
 
-            if ( playMotionTime.smallHitBackMotion >= playTotalMotionTime.smallHitBackMotion ) {
-                playMotionTime.smallHitBackMotion = 421.0 / 2;
-            }
+            MV1SetAttachAnimTime( model, motionModel.smallHitBack, motionPlayTime.smallHitBack );
 
-            MV1SetAttachAnimTime( model, motionModel.smallHitBackMotion, playMotionTime.landing );
+            DrawFormatString( 300, 0, GetColor( 0, 255, 0 ), "待機モーション再生時間(加算値)[%lf]", motionPlayTime.smallHitBack );
         }
 
         void Human::BigHitBackMotion() {
-            count += 1;
+            motionPlayTime.bigHitBack += 1.0f;
 
-            if ( count % 2 == 0 ) {
-                playMotionTime.bigHitBackMotion += 1;
+            if ( motionPlayTime.bigHitBack >= motionTotalTime.bigHitBack ) {
+                motionPlayTime.bigHitBack = InitMotionTime::bigHitBack;
             }
 
-            if ( playMotionTime.bigHitBackMotion >= playTotalMotionTime.bigHitBackMotion ) {
-                playMotionTime.bigHitBackMotion = 426.0 / 2;
-            }
+            MV1SetAttachAnimTime( model, motionModel.bigHitBack, motionPlayTime.bigHitBack );
 
-            MV1SetAttachAnimTime( model, motionModel.bigHitBackMotion, playMotionTime.bigHitBackMotion );
+            DrawFormatString( 300, 0, GetColor( 0, 255, 0 ), "待機モーション再生時間(加算値)[%lf]", motionPlayTime.bigHitBack );
         }
 
         void Human::FallMotion() {
-            count += 1;
+            motionPlayTime.fall += 1.0f;
 
-            if ( count % 2 == 0 ) {
-                playMotionTime.fall += 1;
+            if ( motionPlayTime.fall >= motionTotalTime.fall ) {
+                motionPlayTime.fall = InitMotionTime::fall;
             }
 
-            if ( playMotionTime.fall >= playTotalMotionTime.fall ) {
-                playMotionTime.fall = 469.0 / 2;
-            }
+            MV1SetAttachAnimTime( model, motionModel.fall, motionPlayTime.fall );
 
-            MV1SetAttachAnimTime( model, motionModel.fall, playMotionTime.fall );
+            DrawFormatString( 300, 0, GetColor( 0, 255, 0 ), "待機モーション再生時間(加算値)[%lf]", motionPlayTime.fall );
         }
 
         void Human::TurnMotion() {
-            count += 1;
+            motionPlayTime.turn += 1.0f;
 
-            if ( count % 2 == 0 ) {
-                playMotionTime.turn += 1;
+            if ( motionPlayTime.turn >= motionTotalTime.turn ) {
+                motionPlayTime.turn = InitMotionTime::turn;
             }
 
-            if ( playMotionTime.turn >= playTotalMotionTime.turn ) {
-                playMotionTime.turn = 516.0 / 2;
-            }
+            MV1SetAttachAnimTime( model, motionModel.turn, motionPlayTime.turn );
 
-            MV1SetAttachAnimTime( model, motionModel.turn, playMotionTime.turn );
+            DrawFormatString( 300, 0, GetColor( 0, 255, 0 ), "待機モーション再生時間(加算値)[%lf]", motionPlayTime.turn );
         }
     }  // namespace character
 }  // namespace spesium
