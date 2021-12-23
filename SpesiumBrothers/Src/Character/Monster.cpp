@@ -1,4 +1,4 @@
-
+﻿
 #include <Character/Monster.h>
 #include <DxLib.h>
 
@@ -66,8 +66,6 @@ namespace spesium {
             MV1SetPosition( model, pos );
 
             MV1SetRotationXYZ( model, Vector3( 0.0, angle / 180.0 * DX_PI, 0.0 ) );
-
-            SwitchMotion();
 
             MV1DrawModel( model );
 

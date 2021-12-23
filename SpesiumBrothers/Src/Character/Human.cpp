@@ -67,8 +67,6 @@ namespace spesium {
 
             MV1SetRotationXYZ( model, Vector3( 0.0, angle / 180.0 * DX_PI, 0.0 ) );
 
-            SwitchMotion();
-
             MV1DrawModel( model );
 
 #if _DEBUG

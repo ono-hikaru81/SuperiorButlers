@@ -1,4 +1,4 @@
-
+﻿
 #include <Character/CharacterBase.h>
 #include <DxLib.h>
 #include <Utility/Function.h>
@@ -43,19 +43,12 @@ namespace spesium {
                 velocity.X += status.speed;
 
                 DisabledExceed( status.maxSpeed, *velocity.X );
-
-                currentMotion = KindMotion::RUN;
             }
             // 左移動
             else if ( inputManager.lock()->IsKeyPushed( KEY_INPUT_A ) || inputManager.lock()->IsKeyHeld( KEY_INPUT_A ) ) {
                 velocity.X -= status.speed;
 
                 DisabledBelow( reverseMaxSpeed, *velocity.X );
-
-                currentMotion = KindMotion::RUN;
-            }
-            else {
-                currentMotion = KindMotion::WAIT;
             }
 
             // 接触
@@ -137,12 +130,13 @@ namespace spesium {
 
             velocity.X = initVelocity * cosh( radian );
             velocity.Y = initVelocity * sinh( radian );
-
-            currentMotion = KindMotion::BIG_HITBACK;
         }
 
-        void CharacterBase::SwitchMotion() {
-            switch ( currentMotion ) {
+        void CharacterBase::SwitchMotion( MotionBase* currentMotion_ ) {
+            currentMotion = currentMotion_;
+            currentMotion->Init( this );
+
+            /*switch ( currentMotion ) {
                 case KindMotion::WAIT: WaitMotion(); break;
                 case KindMotion::RUN: DashMotion(); break;
                 case KindMotion::JUMP: JumpMotion(); break;
@@ -152,20 +146,18 @@ namespace spesium {
                 case KindMotion::STRONG_ATTACK: StrongAttackMotion(); break;
                 case KindMotion::AERIAL_NEUTRAL_ATTACK: AerialNeutralAttackMotion(); break;
                 case KindMotion::AERIAL_STRONG_ATTACK: AerialStrongAttackMotion(); break;
-                case KindMotion::FAll_LANDING: FallLandingMotion(); break;
+                case KindMotion::FALL_LANDING: FallLandingMotion(); break;
                 case KindMotion::SMALL_HITBACK: SmallHitBackMotion(); break;
                 case KindMotion::BIG_HITBACK: BigHitBackMotion(); break;
                 case KindMotion::FALL: FallMotion(); break;
                 case KindMotion::TURN: TurnMotion(); break;
-            }
-
-            /*if () {
-            }
-            else {
-                currentMotion = KindMotion::WAIT;
             }*/
 
-            DrawFormatString( 300, 100, GetColor( 0, 255, 0 ), "%d\n", currentMotion );
+            // DrawFormatString( 300, 100, GetColor( 0, 255, 0 ), "%d\n", currentMotion );
+        }
+
+        void CharacterBase::UpdateMotion() {
+            currentMotion->Update( this );
         }
     }  // namespace character
 }  // namespace spesium

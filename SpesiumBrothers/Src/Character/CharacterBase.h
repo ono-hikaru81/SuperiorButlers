@@ -1,7 +1,9 @@
-
+﻿
 #ifndef CHARACTER_BASE_H
 #define CHARACTER_BASE_H
 
+#include <Character/Motion/MotionBase.h>
+#include <Character/Motion/Wait.h>
 #include <Definition/Definition.h>
 #include <Manager/InputManager.h>
 
@@ -56,7 +58,7 @@ namespace spesium {
                 STRONG_ATTACK,  // 強攻撃
                 AERIAL_NEUTRAL_ATTACK,  // 空中弱攻撃
                 AERIAL_STRONG_ATTACK,  // 空中強攻撃
-                FAll_LANDING,  // 落下着地
+                FALL_LANDING,  // 落下着地
                 SMALL_HITBACK,  // ノックバック小
                 BIG_HITBACK,  // ノックバック大
                 FALL,  //　落下
@@ -155,7 +157,7 @@ namespace spesium {
             /// @breif 吹っ飛びの計算
             void BlowOffCalculation();
 
-           protected:
+           public:
             /// @breif 待機モーション
             virtual void WaitMotion() = 0;
 
@@ -199,7 +201,9 @@ namespace spesium {
             virtual void TurnMotion() = 0;
 
             /// @breif モーション切り替え
-            void SwitchMotion();
+            void SwitchMotion( MotionBase* currentMotion_ );
+            /// @breif モーション更新
+            void UpdateMotion();
 
            protected:
             /// @brief キーボード入力
@@ -248,7 +252,7 @@ namespace spesium {
             MotionTotalTime motionTotalTime { 0.0f };
 
             /// 現在のモーション
-            KindMotion currentMotion { KindMotion::WAIT };
+            MotionBase* currentMotion { Wait::GetInstance() };
         };
     }  // namespace character
 }  // namespace spesium
