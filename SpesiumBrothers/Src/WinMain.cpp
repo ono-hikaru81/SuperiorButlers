@@ -1,6 +1,7 @@
 ﻿
 #include <Definition/Definition.h>
 #include <DxLib.h>
+#include <Manager/AnimationManager.h>
 #include <Manager/InputManager.h>
 #include <Manager/SceneManager.h>
 #include <Manager/TextureManager.h>
@@ -19,6 +20,7 @@ int WINAPI WinMain( [[maybe_unused]] _In_ HINSTANCE hInstance, [[maybe_unused]] 
     auto inputManager = spesium::input::InputManager::Instance();
     auto sceneManager = spesium::scene::SceneManager::Instance();
     auto textureManager = spesium::TextureManager::Instance();
+    auto animationManager = spesium::AnimationManager::Instance();
 
     while ( true ) {
         // ループを抜ける条件
