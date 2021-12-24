@@ -47,6 +47,9 @@
     <ClCompile Include="Src\Character\Motion\Wait.cpp">
       <Filter>Character\Motion</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Character\Motion\Run.cpp">
+      <Filter>Character\Motion</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Camera\Camera.h">

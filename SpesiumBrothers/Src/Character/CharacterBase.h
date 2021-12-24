@@ -7,6 +7,7 @@
 #include <Definition/Definition.h>
 #include <Manager/InputManager.h>
 
+#include <Utility/Property.hpp>
 #include <Utility/Vector.hpp>
 #include <memory>
 
@@ -17,7 +18,7 @@ namespace spesium {
             CharacterBase() = default;
             virtual ~CharacterBase() = default;
 
-           protected:
+           public:
             /// @brief キャラのステータス
             struct Status {
                 int32_t hp { 0 };  // 体力
@@ -29,95 +30,31 @@ namespace spesium {
                 int32_t canJumpNum { 0 };  // ジャンプできる回数
             };
 
-            /// @brief モーションモデル
-            struct MotionModel {
-                int32_t wait;  // 待機
-                int32_t run;  // 移動
-                int32_t jump;  // ジャンプ
-                int32_t doubleJump;  // 2段ジャンプ
-                int32_t guard;  // ガード
-                int32_t neutralAttack;  // 弱攻撃
-                int32_t strongAttack;  // 強攻撃
-                int32_t aerialNeutralAttack;  // 空中弱攻撃
-                int32_t aerialStrongAttack;  // 空中強攻撃
-                int32_t fallLanding;  // 落下着地
-                int32_t smallHitBack;  // ノックバック小
-                int32_t bigHitBack;  // ノックバック大
-                int32_t fall;  //　落下
-                int32_t turn;  // 振りむき
+            /// @brief モーション再生に必要なデータ
+            struct MotionData {
+                int32_t motionModelHandle { 0 };  // モーションモデルハンドル
+                float startFrame { 0.0f };  // 開始フレーム
+                float playFrame { 0.0f };  // 再生中フレーム
+                float totalFrame { 0.0f };  // 総フレーム
             };
 
-            /// @breif モーションの種類
-            enum class KindMotion {
-                WAIT,  // 待機
-                RUN,  // 移動
-                JUMP,  // ジャンプ
-                DOUBLE_JUMP,  // 2段ジャンプ
-                GUARD,  // ガード
-                NEUTRAL_ATTACK,  // 弱攻撃
-                STRONG_ATTACK,  // 強攻撃
-                AERIAL_NEUTRAL_ATTACK,  // 空中弱攻撃
-                AERIAL_STRONG_ATTACK,  // 空中強攻撃
-                FALL_LANDING,  // 落下着地
-                SMALL_HITBACK,  // ノックバック小
-                BIG_HITBACK,  // ノックバック大
-                FALL,  //　落下
-                TURN,  // 振りむき
-            };
-
-            /// @brief モーションの開始時間
-            struct MotionStartTime {
-                float wait;  // 待機
-                float run;  // 移動
-                float jump;  // ジャンプ
-                float doubleJump;  // 2段ジャンプ
-                float guard;  // ガード
-                float neutralAttack;  // 弱攻撃
-                float strongAttack;  // 強攻撃
-                float aerialNeutralAttack;  // 空中弱攻撃
-                float aerialStrongAttack;  // 空中強攻撃
-                float fallLanding;  // 落下着地
-                float smallHitBack;  // ノックバック小
-                float bigHitBack;  // ノックバック大
-                float fall;  //　落下
-                float turn;  // 振りむき
-            };
-
-            /// @brief モーションの再生時間
-            struct MotionPlayTime {
-                float wait;  // 待機
-                float run;  // 移動
-                float jump;  // ジャンプ
-                float doubleJump;  // 2段ジャンプ
-                float guard;  // ガード
-                float neutralAttack;  // 弱攻撃
-                float strongAttack;  // 強攻撃
-                float aerialNeutralAttack;  // 空中弱攻撃
-                float aerialStrongAttack;  // 空中強攻撃
-                float fallLanding;  // 落下着地
-                float smallHitBack;  // ノックバック小
-                float bigHitBack;  // ノックバック大
-                float fall;  //　落下
-                float turn;  // 振りむき
-            };
-
-            /// @brief モーションの総時間
-            struct MotionTotalTime {
-                float wait;  // 待機
-                float run;  // 移動
-                float jump;  // ジャンプ
-                float doubleJump;  // 2段ジャンプ
-                float guard;  // ガード
-                float neutralAttack;  // 弱攻撃
-                float strongAttack;  // 強攻撃
-                float aerialNeutralAttack;  // 空中弱攻撃
-                float aerialStrongAttack;  // 空中強攻撃
-                float fallLanding;  // 落下着地
-                float smallHitBack;  // ノックバック小
-                float bigHitBack;  // ノックバック大
-                float fall;  //　落下
-                float turn;  // 振りむき
-            };
+            /// @brief 各モーションのリスト
+            struct {
+                MotionData wait;  // 待機
+                MotionData run;  // 移動
+                MotionData jump;  // ジャンプ
+                MotionData doubleJump;  // 2段ジャンプ
+                MotionData guard;  // ガード
+                MotionData neutralAttack;  // 弱攻撃
+                MotionData strongAttack;  // 強攻撃
+                MotionData aerialNeutralAttack;  // 空中弱攻撃
+                MotionData aerialStrongAttack;  // 空中強攻撃
+                MotionData fallLanding;  // 落下着地
+                MotionData smallHitBack;  // ノックバック小
+                MotionData bigHitBack;  // ノックバック大
+                MotionData fall;  //　落下
+                MotionData turn;  // 振りむき
+            } motionList;
 
            public:
             /// @brief 実行関数
@@ -125,6 +62,10 @@ namespace spesium {
 
             /// @brief 描画関数
             virtual void Draw() = 0;
+
+           public:
+            double GetMoveVecX() { return moveVec.X; }
+            bool GetIsStanding() { return IsStanding(); }
 
            protected:
             /// @brief モデル読み込み関数
@@ -158,50 +99,12 @@ namespace spesium {
             void BlowOffCalculation();
 
            public:
-            /// @breif 待機モーション
-            virtual void WaitMotion() = 0;
-
-            /// @breif ダッシュモーション
-            virtual void DashMotion() = 0;
-
-            /// @breif ジャンプモーション
-            virtual void JumpMotion() = 0;
-
-            /// @breif 2段ジャンプモーション
-            virtual void DoubleJumpMotion() = 0;
-
-            /// @breif ガードモーション
-            virtual void GuardMotion() = 0;
-
-            /// @breif 弱攻撃モーション
-            virtual void NeutralAttackMotion() = 0;
-
-            /// @breif 強攻撃モーション
-            virtual void StrongAttackMotion() = 0;
-
-            /// @breif 空中弱攻撃モーション
-            virtual void AerialNeutralAttackMotion() = 0;
-
-            /// @breif 空中強攻撃モーション
-            virtual void AerialStrongAttackMotion() = 0;
-
-            /// @breif 着地モーション
-            virtual void FallLandingMotion() = 0;
-
-            /// @breif ヒットバックモーション小
-            virtual void SmallHitBackMotion() = 0;
-
-            /// @breif ヒットバックモーション大
-            virtual void BigHitBackMotion() = 0;
-
-            /// @breif 落下モーション
-            virtual void FallMotion() = 0;
-
-            /// @brief 振り向きモーション
-            virtual void TurnMotion() = 0;
-
+            /// @breif モーション再生
+            void PlayMotion();
             /// @breif モーション切り替え
-            void SwitchMotion( MotionBase* currentMotion_ );
+            void SwitchMotion( MotionData motion_data_ );
+            /// @breif モーション遷移
+            void TransMotion( MotionBase* currentMotion_ );
             /// @breif モーション更新
             void UpdateMotion();
 
@@ -238,18 +141,13 @@ namespace spesium {
             /// @brief 接触したか
             bool isCollision { false };
 
-            /// @brief モデル格納用
-            int32_t model { 0 };
+           protected:
+            /// @brief モデルハンドル
+            int32_t modelHandle { 0 };
             /// @breif モデル名
             std::string modelName {};
-            /// @brief モーションモデル
-            MotionModel motionModel { 0 };
-            /// @breif モーションの開始時間
-            MotionStartTime motionStartTime { 0.0f };
-            /// @brief モーションの再生時間
-            MotionPlayTime motionPlayTime { 0.0f };
-            /// @brief モーションの総再生時間
-            MotionTotalTime motionTotalTime { 0.0f };
+            /// @breif モーションデータ
+            MotionData motionData {};
 
             /// 現在のモーション
             MotionBase* currentMotion { Wait::GetInstance() };

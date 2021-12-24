@@ -7,7 +7,7 @@
 namespace spesium {
     namespace scene {
         InGameScene::InGameScene() {
-            monster = new character::Monster();
+            //monster = new character::Monster();
             human = new character::Human();
             camera = new tool::Camera();
         }
@@ -24,7 +24,7 @@ namespace spesium {
 
             //monster->Exec();
             human->Exec();
-            camera->UpdatePos( monster->Pos, origin );
+            camera->UpdatePos( human->Pos, origin );
         }
 
         void InGameScene::Draw() {

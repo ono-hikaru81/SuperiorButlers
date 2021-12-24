@@ -165,6 +165,7 @@
     <ClCompile Include="Src\Character\CharacterBase.cpp" />
     <ClCompile Include="Src\Character\Human.cpp" />
     <ClCompile Include="Src\Character\Monster.cpp" />
+    <ClCompile Include="Src\Character\Motion\Run.cpp" />
     <ClCompile Include="Src\Character\Motion\Wait.cpp" />
     <ClCompile Include="Src\Light\Light.cpp" />
     <ClCompile Include="Src\Manager\Input.cpp" />

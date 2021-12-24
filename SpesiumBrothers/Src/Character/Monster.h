@@ -12,69 +12,32 @@ namespace spesium {
             ~Monster() override;
 
            private:
-            /// @breif モーション開始フレーム
-            struct InitMotionTime {
-                static constexpr float wait { 0.0f };  // 待機
-                static constexpr float run { 121.0f };  // 移動
-                static constexpr float jump { 169.0f };  // ジャンプ
-                static constexpr float doubleJump { 240.0f };  // 2段ジャンプ
-                static constexpr float guard { 299.0f };  // ガード
-                static constexpr float neutralAttack { 306.0f };  // 弱攻撃
-                static constexpr float strongAttack { 332.0f };  // 強攻撃
-                static constexpr float aerialNeutralAttack { 364.0f };  // 空中弱攻撃
-                static constexpr float aerialStrongAttack { 395.0f };  // 空中強攻撃
-                static constexpr float fallLanding { 434.0f };  // 落下着地
-                static constexpr float smallHitBack { 468.0f };  // ノックバック小
-                static constexpr float bigHitBack { 473.0f };  // ノックバック大
-                static constexpr float fall { 516.0f };  //　落下
-                static constexpr float turn { 563.0f };  // 振りむき
+            /// @brief モーションフレーム
+            struct MotionFrame {
+                float start { 0.0f };  // 開始フレーム
+                float total { 0.0f };  // 総フレーム
+            };
+
+            /// @breif 各モーションのリスト
+            struct MotionList {
+                static constexpr MotionFrame wait { .start { 0.0f }, .total { 120.0f } };  // 待機
+                static constexpr MotionFrame run { .start { 121.0f }, .total { 168.0f } };  // 移動
+                static constexpr MotionFrame jump { .start { 169.0f }, .total { 239.0f } };  // ジャンプ
+                static constexpr MotionFrame doubleJump { .start { 240.0f }, .total { 298.0f } };  // 2段ジャンプ
+                static constexpr MotionFrame guard { .start { 299.0f }, .total { 305.0f } };  // ガード
+                static constexpr MotionFrame neutralAttack { .start { 306.0f }, .total { 331.0f } };  // 弱攻撃
+                static constexpr MotionFrame strongAttack { .start { 332.0f }, .total { 363.0f } };  // 強攻撃
+                static constexpr MotionFrame aerialNeutralAttack { .start { 364.0f }, .total { 394.0f } };  // 空中弱攻撃
+                static constexpr MotionFrame aerialStrongAttack { .start { 395.0f }, .total { 433.0f } };  // 空中強攻撃
+                static constexpr MotionFrame fallLanding { .start { 434.0f }, .total { 467.0f } };  // 落下着地
+                static constexpr MotionFrame smallHitBack { .start { 468.0f }, .total { 472.0 } };  // ノックバック小
+                static constexpr MotionFrame bigHitBack { .start { 473.0f }, .total { 515.0f } };  // ノックバック大
+                static constexpr MotionFrame fall { .start { 516.0f }, .total { 562.0f } };  //　落下
+                static constexpr MotionFrame turn { .start { 563.0f }, .total { 568.0f } };  // 振りむき
             };
 
            public:
             void Draw() override;
-
-           private:
-            /// @breif 待機モーション
-            void WaitMotion() override;
-
-            /// @breif ダッシュモーション
-            void DashMotion() override;
-
-            /// @breif ジャンプモーション
-            void JumpMotion() override;
-
-            /// @breif 2段ジャンプモーション
-            void DoubleJumpMotion() override;
-
-            /// @breif ガードモーション
-            void GuardMotion() override;
-
-            /// @breif 弱攻撃モーション
-            void NeutralAttackMotion() override;
-
-            /// @breif 強攻撃モーション
-            void StrongAttackMotion() override;
-
-            /// @breif 空中弱攻撃モーション
-            void AerialNeutralAttackMotion() override;
-
-            /// @breif 空中強攻撃モーション
-            void AerialStrongAttackMotion() override;
-
-            /// @breif 着地モーション
-            void FallLandingMotion() override;
-
-            /// @breif ヒットバックモーション小
-            void SmallHitBackMotion() override;
-
-            /// @breif ヒットバックモーション大
-            void BigHitBackMotion() override;
-
-            /// @breif 落下モーション
-            void FallMotion() override;
-
-            /// @brief 振り向きモーション
-            void TurnMotion() override;
 
            public:
             /// @brief アクセサ

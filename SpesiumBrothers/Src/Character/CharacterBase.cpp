@@ -23,16 +23,18 @@ namespace spesium {
 
             UpdateDirection();
 
+            PlayMotion();
+
             // 最後の座標処理
             UpdatePos();
         }
 
         void CharacterBase::LoadModel() {
-            model = MV1LoadModel( modelName.c_str() );
+            modelHandle = MV1LoadModel( modelName.c_str() );
         }
 
         void CharacterBase::ReleaseModel() {
-            MV1DeleteModel( model );
+            MV1DeleteModel( modelHandle );
         }
 
         void CharacterBase::Move() {
@@ -132,28 +134,28 @@ namespace spesium {
             velocity.Y = initVelocity * sinh( radian );
         }
 
-        void CharacterBase::SwitchMotion( MotionBase* currentMotion_ ) {
+        void CharacterBase::PlayMotion() {
+            motionData.playFrame += 1.0f;
+
+            // 再生時間を0に戻す(モーションをループさせる)
+            if ( motionData.playFrame >= motionData.totalFrame ) {
+                motionData.playFrame = motionData.startFrame;
+            }
+
+            MV1SetAttachAnimTime( modelHandle, motionData.motionModelHandle, motionData.playFrame );
+
+            DrawFormatString( 300, 0, GetColor( 0, 255, 0 ), "待機モーション再生時間(加算値)[%lf]", motionData.playFrame );
+        }
+
+        void CharacterBase::SwitchMotion( MotionData motion_data_ ) {
+            motionData = motion_data_;
+
+            motionData.playFrame = motionData.startFrame;
+        }
+
+        void CharacterBase::TransMotion( MotionBase* currentMotion_ ) {
             currentMotion = currentMotion_;
             currentMotion->Init( this );
-
-            /*switch ( currentMotion ) {
-                case KindMotion::WAIT: WaitMotion(); break;
-                case KindMotion::RUN: DashMotion(); break;
-                case KindMotion::JUMP: JumpMotion(); break;
-                case KindMotion::DOUBLE_JUMP: DoubleJumpMotion(); break;
-                case KindMotion::GUARD: GuardMotion(); break;
-                case KindMotion::NEUTRAL_ATTACK: NeutralAttackMotion(); break;
-                case KindMotion::STRONG_ATTACK: StrongAttackMotion(); break;
-                case KindMotion::AERIAL_NEUTRAL_ATTACK: AerialNeutralAttackMotion(); break;
-                case KindMotion::AERIAL_STRONG_ATTACK: AerialStrongAttackMotion(); break;
-                case KindMotion::FALL_LANDING: FallLandingMotion(); break;
-                case KindMotion::SMALL_HITBACK: SmallHitBackMotion(); break;
-                case KindMotion::BIG_HITBACK: BigHitBackMotion(); break;
-                case KindMotion::FALL: FallMotion(); break;
-                case KindMotion::TURN: TurnMotion(); break;
-            }*/
-
-            // DrawFormatString( 300, 100, GetColor( 0, 255, 0 ), "%d\n", currentMotion );
         }
 
         void CharacterBase::UpdateMotion() {
