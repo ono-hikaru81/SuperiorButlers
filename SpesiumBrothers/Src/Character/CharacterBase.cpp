@@ -161,6 +161,8 @@ namespace spesium {
             if ( auto result { motion.Update() };
                  result != current ) {
                 motionData = motionList.find( result )->second;
+                motionData.playFrame = motionData.startFrame;
+                current = result;
             }
         }
     }  // namespace character
