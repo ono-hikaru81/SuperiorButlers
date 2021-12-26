@@ -36,15 +36,12 @@ namespace spesium {
                 changeMotionList.emplace( origin_, next_, condition_ );
             }
 
-            auto Update() -> std::string {
-                auto tmp { changeMotionList.equal_range( currentMotion ) };
+            auto Update() -> MotionState {
+                auto [index, end] { changeMotionList.equal_range( currentMotion ) };
 
-                //std::span<std::multimap<MotionState, ChangeMotionList>> targetExec(tmp.first, tmp.second);
-
-                auto end { tmp.second + 1 };
-                for ( auto index { tmp.first }; index == end; ++index ) {
-                    if ( index.second.condition_() ) {
-                        currentMotion = index.secoud;
+                for ( ; index != end; ++index ) {
+                    if ( index->second.condition() ) {
+                        currentMotion = index->second.motionState;
                     }
                 }
 
