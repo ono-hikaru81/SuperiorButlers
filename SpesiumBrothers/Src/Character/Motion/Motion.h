@@ -23,16 +23,16 @@ namespace spesium {
             };
 
            private:
-            struct ChangeMotionList {
+            struct ChangeList {
                 MotionState motionState;
                 std::function<bool()> condition;
             };
 
            public:
-            std::multimap<MotionState, ChangeMotionList> changeMotionList;
+            std::multimap<MotionState, ChangeList> changeMotionList {};
             MotionState currentMotion;
 
-            void Register( ChangeMotionList origin_, ChangeMotionList next_, std::function<bool()> condition_ ) {
+            void Register( ChangeList origin_, ChangeList next_, std::function<bool()> condition_ ) {
                 changeMotionList.emplace( origin_, next_, condition_ );
             }
 

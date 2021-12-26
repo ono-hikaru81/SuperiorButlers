@@ -57,7 +57,7 @@ namespace spesium {
                 MotionData turn;  // 振りむき
             };
 
-            std::map<std::string, MotionData> motionList {};
+            std::map<Motion::MotionState, MotionData> motionList {};
 
            public:
             /// @brief 実行関数
@@ -104,12 +104,10 @@ namespace spesium {
            public:
             /// @breif モーション再生
             void PlayMotion();
-            /// @breif モーション切り替え
-            void SwitchMotion( MotionData motion_data_ );
-            /// @breif モーション更新
-            void UpdateMotion();
-
+            /// @breif モーション初期化
             void InitMotionList( MotionList motion_list_ );
+            /// @breif
+            void UpdateMotion();
 
            protected:
             /// @brief キーボード入力
@@ -154,6 +152,9 @@ namespace spesium {
 
             //
             Motion motion;
+
+            //
+            Motion::MotionState current;
         };
     }  // namespace character
 }  // namespace spesium

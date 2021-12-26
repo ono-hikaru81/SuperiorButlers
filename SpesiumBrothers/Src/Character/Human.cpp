@@ -19,24 +19,23 @@ namespace spesium {
 
             LoadModel();
 
-            motionList = {
-                .wait = { .motionModelHandle = MV1AttachAnim( modelHandle, 0, -1, FALSE ), .startFrame { MotionList::wait.start }, .totalFrame { MotionList::wait.total } },
-                .run = { .startFrame { MotionList::run.start }, .totalFrame { MotionList::run.total } },
-                .jump = { .startFrame { MotionList::jump.start }, .totalFrame { MotionList::jump.total } },
-                .doubleJump = { .startFrame { MotionList::doubleJump.start }, .totalFrame { MotionList::doubleJump.total } },
-                .guard = { .startFrame { MotionList::guard.start }, .totalFrame { MotionList::guard.total } },
-                .neutralAttack = { .startFrame { MotionList::neutralAttack.start }, .totalFrame { MotionList::neutralAttack.total } },
-                .strongAttack = { .startFrame { MotionList::strongAttack.start }, .totalFrame { MotionList::strongAttack.total } },
-                .aerialNeutralAttack = { .startFrame { MotionList::aerialNeutralAttack.start }, .totalFrame { MotionList::aerialNeutralAttack.total } },
-                .aerialStrongAttack = { .startFrame { MotionList::aerialStrongAttack.start }, .totalFrame { MotionList::aerialStrongAttack.total } },
-                .fallLanding = { .startFrame { MotionList::fallLanding.start }, .totalFrame { MotionList::fallLanding.total } },
-                .smallHitBack = { .startFrame { MotionList::smallHitBack.start }, .totalFrame { MotionList::smallHitBack.total } },
-                .bigHitBack = { .startFrame { MotionList::bigHitBack.start }, .totalFrame { MotionList::bigHitBack.total } },
-                .fall = { .startFrame { MotionList::fall.start }, .totalFrame { MotionList::fall.total } },
-                .turn = { .startFrame { MotionList::turn.start }, .totalFrame { MotionList::turn.total } },
-            };
+            InitMotionList( MotionList {
+                .wait = { .motionModelHandle = MV1AttachAnim( modelHandle, 0, -1, FALSE ), .startFrame { MotionDataList::wait.start }, .totalFrame { MotionDataList::wait.total } },
+                .run = { .startFrame { MotionDataList::run.start }, .totalFrame { MotionDataList::run.total } },
+                .jump = { .startFrame { MotionDataList::jump.start }, .totalFrame { MotionDataList::jump.total } },
+                .doubleJump = { .startFrame { MotionDataList::doubleJump.start }, .totalFrame { MotionDataList::doubleJump.total } },
+                .guard = { .startFrame { MotionDataList::guard.start }, .totalFrame { MotionDataList::guard.total } },
+                .neutralAttack = { .startFrame { MotionDataList::neutralAttack.start }, .totalFrame { MotionDataList::neutralAttack.total } },
+                .strongAttack = { .startFrame { MotionDataList::strongAttack.start }, .totalFrame { MotionDataList::strongAttack.total } },
+                .aerialNeutralAttack = { .startFrame { MotionDataList::aerialNeutralAttack.start }, .totalFrame { MotionDataList::aerialNeutralAttack.total } },
+                .aerialStrongAttack = { .startFrame { MotionDataList::aerialStrongAttack.start }, .totalFrame { MotionDataList::aerialStrongAttack.total } },
+                .fallLanding = { .startFrame { MotionDataList::fallLanding.start }, .totalFrame { MotionDataList::fallLanding.total } },
+                .smallHitBack = { .startFrame { MotionDataList::smallHitBack.start }, .totalFrame { MotionDataList::smallHitBack.total } },
+                .bigHitBack = { .startFrame { MotionDataList::bigHitBack.start }, .totalFrame { MotionDataList::bigHitBack.total } },
+                .fall = { .startFrame { MotionDataList::fall.start }, .totalFrame { MotionDataList::fall.total } },
+                .turn = { .startFrame { MotionDataList::turn.start }, .totalFrame { MotionDataList::turn.total } },
+            } );
 
-            SwitchMotion( motionList.wait );
             UpdateMotion();
 
         }  // namespace character

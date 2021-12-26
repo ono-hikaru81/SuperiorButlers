@@ -19,7 +19,7 @@ namespace spesium {
             };
 
             /// @breif 各モーションのリスト
-            struct MotionList {
+            struct MotionDataList {
                 static constexpr MotionFrame wait { .start { 0.0f }, .total { 120.0f } };  // 待機
                 static constexpr MotionFrame run { .start { 121.0f }, .total { 168.0f } };  // 移動
                 static constexpr MotionFrame jump { .start { 169.0f }, .total { 239.0f } };  // ジャンプ

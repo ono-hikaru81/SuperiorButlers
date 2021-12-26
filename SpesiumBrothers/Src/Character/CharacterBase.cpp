@@ -47,7 +47,6 @@ namespace spesium {
                 velocity.X += status.speed;
 
                 DisabledExceed( status.maxSpeed, *velocity.X );
-                SwitchMotion( motionList.run );
             }
             // 左移動
             else if ( inputManager.lock()->IsKeyPushed( KEY_INPUT_A ) || inputManager.lock()->IsKeyHeld( KEY_INPUT_A ) ) {
@@ -150,19 +149,17 @@ namespace spesium {
             DrawFormatString( 300, 0, GetColor( 0, 255, 0 ), "待機モーション再生時間(加算値)[%lf]", motionData.playFrame );
         }
 
-        void CharacterBase::SwitchMotion( MotionData motion_data_ ) {
-            motionData = motion_data_;
-
-            motionData.playFrame = motionData.startFrame;
+        void CharacterBase::InitMotionList( MotionList motion_list_ ) {
+            motionList.emplace( Motion::MotionState::WAIT, motion_list_.wait );
+            motionList.emplace( Motion::MotionState::RUN, motion_list_.run );
+            motionList.emplace( Motion::MotionState::JUMP, motion_list_.jump );
         }
 
         void CharacterBase::UpdateMotion() {
-        }
-
-        void CharacterBase::InitMotionList( MotionList motion_list_ ) {
-            motionList.emplace( motion.WAIT, motion_list_.wait );
-            motionList.emplace( motion.RUN, motion_list_.run );
-            motionList.emplace( motion.JUMP, motion_list_.jump );
+            if ( auto result { motion.Update() };
+                 result != current ) {
+                motionData = motionList.find( result )->second;
+            }
         }
     }  // namespace character
 }  // namespace spesium
