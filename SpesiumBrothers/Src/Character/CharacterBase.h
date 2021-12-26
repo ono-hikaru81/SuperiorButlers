@@ -2,13 +2,14 @@
 #ifndef CHARACTER_BASE_H
 #define CHARACTER_BASE_H
 
-#include <Character/Motion/MotionBase.h>
-#include <Character/Motion/Wait.h>
+#include <Character/Motion/Motion.h>
 #include <Definition/Definition.h>
 #include <Manager/InputManager.h>
 
 #include <Utility/Property.hpp>
 #include <Utility/Vector.hpp>
+#include <functional>
+#include <map>
 #include <memory>
 
 namespace spesium {
@@ -39,7 +40,7 @@ namespace spesium {
             };
 
             /// @brief 各モーションのリスト
-            struct {
+            struct MotionList {
                 MotionData wait;  // 待機
                 MotionData run;  // 移動
                 MotionData jump;  // ジャンプ
@@ -54,7 +55,9 @@ namespace spesium {
                 MotionData bigHitBack;  // ノックバック大
                 MotionData fall;  //　落下
                 MotionData turn;  // 振りむき
-            } motionList;
+            };
+
+            std::map<std::string, MotionData> motionList {};
 
            public:
             /// @brief 実行関数
@@ -103,10 +106,10 @@ namespace spesium {
             void PlayMotion();
             /// @breif モーション切り替え
             void SwitchMotion( MotionData motion_data_ );
-            /// @breif モーション遷移
-            void TransMotion( MotionBase* currentMotion_ );
             /// @breif モーション更新
             void UpdateMotion();
+
+            void InitMotionList( MotionList motion_list_ );
 
            protected:
             /// @brief キーボード入力
@@ -149,8 +152,8 @@ namespace spesium {
             /// @breif モーションデータ
             MotionData motionData {};
 
-            /// 現在のモーション
-            MotionBase* currentMotion { Wait::GetInstance() };
+            //
+            Motion motion;
         };
     }  // namespace character
 }  // namespace spesium

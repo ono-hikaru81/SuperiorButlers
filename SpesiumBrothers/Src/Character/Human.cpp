@@ -36,7 +36,7 @@ namespace spesium {
                 .turn = { .startFrame { MotionList::turn.start }, .totalFrame { MotionList::turn.total } },
             };
 
-            //SwitchMotion( motionList.wait );
+            SwitchMotion( motionList.wait );
             UpdateMotion();
 
         }  // namespace character

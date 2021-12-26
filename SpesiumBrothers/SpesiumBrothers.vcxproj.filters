@@ -44,12 +44,6 @@
     <ClCompile Include="Src\Character\Human.cpp">
       <Filter>Character</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Character\Motion\Wait.cpp">
-      <Filter>Character\Motion</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Character\Motion\Run.cpp">
-      <Filter>Character\Motion</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Camera\Camera.h">
@@ -142,49 +136,7 @@
     <ClInclude Include="Src\Character\Human.h">
       <Filter>Character</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Character\Motion\MotionBase.h">
-      <Filter>Character\Motion</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Character\Motion\Wait.h">
-      <Filter>Character\Motion</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Character\Motion\Run.h">
-      <Filter>Character\Motion</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Character\Motion\Jump.h">
-      <Filter>Character\Motion</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Character\Motion\DoubleJump.h">
-      <Filter>Character\Motion</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Character\Motion\Guard.h">
-      <Filter>Character\Motion</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Character\Motion\NeutralAttack.h">
-      <Filter>Character\Motion</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Character\Motion\StrongAttack.h">
-      <Filter>Character\Motion</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Character\Motion\AerialStrongAttack.h">
-      <Filter>Character\Motion</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Character\Motion\AerialNeutralAttack.h">
-      <Filter>Character\Motion</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Character\Motion\SmallHitBack.h">
-      <Filter>Character\Motion</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Character\Motion\BigHitBack.h">
-      <Filter>Character\Motion</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Character\Motion\Fall.h">
-      <Filter>Character\Motion</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Character\Motion\FallLanding.h">
-      <Filter>Character\Motion</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Character\Motion\Turn.h">
+    <ClInclude Include="Src\Character\Motion\Motion.h">
       <Filter>Character\Motion</Filter>
     </ClInclude>
   </ItemGroup>

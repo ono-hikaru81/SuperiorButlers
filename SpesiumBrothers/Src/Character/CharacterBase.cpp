@@ -27,6 +27,8 @@ namespace spesium {
 
             // 最後の座標処理
             UpdatePos();
+
+            UpdateMotion();
         }
 
         void CharacterBase::LoadModel() {
@@ -45,6 +47,7 @@ namespace spesium {
                 velocity.X += status.speed;
 
                 DisabledExceed( status.maxSpeed, *velocity.X );
+                SwitchMotion( motionList.run );
             }
             // 左移動
             else if ( inputManager.lock()->IsKeyPushed( KEY_INPUT_A ) || inputManager.lock()->IsKeyHeld( KEY_INPUT_A ) ) {
@@ -153,13 +156,13 @@ namespace spesium {
             motionData.playFrame = motionData.startFrame;
         }
 
-        void CharacterBase::TransMotion( MotionBase* currentMotion_ ) {
-            currentMotion = currentMotion_;
-            currentMotion->Init( this );
+        void CharacterBase::UpdateMotion() {
         }
 
-        void CharacterBase::UpdateMotion() {
-            currentMotion->Update( this );
+        void CharacterBase::InitMotionList( MotionList motion_list_ ) {
+            motionList.emplace( motion.WAIT, motion_list_.wait );
+            motionList.emplace( motion.RUN, motion_list_.run );
+            motionList.emplace( motion.JUMP, motion_list_.jump );
         }
     }  // namespace character
 }  // namespace spesium
