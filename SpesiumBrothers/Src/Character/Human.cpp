@@ -36,7 +36,29 @@ namespace spesium {
                 .turn = { .startFrame { MotionDataList::turn.start }, .totalFrame { MotionDataList::turn.total } },
             } );
 
-            motion.Register( Motion::MotionState::WAIT, Motion::MotionState::RUN, [this]() { return inputManager.lock()->IsKeyPushed( KEY_INPUT_0 ); } );
+            motion.Register( Motion::State::Wait, Motion::State::Run, [this]() { return ( ( abs( velocity.X ) > 0.5 && IsStanding() ) ); } );
+            motion.Register( Motion::State::Run, Motion::State::Wait, [this]() { return ( ( abs( velocity.X ) < 0.5 && IsStanding() ) ); } );
+            motion.Register( Motion::State::Wait, Motion::State::Guard, [this]() { return inputManager.lock()->IsKeyPushed( KEY_INPUT_SPACE ); } );
+            motion.Register( Motion::State::Guard, Motion::State::Wait, [this]() { return inputManager.lock()->IsKeyReleased( KEY_INPUT_SPACE ); } );
+            motion.Register( Motion::State::Wait, Motion::State::Jump, [this]() { return inputManager.lock()->IsKeyPushed( KEY_INPUT_W ); } );
+            motion.Register( Motion::State::Jump, Motion::State::Wait, [this]() { return inputManager.lock()->IsKeyPushed( KEY_INPUT_0 ); } );
+            motion.Register( Motion::State::Wait, Motion::State::Run, [this]() { return inputManager.lock()->IsKeyPushed( KEY_INPUT_0 ); } );
+            motion.Register( Motion::State::Wait, Motion::State::Run, [this]() { return inputManager.lock()->IsKeyPushed( KEY_INPUT_0 ); } );
+            motion.Register( Motion::State::Wait, Motion::State::Run, [this]() { return inputManager.lock()->IsKeyPushed( KEY_INPUT_0 ); } );
+            motion.Register( Motion::State::Wait, Motion::State::Run, [this]() { return inputManager.lock()->IsKeyPushed( KEY_INPUT_0 ); } );
+            motion.Register( Motion::State::Wait, Motion::State::Run, [this]() { return inputManager.lock()->IsKeyPushed( KEY_INPUT_0 ); } );
+            motion.Register( Motion::State::Wait, Motion::State::Run, [this]() { return inputManager.lock()->IsKeyPushed( KEY_INPUT_0 ); } );
+            motion.Register( Motion::State::Wait, Motion::State::Run, [this]() { return inputManager.lock()->IsKeyPushed( KEY_INPUT_0 ); } );
+            motion.Register( Motion::State::Wait, Motion::State::Run, [this]() { return inputManager.lock()->IsKeyPushed( KEY_INPUT_0 ); } );
+            motion.Register( Motion::State::Wait, Motion::State::Run, [this]() { return inputManager.lock()->IsKeyPushed( KEY_INPUT_0 ); } );
+            motion.Register( Motion::State::Wait, Motion::State::Run, [this]() { return inputManager.lock()->IsKeyPushed( KEY_INPUT_0 ); } );
+            motion.Register( Motion::State::Wait, Motion::State::Run, [this]() { return inputManager.lock()->IsKeyPushed( KEY_INPUT_0 ); } );
+            motion.Register( Motion::State::Wait, Motion::State::Run, [this]() { return inputManager.lock()->IsKeyPushed( KEY_INPUT_0 ); } );
+            motion.Register( Motion::State::Wait, Motion::State::Run, [this]() { return inputManager.lock()->IsKeyPushed( KEY_INPUT_0 ); } );
+            motion.Register( Motion::State::Wait, Motion::State::Run, [this]() { return inputManager.lock()->IsKeyPushed( KEY_INPUT_0 ); } );
+            motion.Register( Motion::State::Wait, Motion::State::Run, [this]() { return inputManager.lock()->IsKeyPushed( KEY_INPUT_0 ); } );
+            motion.Register( Motion::State::Wait, Motion::State::Run, [this]() { return inputManager.lock()->IsKeyPushed( KEY_INPUT_0 ); } );
+            motion.Register( Motion::State::Wait, Motion::State::Run, [this]() { return inputManager.lock()->IsKeyPushed( KEY_INPUT_0 ); } );
         }  // namespace character
 
         Human::~Human() {

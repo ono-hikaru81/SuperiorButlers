@@ -56,12 +56,12 @@ namespace spesium {
             }
 
             // 接触
-            if ( inputManager.lock()->IsKeyPushed( KEY_INPUT_SPACE ) || inputManager.lock()->IsKeyHeld( KEY_INPUT_SPACE ) ) {
+            /*if ( inputManager.lock()->IsKeyPushed( KEY_INPUT_SPACE ) || inputManager.lock()->IsKeyHeld( KEY_INPUT_SPACE ) ) {
                 isCollision = true;
             }
             else {
                 isCollision = false;
-            }
+            }*/
 
             BlowOffCalculation();
         }
@@ -150,9 +150,20 @@ namespace spesium {
         }
 
         void CharacterBase::InitMotionList( MotionList motion_list_ ) {
-            motionList.emplace( Motion::MotionState::WAIT, motion_list_.wait );
-            motionList.emplace( Motion::MotionState::RUN, motion_list_.run );
-            motionList.emplace( Motion::MotionState::JUMP, motion_list_.jump );
+            motionList.emplace( Motion::State::Wait, motion_list_.wait );
+            motionList.emplace( Motion::State::Run, motion_list_.run );
+            motionList.emplace( Motion::State::Jump, motion_list_.jump );
+            motionList.emplace( Motion::State::DoubleJump, motion_list_.doubleJump );
+            motionList.emplace( Motion::State::Guard, motion_list_.guard );
+            motionList.emplace( Motion::State::NeutralAttack, motion_list_.neutralAttack );
+            motionList.emplace( Motion::State::StrongAttack, motion_list_.strongAttack );
+            motionList.emplace( Motion::State::AerialNeutralAttack, motion_list_.aerialNeutralAttack );
+            motionList.emplace( Motion::State::AerialStrongAttack, motion_list_.aerialStrongAttack );
+            motionList.emplace( Motion::State::FallLanding, motion_list_.fallLanding );
+            motionList.emplace( Motion::State::SmallHitBack, motion_list_.smallHitBack );
+            motionList.emplace( Motion::State::BigHitBack, motion_list_.bigHitBack );
+            motionList.emplace( Motion::State::Fall, motion_list_.fall );
+            motionList.emplace( Motion::State::Turn, motion_list_.turn );
 
             motionData = motion_list_.wait;
         }

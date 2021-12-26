@@ -16,27 +16,38 @@ namespace spesium {
             Motion() = default;
 
            public:
-            enum class MotionState {
-                WAIT,
-                RUN,
-                JUMP,
+            enum class State {
+                Wait,
+                Run,
+                Jump,
+                DoubleJump,
+                Guard,
+                NeutralAttack,
+                StrongAttack,
+                AerialNeutralAttack,
+                AerialStrongAttack,
+                FallLanding,
+                SmallHitBack,
+                BigHitBack,
+                Fall,
+                Turn,
             };
 
            private:
             struct ChangeList {
-                MotionState motionState;
+                State motionState;
                 std::function<bool()> condition;
             };
 
            public:
-            std::multimap<MotionState, ChangeList> changeMotionList {};
-            MotionState currentMotion;
+            std::multimap<State, ChangeList> changeMotionList {};
+            State currentMotion;
 
-            void Register( MotionState origin_, MotionState next_, std::function<bool()> condition_ ) {
+            void Register( State origin_, State next_, std::function<bool()> condition_ ) {
                 changeMotionList.emplace( origin_, ChangeList { next_, condition_ } );
             }
 
-            auto Update() -> MotionState {
+            auto Update() -> State {
                 auto [index, end] { changeMotionList.equal_range( currentMotion ) };
 
                 for ( ; index != end; ++index ) {
