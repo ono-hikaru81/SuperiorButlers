@@ -32,8 +32,8 @@ namespace spesium {
             std::multimap<MotionState, ChangeList> changeMotionList {};
             MotionState currentMotion;
 
-            void Register( ChangeList origin_, ChangeList next_, std::function<bool()> condition_ ) {
-                changeMotionList.emplace( origin_, next_, condition_ );
+            void Register( MotionState origin_, MotionState next_, std::function<bool()> condition_ ) {
+                changeMotionList.emplace( origin_, ChangeList { next_, condition_ } );
             }
 
             auto Update() -> MotionState {

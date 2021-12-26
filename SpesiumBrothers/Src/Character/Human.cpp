@@ -36,8 +36,7 @@ namespace spesium {
                 .turn = { .startFrame { MotionDataList::turn.start }, .totalFrame { MotionDataList::turn.total } },
             } );
 
-            UpdateMotion();
-
+            motion.Register( Motion::MotionState::WAIT, Motion::MotionState::RUN, [this]() { return inputManager.lock()->IsKeyPushed( KEY_INPUT_0 ); } );
         }  // namespace character
 
         Human::~Human() {

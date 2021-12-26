@@ -153,6 +153,8 @@ namespace spesium {
             motionList.emplace( Motion::MotionState::WAIT, motion_list_.wait );
             motionList.emplace( Motion::MotionState::RUN, motion_list_.run );
             motionList.emplace( Motion::MotionState::JUMP, motion_list_.jump );
+
+            motionData = motion_list_.wait;
         }
 
         void CharacterBase::UpdateMotion() {
