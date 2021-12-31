@@ -66,10 +66,6 @@ namespace spesium {
             /// @brief 描画関数
             virtual void Draw() = 0;
 
-           public:
-            double GetMoveVecX() { return moveVec.X; }
-            bool GetIsStanding() { return IsStanding(); }
-
            protected:
             /// @brief モデル読み込み関数
             virtual void LoadModel();
@@ -106,7 +102,7 @@ namespace spesium {
             void PlayMotion();
             /// @breif モーション初期化
             void InitMotionList( MotionList motion_list_ );
-            /// @breif
+            /// @breif モーション更新
             void UpdateMotion();
 
            protected:
@@ -141,6 +137,8 @@ namespace spesium {
             bool isKnockdown { false };
             /// @brief 接触したか
             bool isCollision { false };
+            /// @breif 反転したか
+            bool isTurn { false };
 
            protected:
             /// @brief モデルハンドル
@@ -150,11 +148,12 @@ namespace spesium {
             /// @breif モーションデータ
             MotionData motionData {};
 
-            //
+            /// @breif モーション状態
             Motion motion;
-
-            //
+            /// @breif 現在のモーション
             Motion::State current;
+            /// @breif モーションが終わったか
+            bool isFinishMotion { false };
         };
     }  // namespace character
 }  // namespace spesium

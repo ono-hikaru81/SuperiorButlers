@@ -139,9 +139,12 @@ namespace spesium {
         void CharacterBase::PlayMotion() {
             motionData.playFrame += 1.0f;
 
+            isFinishMotion = false;
+
             // 再生時間を0に戻す(モーションをループさせる)
             if ( motionData.playFrame >= motionData.totalFrame ) {
                 motionData.playFrame = motionData.startFrame;
+                isFinishMotion = true;
             }
 
             MV1SetAttachAnimTime( modelHandle, motionData.motionModelHandle, motionData.playFrame );
