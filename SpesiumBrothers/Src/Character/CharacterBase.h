@@ -1,4 +1,4 @@
-﻿
+
 #ifndef CHARACTER_BASE_H
 #define CHARACTER_BASE_H
 
@@ -147,7 +147,6 @@ namespace spesium {
             std::string modelName {};
             /// @breif モーションデータ
             MotionData motionData {};
-
             /// @breif モーション状態
             Motion motion;
             /// @breif 現在のモーション

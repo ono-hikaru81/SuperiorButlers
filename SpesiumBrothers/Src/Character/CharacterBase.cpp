@@ -12,6 +12,7 @@ namespace spesium {
 
             if ( IsStanding() ) {
                 velocity.Y = 0.0f;
+                status.canJumpNum = 2;
 
                 KineticFriction();
             }
@@ -67,11 +68,9 @@ namespace spesium {
         }
 
         void CharacterBase::Jump() {
-            if ( !inputManager.lock()->IsKeyPushed( KEY_INPUT_W ) ) { return; }
-
-            if ( IsStanding() ) {
-                velocity.Y = status.jumpPower;
-            }
+            if ( status.canJumpNum <= 0 || !inputManager.lock()->IsKeyPushed( KEY_INPUT_W ) ) { return; }
+            velocity.Y = status.jumpPower;
+            status.canJumpNum -= 1;
         }
 
         void CharacterBase::UpdateDirection() {
