@@ -15,6 +15,7 @@ namespace spesium {
         class Motion {
            public:
             Motion() = default;
+            ~Motion() = default;
 
            public:
             enum class State {
