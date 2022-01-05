@@ -3,6 +3,7 @@
 #define IN_GAME_SCENE_H
 
 #include <Camera/Camera.h>
+#include <Character/Human.h>
 #include <Character/Monster.h>
 #include <Scene/SceneBase.h>
 
@@ -20,6 +21,7 @@ namespace spesium {
 
            private:
             character::Monster* monster { nullptr };
+            character::Human* human { nullptr };
             tool::Camera* camera { nullptr };
         };
     }  // namespace scene

@@ -41,6 +41,9 @@
     <ClCompile Include="Src\Manager\Input.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Character\Human.cpp">
+      <Filter>Character</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Camera\Camera.h">
@@ -130,6 +133,12 @@
     <ClInclude Include="Src\Manager\Input.h">
       <Filter>Manager</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Character\Human.h">
+      <Filter>Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Character\Motion\Motion.h">
+      <Filter>Character\Motion</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include=".clang-format" />
@@ -164,6 +173,9 @@
     </Filter>
     <Filter Include="Utility\VectorImpl">
       <UniqueIdentifier>{730626f8-ba59-41e2-a641-63893a00db08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Character\Motion">
+      <UniqueIdentifier>{cfdf2828-db31-4dd7-896e-70f152f21573}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
