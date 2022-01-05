@@ -111,7 +111,7 @@ namespace spesium {
 
            protected:
             /// @brief ステータス
-            Status status { 0 };
+            Status status {};
 
             /// @breif 座標
             Vector3<double> pos { 0.0, 0.0, 0.0 };
