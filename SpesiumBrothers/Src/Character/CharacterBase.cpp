@@ -70,7 +70,7 @@ namespace spesium {
         void CharacterBase::Jump() {
             if ( status.canJumpNum <= 0 || !inputManager.lock()->IsKeyPushed( KEY_INPUT_W ) ) { return; }
             velocity.Y = status.jumpPower;
-            status.canJumpNum -= 1;
+            status.canJumpNum--;
         }
 
         void CharacterBase::UpdateDirection() {
