@@ -39,6 +39,12 @@ namespace spesium {
                 float totalFrame { 0.0f };  // 総フレーム
             };
 
+            /// @brief キャラごとに既定のモーションフレーム
+            struct DefaultMotionFrame {
+                float start { 0.0f };  // 開始フレーム
+                float total { 0.0f };  // 総フレーム
+            };
+
             /// @brief 各モーションのリスト
             struct MotionList {
                 MotionData wait;  // 待機
