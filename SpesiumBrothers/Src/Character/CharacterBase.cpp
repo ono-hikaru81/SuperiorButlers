@@ -98,16 +98,12 @@ namespace spesium {
             if ( velocity.X > 0 && ( !inputManager.lock()->IsKeyPushed( KEY_INPUT_D ) || !inputManager.lock()->IsKeyHeld( KEY_INPUT_D ) ) ) {
                 velocity.X -= friction::Force;
 
-                angle = angleOfDirectionRight;
-
                 DisabledBelow( 0.0, *velocity.X );
             }
 
             // 左移動
             if ( velocity.X < 0 && ( !inputManager.lock()->IsKeyPushed( KEY_INPUT_A ) || !inputManager.lock()->IsKeyHeld( KEY_INPUT_A ) ) ) {
                 velocity.X += friction::Force;
-
-                angle = angleOfDirectionLeft;
 
                 DisabledExceed( 0.0, *velocity.X );
             }
