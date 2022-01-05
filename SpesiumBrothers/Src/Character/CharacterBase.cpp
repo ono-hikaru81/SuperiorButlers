@@ -132,7 +132,7 @@ namespace spesium {
         }
 
         void CharacterBase::PlayMotion() {
-            motionData.playFrame += 1.0f;
+            motionData.playFrame++;
 
             isFinishMotion = false;
 
